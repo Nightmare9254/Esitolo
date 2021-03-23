@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/AppStyle.scss"],"names":[],"mappings":"AAAA,IACE,cAAe,CACf,UAAW,CACX,YAAa","file":"main.0e2cfd99.chunk.css","sourcesContent":["div {\r\n  background: red;\r\n  color: #fff;\r\n  height: 100vh;\r\n}\r\n"]}
