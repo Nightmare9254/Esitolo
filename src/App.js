@@ -7,7 +7,7 @@ const App = () => {
   //     .then((json) => console.log(json));
   // }, []);
 
-  return <div>JTERAZ MNIE NIE MA</div>;
+  return <div>Zajebiscie działa</div>;
 };
 
 export default App;
