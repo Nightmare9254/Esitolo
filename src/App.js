@@ -1,18 +1,15 @@
-import { useEffect,useState } from 'react';
-
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Main from './components/Main/Main';
 const App = () => {
-  const baseUrl = 'https://esitolo-backend.herokuapp.com';
-  const [users,setUsers] = useState([]);
-  useEffect(() => {
-    fetch(`${baseUrl}/api/test`)
-      .then((res) => res.json())
-      .then((json) => setUsers(JSON.stringify(json)));
-  }, []);
-
-  return <div>Zajebiscie działa
-
-      <p>{users}</p>
-  </div>;
+  return (
+    <div>
+      <Router>
+        <Switch>
+          <Route exact route="/" component={Main} />
+        </Switch>
+      </Router>
+    </div>
+  );
 };
 
 export default App;

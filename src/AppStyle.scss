@@ -1,5 +1,16 @@
-div {
-  background: #333;
-  color: #fff;
-  height: 100vh;
+@import './styles/colors.scss';
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+html {
+  font-size: 10px;
+}
+h3 {
+  font-size: 3.7rem;
+  color: $main-yellow;
 }
