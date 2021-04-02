@@ -1,63 +1,34 @@
-@import './styles/colors.scss';
-
-*,
-*::after,
-*::before {
-  padding: 0;
-  box-sizing: border-box;
-  margin: 0;
-}
-html {
-  font-family: 'Hind', sans-serif;
-  font-size: 10px;
-}
-h3 {
-  font-size: 3.7rem;
-  color: $main-yellow;
-}
-
-h4 {
-  font-size: 2.8rem;
-  color: $font-clr;
-  font-weight: 400;
-}
-
-a {
-  text-decoration: none;
-  color: #fff;
-}
-
-// MAIN SECTION 
+@use '../abstracts' as a;
 
 .main {
-  background: $main-complementary;
+  background: a.$main-complementary;
   min-height: 100vh;
-  padding: 2rem;   
+  padding: 2rem;
 
   &__search {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 4rem;
-    background: $medium-gray;
-    padding: .5rem 0 .5rem 2rem;
+    background: a.$medium-gray;
+    padding: 0.5rem 0 0.5rem 2rem;
   }
   &__search-text {
-    font-size: 1.4rem;
-    color: $font-gray-clr;
+    font-size: a.$fs-100;
+    color: a.$font-gray-clr;
   }
   &__icon {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
     border-radius: 100rem;
-    background: $main-yellow;
-    height: 3.8rem;
+    background: a.$main-yellow;
+    height: a.$fs-500;
     width: 3.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
     .fa-search {
-      color: $medium-gray;
-      font-size: 1.8rem;
+      color: a.$medium-gray;
+      font-size: a.$fs-200;
     }
   }
   &__heading-3 {
@@ -67,7 +38,7 @@ a {
   }
   &__bestsellers {
     display: flex;
-    background: $medium-gray;
+    background: a.$medium-gray;
     overflow-x: scroll;
     padding: 1rem 1rem 2rem 1rem;
   }
@@ -78,12 +49,12 @@ a {
     border-radius: 100rem;
   }
   &__bestsellers::-webkit-scrollbar-thumb {
-    background: $main-yellow;
+    background: a.$main-yellow;
     border-radius: 100rem;
   }
   .product {
     margin: 0 5px;
-    background: $medium-gray;
+    background: a.$medium-gray;
     min-width: 140px;
     border: 1px solid #fff;
     height: 200px;
@@ -107,8 +78,8 @@ a {
       }
       &__text {
         margin-top: 1rem;
-        color: $font-clr;
-        font-size: 1.9rem;
+        color: a.$font-clr;
+        font-size: a.$fs-300;
         font-weight: 100;
       }
     }
@@ -120,14 +91,10 @@ a {
     border-radius: 100rem;
   }
   &__categories::-webkit-scrollbar-thumb {
-    background: $main-yellow;
+    background: a.$main-yellow;
     border-radius: 100rem;
   }
 }
-
-// END MAIN SECTION 
-
-// MENU
 
 .menu {
   position: sticky;
@@ -135,25 +102,28 @@ a {
   justify-content: space-between;
   align-items: center;
   bottom: 0;
-  background: $dark-gray;
+  background: a.$dark-gray;
   padding: 1.5rem 2.5rem;
   &__item {
     text-align: center;
-    .fa-home,.fa-shopping-basket,.fa-user {
-      color: $font-clr;
+    .fa-home,
+    .fa-shopping-basket,
+    .fa-user {
+      color: a.$font-clr;
     }
   }
   &__describe {
-    color: $font-clr;
+    color: a.$font-clr;
     font-weight: 200;
     font-size: 1.5rem;
   }
   &__item--active {
-    color: $main-yellow;
-    .fa-home,.fa-shopping-basket,.fa-user,.menu__describe {
+    color: a.$main-yellow;
+    .fa-home,
+    .fa-shopping-basket,
+    .fa-user,
+    .menu__describe {
       color: inherit;
     }
   }
 }
-
-// END MENU

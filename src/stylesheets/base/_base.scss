@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+@use '../abstracts' as a;
+
+html {
+  font-family: 'Hind', sans-serif;
+  font-size: 10px;
+}
+h3 {
+  font-size: a.$fs-500;
+  color: a.$main-yellow;
+}
+
+h4 {
+  font-size: a.$fs-400;
+  color: a.$font-clr;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
