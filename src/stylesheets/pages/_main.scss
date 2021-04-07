@@ -127,3 +127,37 @@
     }
   }
 }
+
+.container-form {
+  background: #333;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container-form > div {
+  text-align: right;
+}
+.container-form > div > label {
+  display: block;
+  background: #23252f;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  font-size: 20px;
+}
+.container-form > div > label > input {
+  margin-left: 40px;
+  padding: 0.7rem 1rem;
+}
+.container-form > div > button {
+  background: rgb(4, 4, 66);
+  color: #fff;
+  padding: 1rem 4rem;
+  border: 1px solid rgb(68, 68, 68);
+  font-size: 18px;
+  margin-top: 10px;
+}
