@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 
 const FormAdd = () => {
   const [product, setProduct] = useState({
-    name: '',
+    productName: '',
+    productDetails: {
+      condition: 'New',
+      invoice: 'VAT',
+      features: '',
+    },
     description: '',
     price: 0,
     amount: 0,
     image: '',
+    category: '',
   });
 
   const handlerInput = (event) => {
@@ -14,7 +20,14 @@ const FormAdd = () => {
     const value = target.value;
     const name = target.name;
 
-    setProduct({ ...product, [name]: value });
+    if (target.dataset.index !== 'details') {
+      setProduct({ ...product, [name]: value });
+      return;
+    }
+    setProduct({
+      ...product,
+      productDetails: { ...product.productDetails, [name]: value },
+    });
   };
 
   const url = 'http://localhost:8000'; //url
@@ -29,11 +42,17 @@ const FormAdd = () => {
       body: JSON.stringify(product),
     }).then((json) => {
       setProduct({
-        name: '',
+        productName: '',
+        productDetails: {
+          condition: 'New',
+          invoice: 'VAT',
+          features: '',
+        },
         description: '',
-        price: '',
-        amount: '',
+        price: 0,
+        amount: 0,
         image: '',
+        category: '',
       });
     });
   };
@@ -44,10 +63,42 @@ const FormAdd = () => {
         <label>
           Name:
           <input
-            value={product.name}
+            value={product.productName}
             onChange={(e) => handlerInput(e)}
             type="text"
-            name="name"
+            name="productName"
+          />
+        </label>
+        <label>
+          Product Details:
+          <p>Condition</p>
+          <select
+            value={product.productDetails.condition}
+            name="condition"
+            onChange={(e) => handlerInput(e)}
+            data-index="details"
+          >
+            <option value="New">New</option>
+            <option value="Used">Used</option>
+          </select>
+          <p>Invoice</p>
+          <select
+            value={product.productDetails.invoice}
+            name="invoice"
+            onChange={(e) => handlerInput(e)}
+            data-index="details"
+          >
+            <option value="VAT">VAT</option>
+            <option value="Advance Payment">Advance Payment</option>
+            <option value="RR">RR</option>
+          </select>
+          <p>Features</p>
+          <input
+            type="text"
+            value={product.productDetails.features}
+            name="features"
+            onChange={(e) => handlerInput(e)}
+            data-index="details"
           />
         </label>
         <label>
@@ -85,6 +136,26 @@ const FormAdd = () => {
             type="text"
             name="image"
           />
+        </label>
+        <label>
+          Category:
+          <select onChange={(e) => handlerInput(e)} name="category">
+            <option value="home">Home</option>
+            <option value="garden">Garden</option>
+            <option value="music">Music</option>
+            <option value="sport">Sport</option>
+            <option value="pets">Pet supplies</option>
+            <option value="jewelry">Jewelry</option>
+            <option value="tech">Tech</option>
+            <option value="toys">Toys</option>
+            <option value="clothes">Clothes</option>
+            <option value="books">Books</option>
+            <option value="consoles">consoles</option>
+            <option value="automotive">Automotive</option>
+            <option value="beauty">Beauty</option>
+            <option value="travel">Travel</option>
+            <option value="other">Other</option>
+          </select>
         </label>
         <button onClick={() => addProduct()}>Add</button>
       </div>

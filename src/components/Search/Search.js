@@ -4,7 +4,7 @@ const Search = () => {
   return (
     <main className="search">
       <div className="search__bar">
-        <i class="fas fa-arrow-left"></i>
+        <i className="fas fa-arrow-left"></i>
         <input className="search__input" type="text" placeholder="4x4 quad" />
       </div>
       <section className="search__recent">
