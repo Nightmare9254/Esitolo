@@ -11,8 +11,8 @@ const FormAdd = () => {
     description: '',
     price: 0,
     amount: 0,
-    image: '',
-    category: '',
+    image: [],
+    category: 'home',
   });
 
   const handlerInput = (event) => {
@@ -51,8 +51,8 @@ const FormAdd = () => {
         description: '',
         price: 0,
         amount: 0,
-        image: '',
-        category: '',
+        image: [],
+        category: 'home',
       });
     });
   };
@@ -131,8 +131,15 @@ const FormAdd = () => {
         <label>
           Image:
           <input
-            value={product.image}
-            onChange={(e) => handlerInput(e)}
+            // value={product.image}
+            // onChange={(e) => handlerInput(e)}
+            onKeyDown={(e) => {
+              if (e.code === 'Enter' && e.target.value.length > 1) {
+                product.image.push(e.target.value);
+
+                e.target.value = '';
+              }
+            }}
             type="text"
             name="image"
           />
