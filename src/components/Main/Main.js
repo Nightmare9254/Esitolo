@@ -44,7 +44,7 @@ const Main = () => {
           <div className="category">
             <img
               className="category__img"
-              src="https://lh3.googleusercontent.com/proxy/Z8HD9-nbc21X6nPs_YliL6oB6aarhK86pG7BWt9dYqCL1OX_1xPBSV3u3sSkyG8HSw9FlwHWZ67RXPur1xJhD6wfPGNOU5iuvYEYRrl-8UPehlPoF3ql6HuFMtRki-vbBOKeTm0"
+              src="https://lh3.googleusercontent.com/proxy/Rc_eNNYTmKqOq13frgKlb7LnE-gRoCIzA8fjZPCJQxztwcv6n0_jdW9rJy7-kwCcJ9JQgQHN8eBk372OSRGZ"
               alt=" of category"
             />
             <p className="category__text">RTV AGD</p>
