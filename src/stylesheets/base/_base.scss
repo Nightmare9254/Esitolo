@@ -4,9 +4,10 @@
 @use '../abstracts' as a;
 
 html {
-  font-family: 'Hind', sans-serif;
   font-size: 10px;
+  font-family: 'Hind', sans-serif;
 }
+
 h3 {
   font-size: a.$fs-500;
   color: a.$main-yellow;

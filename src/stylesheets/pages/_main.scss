@@ -14,21 +14,21 @@
     padding: 0.5rem 0 0.5rem 2rem;
   }
   &__search-text {
-    font-size: a.$fs-100;
+    font-size: a.$fs-300;
     color: a.$font-gray-clr;
   }
   &__icon {
     margin-right: 0.5rem;
     border-radius: 100rem;
     background: a.$main-yellow;
-    height: a.$fs-500;
+    height: 3.8rem;
     width: 3.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
     .fa-search {
       color: a.$medium-gray;
-      font-size: a.$fs-200;
+      font-size: a.$fs-300;
     }
   }
   &__heading-3 {
