@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Main from './components/Main/Main';
-import Pond from './components/Main/Pond';
-import FormAdd from './components/Form/FormAdd'
+import FormAdd from './components/Form/FormAdd';
 
 const App = () => {
   return (
@@ -10,7 +9,7 @@ const App = () => {
         <Switch>
           {/* <Route exact route="/pond" component={Pond} /> */}
           <Route exact path="/" component={Main} />
-          <Route exact path="/form" component={FormAdd}/>
+          <Route exact path="/form" component={FormAdd} />
         </Switch>
       </Router>
     </div>
