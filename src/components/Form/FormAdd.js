@@ -30,11 +30,8 @@ const FormAdd = () => {
     });
   };
 
-  const url = 'http://localhost:8000'; //url
-  const heroku = 'https://esitolo-backend.herokuapp.com';
-
   const addProduct = () => {
-    fetch(`${heroku}/api/new-product`, {
+    fetch(`/products/new-product`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
