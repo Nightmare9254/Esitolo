@@ -2,7 +2,9 @@ import { useFetch } from '../../hooks/useFetch';
 import Product from '../Product/Product';
 
 const Restocked = () => {
-  const restocked = useFetch('/products/restocked');
+  const restocked = useFetch(
+    'https://esitolo-backend.herokuapp.com/products/restocked'
+  );
 
   return (
     <>

@@ -1,7 +1,9 @@
 import { useFetch } from '../../hooks/useFetch';
 
 const Bestsellers = () => {
-  const bestsellers = useFetch('/products/bestsellers');
+  const bestsellers = useFetch(
+    'https://esitolo-backend.herokuapp.com/products/bestsellers'
+  );
 
   return bestsellers.map(({ image, price, productName, _id }) => (
     <div className="bestsellers" key={_id}>
