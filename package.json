@@ -22,7 +22,7 @@
     "sass": "^1.32.8",
     "web-vitals": "^1.1.1"
   },
-  "proxy": "https://esitolo-backend.herokuapp.com/",
+  "proxy": "https://esitolo-backend.herokuapp.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
