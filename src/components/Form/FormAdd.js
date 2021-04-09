@@ -159,7 +159,6 @@ const FormAdd = () => {
             <option value="books">Books</option>
             <option value="consoles">consoles</option>
             <option value="automotive">Automotive</option>
-            <option value="beauty">Beauty</option>
             <option value="travel">Travel</option>
             <option value="other">Other</option>
           </select>

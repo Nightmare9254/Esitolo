@@ -3,6 +3,12 @@
 // -----------------------------------------------------------------------------
 @use '../abstracts' as a;
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-size: 10px;
   font-family: 'Hind', sans-serif;

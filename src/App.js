@@ -7,7 +7,6 @@ const App = () => {
     <div>
       <Router>
         <Switch>
-          {/* <Route exact route="/pond" component={Pond} /> */}
           <Route exact path="/" component={Main} />
           <Route exact path="/form" component={FormAdd} />
         </Switch>
