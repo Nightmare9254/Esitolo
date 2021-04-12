@@ -1,4 +1,5 @@
 import { useFetch } from '../../hooks/useFetch';
+import Loading from '../Loading/Loading';
 
 const Bestsellers = () => {
   const { data, loading } = useFetch('/products/bestsellers');
@@ -20,6 +21,7 @@ const Bestsellers = () => {
             <p className="bestsellers__name">{productName}</p>
           </div>
         ))}
+        {loading && <Loading/>}
     </>
   );
 };

@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import Menu from '../Menu/Menu';
+import Loading from '../Loading/Loading';
 
 const Categories = () => {
   const { category } = useParams();
@@ -11,7 +12,7 @@ const Categories = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetch('/products/category', {
+      const response = await fetch('https://esitolo-backend.herokuapp.com/products/category', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +79,7 @@ const Categories = () => {
               price={price}
             />
           ))}
-        {loading && <div>Esitolo ... </div>}
+        {loading && <Loading/>}
       </div>
       <Menu />
     </>
