@@ -12,6 +12,7 @@
 html {
   font-size: 10px;
   font-family: 'Hind', sans-serif;
+  scroll-behavior: smooth;
 }
 
 h3 {
@@ -27,5 +28,5 @@ h4 {
 
 a {
   text-decoration: none;
-  color: #fff;
+  color: a.$dark-gray;
 }

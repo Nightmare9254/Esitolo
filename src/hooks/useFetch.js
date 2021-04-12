@@ -2,23 +2,25 @@ import { useEffect, useState, useRef } from 'react';
 
 export const useFetch = (url) => {
   const [data, setData] = useState([]);
-  const isLoad = useRef(true);
+  const [loading, setLoading] = useState(true);
+  const isMounted = useRef(true);
 
   useEffect(() => {
     return () => {
-      isLoad.current = false;
+      isMounted.current = false;
     };
   }, []);
-
+  //https://esitolo-backend.herokuapp.com
   useEffect(() => {
     fetch(`${url}`)
       .then((res) => res.json())
       .then((json) => {
-        if (isLoad.current) {
+        if (isMounted.current) {
           setData(json);
+          setLoading(false);
         }
       });
   }, [url]);
 
-  return data;
+  return { data, loading };
 };

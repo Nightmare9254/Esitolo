@@ -239,6 +239,71 @@
     }
   }
 }
+.link-back {
+  font-size: a.$fs-300;
+  color: a.$font-clr;
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+.products-container {
+  padding: 2rem;
+  background: a.$main-complementary;
+  min-height: 100vh;
+  &__title {
+    color: a.$font-clr;
+    font-size: 1.8rem;
+  }
+  &__name {
+    font-weight: 900;
+    color: a.$main-yellow;
+  }
+  &__select {
+    background: a.$dark-gray;
+    color: a.$font-clr;
+    padding: 1rem;
+    border: none;
+    margin-top: 1rem;
+  }
+  &__option {
+    margin-top: 2rem;
+    font-size: 1.7rem;
+    color: a.$font-clr;
+  }
+}
+
+.all-products {
+  padding: 2rem;
+  background: a.$main-complementary;
+  &__container-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: a.$medium-gray;
+  }
+  &__container-icon {
+    background: a.$dark-gray;
+    padding: 1rem;
+  }
+  &__input {
+    width: 100%;
+    border: none;
+    border-radius: 0 100rem 100rem 0;
+    padding: 1rem;
+    background: inherit;
+  }
+  .fa-arrow-left {
+    font-size: a.$fs-300;
+    color: a.$font-clr;
+  }
+  &__search-words {
+    margin-top: 3rem;
+    color: a.$font-clr;
+  }
+  &__recent {
+    font-size: a.$fs-400;
+    font-weight: 300;
+  }
+}
 
 .container-form {
   background: #333;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const FormAdd = () => {
   const [product, setProduct] = useState({
@@ -31,7 +31,7 @@ const FormAdd = () => {
   };
 
   const addProduct = () => {
-    fetch(`/products/new-product`, {
+    fetch(`https://esitolo-backend.herokuapp.com/products/new-product`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
