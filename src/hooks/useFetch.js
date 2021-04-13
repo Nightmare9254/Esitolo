@@ -22,5 +22,5 @@ export const useFetch = (url) => {
       });
   }, [url]);
 
-  return { data, loading };
+  return { data, loading,setLoading };
 };
