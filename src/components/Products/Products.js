@@ -4,43 +4,34 @@ import Menu from '../Menu/Menu';
 import Loading from '../Loading/Loading';
 import { useCounter } from '../../store/sub';
 import { categoryList } from '../../assets/Consts/categoryList';
-import { useRef, useState } from 'react';
-import React from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Products = () => {
   const { data, loading,setLoading } = useFetch('/products/all-products');
   const [state, actions] = useCounter();
   const [searchValue, setSearchValue] = useState('');
   const inputRef = useRef(null);
+  const [test,setTest] = useState(false);
+
+  const filterProducts = product => {
+    if(product.productName.toLowerCase().indexOf(searchValue.toLowerCase()) === -1) return false;
+    if(state.category === 'all') return true;
+
+    return product.category === state.category;
+  }
+
+  useEffect(() => {
+   if(state.category === 'all'){
+     return setTimeout(() => {
+      setLoading(false)
+     },1000)
+   } 
+   setTimeout(() => {
+    setLoading(false)
+   },300)
+  },[state.category,searchValue])
 
 
-  const displayProducts = () => {
-    if (state.category === 'all') return mapProducts(data);
-
-    const filtered = data.filter(
-      (element) => element.category === state.category
-    );
-    
-    return mapProducts(filtered);
-  };
-
-  const mapProducts = (arr) => {
-
-      const help = arr
-        .filter((e) => e.productName.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1 ? true : null )
-        .map(({ description, productName, image, price, _id }) => (
-          <Product
-            key={_id}
-            description={description}
-            productName={productName}
-            image={image}
-            price={price}
-          />
-        ));
-      
-          // setLoading(false);
-        return help;
-  };
 
   // const filterProducts = () => {
   //   console.log(filterOption);
@@ -60,8 +51,7 @@ const Products = () => {
     //       return null;
     //   }
     // };
-    
-    
+
     return (
     <>
       <div className="all-products">
@@ -85,7 +75,9 @@ const Products = () => {
             setSearchValue(inputRef.current.value)
           }}>Search</button>}
            {searchValue.length !== 0 && <button onClick={() => {
+            setLoading(true)
             setSearchValue("")
+            inputRef.current.value = '';
           }}>Cancel</button>}
         </div>
         <div className="all-products__search-words">
@@ -113,8 +105,16 @@ const Products = () => {
           ))}
         </select>
         <div className="all-products__container-items">
-          {!loading && displayProducts()}
           {loading && <Loading />}
+          {!loading && data.filter(filterProducts).map(({image,_id,productName,price,description}) =>
+            <Product
+              key={_id}
+              description={description}
+              productName={productName}
+              image={image}
+              price={price}
+              />
+          )}
         </div>
       </div>
       <Menu />
@@ -122,4 +122,4 @@ const Products = () => {
   );
 };
 
-export default React.memo(Products);
+export default Products;
