@@ -266,6 +266,9 @@
   font-size: 1.7rem;
   color: #eaeae7;
 }
+.products-container__current {
+  text-transform: capitalize;
+}
 
 @keyframes jumping {
   0% {
@@ -376,6 +379,13 @@
   padding: 0.5rem 1rem;
   font-size: 1.6rem;
   margin: 1rem 1rem 1rem 0;
+}
+.all-products__select {
+  background: #23252f;
+  border: none;
+  padding: 1rem;
+  color: #fff;
+  text-transform: capitalize;
 }
 
 .container-form {

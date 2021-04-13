@@ -273,17 +273,20 @@
     font-size: 1.7rem;
     color: a.$font-clr;
   }
+  &__current {
+    text-transform: capitalize;
+  }
 }
 @keyframes jumping {
   0% {
     transform: scale(1);
     transform: translateY(0px);
   }
-  50%{
+  50% {
     transform: scale(1.2);
     transform: translateY(20px);
   }
-  100%{
+  100% {
     transform: scale(1);
     transform: translateY(0px);
   }
@@ -379,9 +382,16 @@
   }
   &__span {
     background: a.$medium-gray;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     font-size: a.$fs-300;
     margin: 1rem 1rem 1rem 0;
+  }
+  &__select {
+    background: #23252f;
+    border: none;
+    padding: 1rem;
+    color: #fff;
+    text-transform: capitalize;
   }
 }
 

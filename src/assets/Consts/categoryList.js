@@ -1,0 +1,17 @@
+export const categoryList = [
+  'all',
+  'home',
+  'garden',
+  'music',
+  'sport',
+  'pets',
+  'jewelry',
+  'tech',
+  'toys',
+  'clothes',
+  'books',
+  'consoles',
+  'automotive',
+  'travel',
+  'other',
+];
