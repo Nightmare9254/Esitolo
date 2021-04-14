@@ -2,6 +2,7 @@ import { createStore } from 'react-sweet-state';
 
 const initialState = {
   category: 'all',
+  loading: null,
 };
 
 const actions = {
@@ -9,6 +10,12 @@ const actions = {
     const { category } = getState();
     setState({
       category: arg,
+    });
+  },
+  loadCategory: (arg) => ({ getState, setState }) => {
+    const { loading } = getState;
+    setState({
+      loading: arg,
     });
   },
 };

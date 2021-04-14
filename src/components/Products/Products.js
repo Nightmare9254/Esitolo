@@ -4,15 +4,15 @@ import Menu from '../Menu/Menu';
 import Loading from '../Loading/Loading';
 import { useCounter } from '../../store/sub';
 import { categoryList } from '../../assets/Consts/categoryList';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import React from 'react';
 
 const Products = () => {
-  const { data, loading,setLoading } = useFetch('/products/all-products');
-  const [state, actions] = useCounter();
+  const { data, loading, setLoading } = useFetch('/products/all-products');
   const [searchValue, setSearchValue] = useState('');
   const inputRef = useRef(null);
-
+  const [state, actions] = useCounter();
+  const [test, setTest] = useState();
 
   const displayProducts = () => {
     if (state.category === 'all') return mapProducts(data);
@@ -20,15 +20,19 @@ const Products = () => {
     const filtered = data.filter(
       (element) => element.category === state.category
     );
-    
+
     return mapProducts(filtered);
   };
 
   const mapProducts = (arr) => {
-
-      const help = arr
-        .filter((e) => e.productName.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1 ? true : null )
-        .map(({ description, productName, image, price, _id }) => (
+    const help = arr
+      .filter((e) =>
+        e.productName.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
+          ? true
+          : null
+      )
+      .map(({ description, productName, image, price, _id }) => {
+        return (
           <Product
             key={_id}
             description={description}
@@ -36,10 +40,9 @@ const Products = () => {
             image={image}
             price={price}
           />
-        ));
-      
-          // setLoading(false);
-        return help;
+        );
+      });
+    return help;
   };
 
   // const filterProducts = () => {
@@ -49,20 +52,18 @@ const Products = () => {
   //       products.sort((a, b) => {
   //         return b.price - a.price;
   //       });
-  
+
   //       break;
   //     case '1':
   //       products.sort((a, b) => {
-    //         return a.price - b.price;
-    //       });
-    //       break;
-    //     default:
-    //       return null;
-    //   }
-    // };
-    
-    
-    return (
+  //         return a.price - b.price;
+  //       });
+  //       break;
+  //     default:
+  //       return null;
+  //   }
+  // };
+  return (
     <>
       <div className="all-products">
         <div className="all-products__container-input">
@@ -81,12 +82,25 @@ const Products = () => {
               }
             }}
           />
-          {searchValue.length === 0 && <button onClick={() => {
-            setSearchValue(inputRef.current.value)
-          }}>Search</button>}
-           {searchValue.length !== 0 && <button onClick={() => {
-            setSearchValue("")
-          }}>Cancel</button>}
+          {searchValue.length === 0 && (
+            <button
+              onClick={() => {
+                setSearchValue(inputRef.current.value);
+              }}
+            >
+              Search
+            </button>
+          )}
+          {searchValue.length !== 0 && (
+            <button
+              onClick={() => {
+                setSearchValue('');
+                inputRef.current.value = '';
+              }}
+            >
+              Cancel
+            </button>
+          )}
         </div>
         <div className="all-products__search-words">
           <p className="all-products__recent">Recent:</p>
@@ -100,8 +114,7 @@ const Products = () => {
         {/* <p className="all-products__recent">Category:</p> */}
         <select
           onChange={(e) => {
-            actions.updateCategory(e.target.value)
-            setLoading(true);
+            actions.updateCategory(e.target.value);
           }}
           className="all-products__select"
           defaultValue={state.category}
@@ -113,8 +126,8 @@ const Products = () => {
           ))}
         </select>
         <div className="all-products__container-items">
-          {!loading && displayProducts()}
           {loading && <Loading />}
+          {!loading && displayProducts()}
         </div>
       </div>
       <Menu />
