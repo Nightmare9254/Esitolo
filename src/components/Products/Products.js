@@ -5,45 +5,35 @@ import Loading from '../Loading/Loading';
 import { useCounter } from '../../store/sub';
 import { categoryList } from '../../assets/Consts/categoryList';
 import { useEffect, useRef, useState } from 'react';
-import React from 'react';
 
 const Products = () => {
   const { data, loading, setLoading } = useFetch('/products/all-products');
   const [searchValue, setSearchValue] = useState('');
   const inputRef = useRef(null);
+  const [test, setTest] = useState(false);
   const [state, actions] = useCounter();
-  const [test, setTest] = useState();
 
-  const displayProducts = () => {
-    if (state.category === 'all') return mapProducts(data);
+  const filterProducts = (product) => {
+    if (
+      product.productName.toLowerCase().indexOf(searchValue.toLowerCase()) ===
+      -1
+    )
+      return false;
+    if (state.category === 'all') return true;
 
-    const filtered = data.filter(
-      (element) => element.category === state.category
-    );
-
-    return mapProducts(filtered);
+    return product.category === state.category;
   };
 
-  const mapProducts = (arr) => {
-    const help = arr
-      .filter((e) =>
-        e.productName.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
-          ? true
-          : null
-      )
-      .map(({ description, productName, image, price, _id }) => {
-        return (
-          <Product
-            key={_id}
-            description={description}
-            productName={productName}
-            image={image}
-            price={price}
-          />
-        );
-      });
-    return help;
-  };
+  useEffect(() => {
+    if (state.category === 'all') {
+      return setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+    }
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  }, [state.category, searchValue]);
 
   // const filterProducts = () => {
   //   console.log(filterOption);
@@ -63,6 +53,7 @@ const Products = () => {
   //       return null;
   //   }
   // };
+
   return (
     <>
       <div className="all-products">
@@ -94,6 +85,7 @@ const Products = () => {
           {searchValue.length !== 0 && (
             <button
               onClick={() => {
+                setLoading(true);
                 setSearchValue('');
                 inputRef.current.value = '';
               }}
@@ -127,7 +119,18 @@ const Products = () => {
         </select>
         <div className="all-products__container-items">
           {loading && <Loading />}
-          {!loading && displayProducts()}
+          {!loading &&
+            data
+              .filter(filterProducts)
+              .map(({ image, _id, productName, price, description }) => (
+                <Product
+                  key={_id}
+                  description={description}
+                  productName={productName}
+                  image={image}
+                  price={price}
+                />
+              ))}
         </div>
       </div>
       <Menu />
@@ -135,4 +138,4 @@ const Products = () => {
   );
 };
 
-export default React.memo(Products);
+export default Products;

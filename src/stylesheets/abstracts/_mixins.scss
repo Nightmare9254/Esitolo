@@ -1,11 +1,11 @@
 @use '../abstracts/colors' as c;
 @use '../abstracts/fonts' as fs;
 
-@mixin buttonDefault($ft-color, $bg-color) {
+@mixin buttonDefault($ft-color, $bg-color, $border: transparent) {
   color: $ft-color;
   background-color: $bg-color;
   border-radius: 100rem;
-  border: none;
+  border-color: $border;
   padding: 1rem 3rem;
   margin-top: 3rem;
   font-size: fs.$fs-300;
