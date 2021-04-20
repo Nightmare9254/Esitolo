@@ -125,6 +125,7 @@ const Products = () => {
               .map(({ image, _id, productName, price, description }) => (
                 <Product
                   key={_id}
+                  id={_id}
                   description={description}
                   productName={productName}
                   image={image}

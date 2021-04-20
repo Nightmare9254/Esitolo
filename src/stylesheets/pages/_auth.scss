@@ -87,6 +87,7 @@
   justify-content: space-between;
   align-items: center;
   padding-left: 1rem;
+  transition: transform 0.3s ease-in-out;
 
   .fa-user,
   .fa-envelope,
@@ -104,13 +105,22 @@
   &__input:focus {
     outline: none;
   }
+  &__input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px a.$dark-gray inset;
+    -webkit-text-fill-color: a.$font-clr;
+  }
 }
 .error {
   margin-top: 0.5rem;
   color: a.$bright-red;
   font-size: a.$fs-200;
   font-weight: 700;
+  text-align: center;
+}
+.error--lower {
+  margin-top: 1.5rem;
 }
 .label--focused {
-  border: 1px solid red;
+  // border: 1px solid a.$main-yellow;
+  transform: scale(1.05);
 }

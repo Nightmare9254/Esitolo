@@ -2,8 +2,31 @@ import TextField from '../Formik/TextField';
 import { Form, Formik } from 'formik';
 import { formSchemaSignIn } from '../Formik/YupValidation';
 import { AnimateContainer, AnimateItem } from '../../framer/Transitions';
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
 
 const SignIn = () => {
+  const history = useHistory();
+  const [message, setMessage] = useState('');
+
+  const loginUser = (values) => {
+    fetch('https://esitolo-backend.herokuapp.com/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.valid) {
+          history.push('/');
+          window.location.reload();
+        }
+        setMessage(json.message);
+      });
+  };
+
   return (
     <main className="auth__method-main">
       <AnimateContainer>
@@ -21,7 +44,7 @@ const SignIn = () => {
       </AnimateContainer>
       <Formik
         initialValues={{ email: '', password: '' }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => loginUser(values)}
         validationSchema={formSchemaSignIn}
       >
         <Form className="auth__form">
@@ -40,6 +63,7 @@ const SignIn = () => {
               name="password"
               type="password"
             />
+            <p className="error error--lower">{message}</p>
             <AnimateItem>
               <p className="auth__forgot-password">Forgot password?</p>
             </AnimateItem>
