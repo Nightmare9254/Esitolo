@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-const Product = ({ id, description, productName, image, price }) => {
+const Product = ({ id, description, productName, image, price,blur }) => {
   return (
-    <div>
+    <div style={blur ? {filter: 'blur(3px)'} : null}>
       <Link to={`/product/${id}`}>
         <div className="product">
           <i className="fas fa-plus product__icon-add"></i>
