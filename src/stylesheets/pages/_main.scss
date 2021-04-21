@@ -347,8 +347,10 @@
 .all-products {
   padding: 2rem;
   background: a.$main-complementary;
-  min-height: 100vh;
+  height: 100vh;
   overflow-x: hidden;
+  overflow: auto;
+
   &__container-input {
     display: flex;
     justify-content: center;

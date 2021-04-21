@@ -340,8 +340,9 @@
 .all-products {
   padding: 2rem;
   background: #31343a;
-  min-height: 100vh;
+  height: 100vh;
   overflow-x: hidden;
+  overflow: auto;
 }
 .all-products__container-input {
   display: flex;
