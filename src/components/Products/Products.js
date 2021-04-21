@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 
 const Products = () => {
   const { data, loading,setLoading } = useFetch('/products/all-products');
+  const [localData, setLocalData] = useState([]);
   const [state, actions] = useCounter();
   const [searchValue, setSearchValue] = useState('');
   const inputRef = useRef(null);
@@ -20,16 +21,26 @@ const Products = () => {
     return product.category === state.category;
   }
 
-  useEffect(() => {
-   if(state.category === 'all'){
-     return setTimeout(() => {
-      setLoading(false)
-     },1000)
-   } 
-   setTimeout(() => {
-    setLoading(false)
-   },300)
-  },[state.category,searchValue])
+  // useEffect(() => {
+  //   const d = data.filter(filterProducts);
+  //         setLocalData(d)
+  //         setLoading(false);
+  // }, [data, state.category])
+
+  // useEffect(() => {
+  //   console.log('loading changed', loading)
+  // }, [loading])
+
+  // useEffect(() => {
+  //  if(state.category === 'all'){
+  //    return setTimeout(() => {
+  //     setLoading(false)
+  //    },1000)
+  //  } 
+  //  setTimeout(() => {
+  //   setLoading(false)
+  //  },300)
+  // },[state.category,searchValue])
 
 
 
@@ -51,6 +62,8 @@ const Products = () => {
     //       return null;
     //   }
     // };
+
+    // console.log('asd',state)
 
     return (
     <>
@@ -93,7 +106,7 @@ const Products = () => {
         <select
           onChange={(e) => {
             actions.updateCategory(e.target.value)
-            setLoading(true);
+            // setLoading(true);
           }}
           className="all-products__select"
           defaultValue={state.category}
