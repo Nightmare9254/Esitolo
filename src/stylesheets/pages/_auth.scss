@@ -1,0 +1,126 @@
+@use '../abstracts' as a;
+
+.auth {
+  &__login {
+    display: grid;
+    place-content: center;
+  }
+  &__signin {
+    background-color: a.$main-yellow;
+    color: a.$font-dark-gray;
+  }
+  &__signup {
+    background-color: a.$main-complementary;
+    color: a.$font-clr;
+  }
+  &__method-main {
+    min-width: a.$auth-form;
+    display: grid;
+    place-items: center;
+  }
+  &__toggle-box {
+    display: grid;
+    place-content: center;
+  }
+  &__toggle-txt {
+    font-size: a.$fs-400;
+    max-width: a.$auth-form-items;
+    text-align: center;
+  }
+  &__toggle-btn {
+    color: a.$font-clr;
+    background-color: transparent;
+    border: a.$border-width solid a.$font-clr;
+    border-radius: 100rem;
+    padding: 1rem 3rem;
+    margin-top: 3rem;
+    font-size: a.$fs-300;
+  }
+  &__header {
+    font-size: a.$fs-500;
+    color: a.$main-yellow;
+  }
+  &__header--active {
+    color: a.$main-complementary;
+  }
+  &__button {
+    min-width: a.$auth-form-items;
+  }
+  &__button--action {
+    color: a.$main-yellow;
+    background-color: a.$medium-gray;
+    font-size: a.$fs-300;
+    border-radius: 100rem;
+    padding: 1rem 3rem;
+    margin-top: 3rem;
+    border: none;
+  }
+  &__button-signin {
+    background: a.$main-complementary;
+    font-size: a.$fs-600;
+  }
+  &__option-txt {
+    font-size: a.$fs-300;
+  }
+  &__google {
+    font-size: a.$fs-500;
+    margin: 2rem 0;
+  }
+  &__forgot-password {
+    min-width: a.$auth-form-items;
+    margin-top: 2rem;
+    text-align: right;
+    font-size: a.$fs-300;
+  }
+  &__form {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 80%;
+  }
+}
+.label {
+  border-radius: 5px;
+  background: a.$medium-gray;
+  display: inline-block;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+  transition: transform 0.3s ease-in-out;
+
+  .fa-user,
+  .fa-envelope,
+  .fa-lock {
+    font-size: a.$fs-300;
+    color: #fff;
+  }
+  &__input {
+    background: a.$medium-gray;
+    border: none;
+    width: 90%;
+    padding: 1rem;
+    color: a.$font-clr;
+  }
+  &__input:focus {
+    outline: none;
+  }
+  &__input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px a.$dark-gray inset;
+    -webkit-text-fill-color: a.$font-clr;
+  }
+}
+.error {
+  margin-top: 0.5rem;
+  color: a.$bright-red;
+  font-size: a.$fs-200;
+  font-weight: 700;
+  text-align: center;
+}
+.error--lower {
+  margin-top: 1.5rem;
+}
+.label--focused {
+  // border: 1px solid a.$main-yellow;
+  transform: scale(1.05);
+}

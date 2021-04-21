@@ -1,0 +1,11 @@
+@use '../abstracts' as a;
+
+.page__title {
+  background-color: a.$medium-gray;
+}
+.page__title-h2 {
+  font-size: a.$fs-500;
+  font-weight: 300;
+  padding: 1rem;
+  color: a.$font-clr;
+}

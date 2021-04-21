@@ -4,8 +4,16 @@ import Categories from './Categories';
 import Bestsellers from './Bestsellers';
 import Restocked from './Restocked';
 import Footer from '../Footer/Footer';
+import { useEffect } from 'react';
+import { useCounter } from '../../store/sub';
 
 const Main = () => {
+  const [state, actions] = useCounter();
+
+  useEffect(() => {
+    actions.updateCategory('all');
+  }, []);
+
   return (
     <>
       <section className="main">

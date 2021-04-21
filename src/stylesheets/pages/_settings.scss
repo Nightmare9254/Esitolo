@@ -1,0 +1,26 @@
+@use '../abstracts' as a;
+.settings {
+  background-color: a.$main-complementary;
+  min-height: 100vh;
+
+  &__section {
+    background-color: a.$dark-gray;
+    margin: 2rem 0;
+    padding: 2rem 1rem;
+  }
+  &__txt--dimmed {
+    color: a.$font-gray-clr;
+    font-size: a.$fs-300;
+  }
+  &__options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.5rem 0;
+  }
+  &__change-btn {
+    border: none;
+    background: transparent;
+    color: a.$main-yellow;
+  }
+}

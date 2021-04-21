@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { useCounter } from '../store/sub';
 
 export const useFetch = (url) => {
   const [data, setData] = useState([]);
@@ -22,5 +23,5 @@ export const useFetch = (url) => {
       });
   }, [url]);
 
-  return { data, loading,setLoading };
+  return { data, loading, setLoading };
 };
