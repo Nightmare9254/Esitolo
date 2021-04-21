@@ -37,7 +37,9 @@ const Products = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/products/all-products?${params.toString()}`)
+    fetch(
+      `https://esitolo-backend.herokuapp.com/auth/login/products/all-products?${params.toString()}`
+    )
       .then((res) => res.json())
       .then((json) => {
         setProducts((prev) => [...prev, ...json]);
