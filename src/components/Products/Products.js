@@ -20,17 +20,18 @@ const Products = () => {
   const [state, actions] = useCounter();
   const [search, setSearch] = useState('');
   const [filterLoading, setFilterLoading] = useState(true);
-
+  const [ifBottom, setIsBottom] = useState(false);
   const [filtered, setFiltered] = useState([]);
 
   const handleScroll = (event) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
-    console.log(`scrollTop: ${scrollTop}`);
-    console.log(`clientHeight: ${clientHeight}`);
-    console.log(`scrollHeight: ${scrollHeight}`);
+    // console.log(`scrollTop: ${scrollTop}`);
+    // console.log(`scrollHeight: ${scrollHeight}`);
+    // console.log(`clientHeight: ${clientHeight}`);
 
     if (scrollHeight - scrollTop === clientHeight) {
-      console.log('teraz if');
+      // console.log('teraz if');
+      setIsBottom(true);
       setPage((prev) => prev + 1);
     }
 
@@ -86,6 +87,9 @@ const Products = () => {
   return (
     <>
       <div onScroll={handleScroll} className="all-products">
+        {ifBottom && (
+          <p style={{ color: '#fff', fontSize: '30px' }}>Kurwa ma miód</p>
+        )}
         <div className="all-products__container-input">
           <div className="all-products__container-icon">
             <Link to="/">
