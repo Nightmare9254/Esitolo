@@ -200,14 +200,17 @@
 }
 
 .menu {
-  position: fixed;
+  position: sticky;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   bottom: 0;
-  background: a.$dark-gray;
-  padding: 1.5rem 2.5rem;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: a.$dark-gray;
+    padding: 1.5rem 2.5rem;
+  }
   &__item {
     text-align: center;
     .fa-home,

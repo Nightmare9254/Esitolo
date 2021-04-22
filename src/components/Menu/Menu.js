@@ -6,7 +6,9 @@ const Menu = () => {
   const { user } = cookies;
 
   return (
+    
     <div className="menu">
+      <div className="menu__container">
       <div className="menu__item menu__item--active">
         <Link to="/">
           <i className="fas fa-home fa-3x"></i>
@@ -35,7 +37,9 @@ const Menu = () => {
           </>
         )}
       </div>
+      </div>
     </div>
+   
   );
 };
 

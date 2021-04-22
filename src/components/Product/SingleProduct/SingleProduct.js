@@ -13,30 +13,33 @@ const SingleProduct = () => {
   const [amount, setAmount] = useState(1);
   const [imagePosition, setImagePosition] = useState(0);
 
+
   useEffect(() => {
-    fetch(`/products?id=${id}`)
+    fetch(`https://esitolo-backend.herokuapp.com/products?id=${id}`)
       .then((res) => res.json())
       .then((json) => {
         setProduct(json);
         setLoading(false);
       });
 
-    const category = product.category;
-
-    const params = new URLSearchParams({
-      category: category,
-      id: id,
-    });
-
-    fetch(`/products/similar?${params.toString()}`)
-      .then((res) => res.json())
-      .then((json) => {
-        setSimiliar(json);
-        // setLoading(false);
-      });
-
     setImagePosition(0);
-  }, [id, loading]);
+  }, [id]);
+
+  useEffect(() => {
+    if(product.category !== undefined) {
+      const params = new URLSearchParams({
+        category: product.category,
+        id: id,
+      });
+  
+      fetch(`https://esitolo-backend.herokuapp.com/products/similar?${params.toString()}`)
+        .then((res) => res.json())
+        .then((json) => {
+          setSimiliar(json);
+          // setLoading(false);
+        });
+    }
+  }, [id,loading])
 
   const nextImg = () => {
     if (imagePosition >= product.image.length - 1) {
@@ -81,8 +84,7 @@ const SingleProduct = () => {
                 src={product.image[imagePosition]}
                 alt="products"
                 className="single__image"
-                drag
-                dragDirectionLock="x"
+                drag='x'
                 dragElastic={1}
                 dragConstraints={{ left: 1, right: 1 }}
                 onDragEnd={(e, { offset, velocity }) => {
@@ -207,9 +209,9 @@ const SingleProduct = () => {
               </div>
             </div>
           </div>
+          <Menu />
         </div>
       )}
-      <Menu />
     </>
   );
 };

@@ -193,12 +193,14 @@
 }
 
 .menu {
-  position: fixed;
+  position: sticky;
   width: 100%;
+  bottom: 0;
+}
+.menu__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  bottom: 0;
   background: #1a1d22;
   padding: 1.5rem 2.5rem;
 }
