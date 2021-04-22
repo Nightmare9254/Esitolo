@@ -26,14 +26,16 @@ const Products = () => {
   const handleScroll = (event) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
     console.log(`scrollTop: ${scrollTop}`);
+    console.log(`scrollHeight: ${scrollHeight}`);
 
-    // if (scrollHeight - scrollTop >= 300) {
-    //   setPage((prev) => prev + 1);
-    // }
-
-    if (scrollTop + clientHeight >= scrollHeight) {
+    const half = scrollHeight / 2;
+    if (scrollHeight - scrollTop > half) {
       setPage((prev) => prev + 1);
     }
+
+    // if (scrollTop + clientHeight >= scrollHeight) {
+    //   setPage((prev) => prev + 1);
+    // }
   };
 
   const params = new URLSearchParams({
