@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Menu from '../../Menu/Menu';
@@ -13,13 +14,7 @@ const SingleProduct = () => {
   const [imagePosition, setImagePosition] = useState(0);
 
   useEffect(() => {
-    fetch('https://esitolo-backend.herokuapp.com/products/single-product', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id }),
-    })
+    fetch(`/products?id=${id}`)
       .then((res) => res.json())
       .then((json) => {
         setProduct(json);
@@ -28,13 +23,12 @@ const SingleProduct = () => {
 
     const category = product.category;
 
-    fetch('https://esitolo-backend.herokuapp.com/products/similar-products', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ category, id }),
-    })
+    const params = new URLSearchParams({
+      category: category,
+      id: id,
+    });
+
+    fetch(`/products/similar?${params.toString()}`)
       .then((res) => res.json())
       .then((json) => {
         setSimiliar(json);
@@ -80,12 +74,28 @@ const SingleProduct = () => {
                 <i className="fas fa-caret-left fa-2x"></i>
               </button>
             )}
-            <img
-              src={product.image[imagePosition]}
-              alt="products"
-              className="single__image"
-            />
 
+            <AnimatePresence>
+              <motion.img
+                key={imagePosition}
+                src={product.image[imagePosition]}
+                alt="products"
+                className="single__image"
+                drag
+                dragDirectionLock="x"
+                dragElastic={1}
+                dragConstraints={{ left: 1, right: 1 }}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = Math.abs(offset.x) * velocity.x;
+
+                  if (swipe < -10000) {
+                    nextImg();
+                  } else if (swipe > 10000) {
+                    preImg();
+                  }
+                }}
+              />
+            </AnimatePresence>
             {product.image.length > 1 && (
               <button
                 onClick={() => nextImg()}

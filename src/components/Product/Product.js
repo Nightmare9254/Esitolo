@@ -8,11 +8,13 @@ const Product = ({
   price,
   blur,
   refItem,
+  isBottom,
+  view,
 }) => {
   return (
-    <div ref={refItem} style={blur ? { filter: 'blur(3px)' } : null}>
+    <div ref={refItem} className={`${isBottom ? 'isBottom' : ''}`}>
       <Link to={`/product/${id}`}>
-        <div className="product">
+        <div className={`product ${view ? 'product--searched' : ''}`}>
           <i className="fas fa-plus product__icon-add"></i>
           <div className="product__container-img">
             <img src={image[0]} className="product__img" alt="product" />

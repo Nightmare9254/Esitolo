@@ -5,13 +5,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useCounter } from '../../store/sub';
 import { Link } from 'react-router-dom';
 import { categoryList } from '../../assets/Consts/categoryList';
-import styled from 'styled-components';
-
-const ContainerSearch = styled.div`
-  position: relative;
-  margin-top: 1rem;
-  transition: opacity 0.3s ease-in;
-`;
+import { AnimatePresence } from 'framer-motion';
+import SearchProducts from './SearchProducts';
 
 const Products = () => {
   const [page, setPage] = useState(1);
@@ -19,27 +14,20 @@ const Products = () => {
   const [loading, setLoading] = useState(true);
   const [state, actions] = useCounter();
   const [search, setSearch] = useState('');
-  const [filterLoading, setFilterLoading] = useState(true);
-  const [ifBottom, setIsBottom] = useState(false);
+  const [filterLoading, setFilterLoading] = useState(false);
   const [filtered, setFiltered] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [toggle, setToggle] = useState(false);
+  const [sortBy, setSortBy] = useState('0');
 
-  // const handleScroll = (event) => {
-  // const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
-  // console.log(`scrollTop: ${scrollTop}`);
-  // console.log(`scrollHeight: ${scrollHeight}`);
-  // console.log(`clientHeight: ${clientHeight}`);
-  // console.log(clientHeight);
+  const sortProducts = (a, b) => {
+    if (sortBy === '1') {
+      return a.price - b.price;
+    }
+    if (sortBy === '0') return;
 
-  // if (scrollHeight - scrollTop === clientHeight) {
-  //   // console.log('teraz if');
-  //   setIsBottom(true);
-  //   setPage((prev) => prev + 1);
-  // }
-
-  // if (scrollTop + clientHeight >= scrollHeight) {
-  //   setPage((prev) => prev + 1);
-  // }
-  // };
+    return b.price - a.price;
+  };
 
   const observer = useRef();
   const lastProduct = useCallback((item) => {
@@ -61,36 +49,40 @@ const Products = () => {
   useEffect(() => {
     setProducts([]);
     setPage(1);
+    setHasMore(true);
   }, [state.category]);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(
-      `https://esitolo-backend.herokuapp.com/products/all-products?${params.toString()}`
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setProducts((prev) => [...prev, ...json]);
-        setLoading(false);
-      });
+    if (hasMore) {
+      setLoading(true);
+      fetch(`/products/all-products?${params.toString()}`)
+        .then((res) => res.json())
+        .then((json) => {
+          setProducts((prev) => [...prev, ...json.items]);
+          setHasMore(json.hasMore);
+          setLoading(false);
+        });
+    }
   }, [page, state.category]);
 
   useEffect(() => {
-    setFilterLoading(true);
     if (search === '') setFiltered([]);
 
-    const timeout = setTimeout(() => {
-      fetch(
-        `https://esitolo-backend.herokuapp.com/products/products-search?search=${search}`
-      )
-        .then((res) => res.json())
-        .then((json) => {
-          setFiltered(json);
-          setFilterLoading(false);
-        });
-    }, 1000);
+    if (search.length > 0) {
+      setFilterLoading(true);
+      const timeout = setTimeout(() => {
+        fetch(
+          `https://esitolo-backend.herokuapp.com/products/products-search?search=${search}`
+        )
+          .then((res) => res.json())
+          .then((json) => {
+            setFiltered(json);
+            setFilterLoading(false);
+          });
+      }, 1000);
 
-    return () => clearTimeout(timeout);
+      return () => clearTimeout(timeout);
+    }
   }, [search]);
 
   const reset = () => {
@@ -98,72 +90,66 @@ const Products = () => {
     setFiltered([]);
   };
 
+  const toggleState = () => {
+    setToggle(!toggle);
+  };
+
   return (
     <>
       <div className="all-products">
-        {ifBottom && (
-          <p style={{ color: '#fff', fontSize: '30px' }}>Kurwa ma miód</p>
-        )}
-        <div className="all-products__container-input">
-          <div className="all-products__container-icon">
-            <Link to="/">
-              <i className="fas fa-arrow-left" />
-            </Link>
+        <div className="all-products__actions">
+          <Link to="/">
+            <i className="fas fa-arrow-left fa-2x" />
+          </Link>
+          <div className="all-products__container-search" onClick={toggleState}>
+            <i className="fas fa-search fa-2x" />
           </div>
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="all-products__input"
-          />
         </div>
-        {search.length > 0 && (
-          <ContainerSearch>
-            <div onClick={reset} className="close">
-              x
-            </div>
-            <div className="test">
-              {!filterLoading && filtered.length > 0 && (
-                <p className="test-query">
-                  Results for: <span>{search}</span>
-                </p>
-              )}
-              {filterLoading && <p className="test-query">Loading...</p>}
-              {!filterLoading && filtered.length === 0 && (
-                <p className="test-query">No result for {search}</p>
-              )}
-              {filtered.map(
-                ({ image, _id, productName, price, description }, index) => (
-                  <Product
-                    key={index}
-                    id={_id}
-                    description={description}
-                    productName={productName}
-                    image={image}
-                    price={price}
-                  />
-                )
-              )}
-            </div>
-          </ContainerSearch>
-        )}
+        <AnimatePresence>
+          {toggle && (
+            <SearchProducts
+              reset={reset}
+              toggleState={toggleState}
+              filtered={filtered}
+              filterLoading={filterLoading}
+              search={search}
+              setSearch={setSearch}
+            />
+          )}
+        </AnimatePresence>
+
         {search.length === 0 && (
-          <select
-            onChange={(e) => actions.updateCategory(e.target.value)}
-            className="all-products__select"
-          >
-            {categoryList.map((name, index) => (
-              <option value={name} key={index}>
-                {name}
-              </option>
-            ))}
-          </select>
+          <>
+            <select
+              defaultValue={state.category}
+              onChange={(e) => actions.updateCategory(e.target.value)}
+              className="all-products__select"
+            >
+              {categoryList.map((name, index) => (
+                <option value={name} key={index}>
+                  {name}
+                </option>
+              ))}
+            </select>
+            <select
+              className="all-products__select all-products__select--left"
+              onChange={(e) => setSortBy(e.target.value)}
+              onKeyDown={sortProducts}
+            >
+              <option value="0">Default</option>
+              <option value="1">Sort by price (Low to High)</option>
+              <option value="2">Sort by price (High to Low)</option>
+            </select>
+          </>
         )}
-        {products.map(
-          ({ image, _id, productName, price, description }, index) => {
+        {products
+          .sort(sortProducts)
+          .map(({ image, _id, productName, price, description }, index) => {
             if (products.length === index + 1) {
               return (
                 <Product
                   refItem={lastProduct}
+                  isBottom={true}
                   key={index}
                   id={_id}
                   description={description}
@@ -186,9 +172,25 @@ const Products = () => {
                 />
               );
             }
-          }
-        )}
+          })}
         {loading && <Loading />}
+        {!hasMore && (
+          <div className="all-products__container-information">
+            {state.category === 'all' && (
+              <p className="all-products__information">
+                You have seen all products
+              </p>
+            )}
+            {state.category !== 'all' && (
+              <p className="all-products__information">
+                You have seen all products for category:{' '}
+                <span className="all-products__information-category">
+                  {state.category}
+                </span>
+              </p>
+            )}
+          </div>
+        )}
       </div>
       <Menu />
     </>

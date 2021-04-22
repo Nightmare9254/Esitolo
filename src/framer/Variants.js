@@ -53,4 +53,22 @@ const staggerChildren = {
   },
 };
 
-export { animateHeight, animateSlideTop, staggerChildren };
+const animateOpacity = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      type: 'tween',
+      ease: 'easeOut',
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      type: 'tween',
+      ease: 'easeOut',
+    },
+  },
+};
+
+export { animateHeight, animateSlideTop, staggerChildren, animateOpacity };
