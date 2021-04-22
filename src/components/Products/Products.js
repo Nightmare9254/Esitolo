@@ -26,10 +26,11 @@ const Products = () => {
   const handleScroll = (event) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
     console.log(`scrollTop: ${scrollTop}`);
+    console.log(`clientHeight: ${clientHeight}`);
     console.log(`scrollHeight: ${scrollHeight}`);
 
-    const half = scrollHeight / 2;
-    if (scrollHeight - scrollTop > half) {
+    if (scrollHeight - scrollTop === clientHeight) {
+      console.log('teraz if');
       setPage((prev) => prev + 1);
     }
 
