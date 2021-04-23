@@ -1,7 +1,7 @@
 import { useFetch } from '../../hooks/useFetch';
 import Product from '../Product/Product';
 import { Link } from 'react-router-dom';
-import Loading from '../Loading/Loading';
+import { LoadingAnimation } from '../../framer/Transitions';
 
 const Restocked = () => {
   const { data, loading } = useFetch('/products/restocked');
@@ -22,7 +22,7 @@ const Restocked = () => {
           ))}
         </div>
       )}
-       {loading && <Loading/>}
+      {loading && <LoadingAnimation />}
       <button className="button button__restocked">
         <Link to="/products">See more</Link>
       </button>

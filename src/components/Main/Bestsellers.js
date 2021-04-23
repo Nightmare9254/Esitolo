@@ -1,5 +1,5 @@
+import { LoadingAnimation } from '../../framer/Transitions';
 import { useFetch } from '../../hooks/useFetch';
-import Loading from '../Loading/Loading';
 import TopProducts from '../SingleComponents/TopProducts';
 
 const Bestsellers = () => {
@@ -17,7 +17,7 @@ const Bestsellers = () => {
             productName={productName}
           />
         ))}
-      {loading && <Loading />}
+      {loading && <LoadingAnimation />}
     </>
   );
 };

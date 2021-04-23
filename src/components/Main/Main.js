@@ -18,7 +18,10 @@ const Main = () => {
     <>
       <section className="main">
         <Link to="/products">
-          <div className="main__search">
+          <div
+            onClick={() => actions.openSearch(true)}
+            className="main__search"
+          >
             <p className="main__search-text">Search something amazing</p>
             <div className="main__icon">
               <i className="fas fa-search"></i>

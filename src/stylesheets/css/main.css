@@ -181,12 +181,22 @@
 
 .product--searched {
   min-height: 6.2rem;
-  max-height: 6.2rem;
+  max-height: 8rem;
+}
+.product--searched .product__price {
+  margin-top: 1rem;
+}
+.product--searched .product__data {
+  border-radius: 100rem;
+}
+.product--searched .product__name {
+  margin-bottom: 2rem;
 }
 .product--searched .product__container-img {
   width: 6rem;
 }
 .product--searched .product__img {
+  border-radius: 4px;
   min-height: 6.2rem;
   max-height: 6.2rem;
   width: 100%;
@@ -295,63 +305,6 @@
   text-transform: capitalize;
 }
 
-@keyframes jumping {
-  0% {
-    transform: scale(1);
-    transform: translateY(0px);
-  }
-  50% {
-    transform: scale(1.2);
-    transform: translateY(20px);
-  }
-  100% {
-    transform: scale(1);
-    transform: translateY(0px);
-  }
-}
-.loading {
-  margin-top: 5rem;
-}
-.loading__container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.loading__text {
-  margin-top: 3rem;
-  color: #eaeae7;
-  font-size: 1.6rem;
-  text-align: center;
-}
-.loading__circle {
-  height: 3rem;
-  width: 3rem;
-  background: #fac646;
-  border-radius: 10rem;
-  margin: 0 1rem;
-  animation-name: jumping;
-  animation-delay: 1s;
-  animation-iteration-count: infinite;
-  animation-duration: 2s;
-}
-.loading__circle--1 {
-  animation-name: jumping;
-  animation-iteration-count: infinite;
-  animation-duration: 2s;
-}
-.loading__circle--2 {
-  animation-name: jumping;
-  animation-delay: 1s;
-  animation-iteration-count: infinite;
-  animation-duration: 1s;
-}
-.loading__circle--3 {
-  animation-name: jumping;
-  animation-delay: 2s;
-  animation-iteration-count: infinite;
-  animation-duration: 2s;
-}
-
 .all-products {
   padding: 2rem;
   background: #31343a;
@@ -362,7 +315,10 @@
 .all-products__container-search {
   border-radius: 100rem;
   background: #fac646;
-  padding: 1rem;
+  width: 4rem;
+  height: 4rem;
+  display: grid;
+  place-content: center;
 }
 .all-products__actions {
   display: flex;
@@ -516,6 +472,11 @@
   border: 2px solid #444444;
   font-size: 18px;
   margin-top: 10px;
+}
+
+.animation {
+  font-size: 2.8rem;
+  font-weight: 500;
 }
 
 .auth__login {

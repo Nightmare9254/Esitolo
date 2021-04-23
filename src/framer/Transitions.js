@@ -41,3 +41,15 @@ export const ShowInput = ({ children }) => {
     </motion.div>
   );
 };
+
+export const LoadingAnimation = () => {
+  return (
+    <motion.p
+      className="animation"
+      animate={{ opacity: 1, color: ['#929292', '#fac646'] }}
+      transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1 }}
+    >
+      Esitolo
+    </motion.p>
+  );
+};

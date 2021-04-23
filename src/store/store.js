@@ -3,6 +3,7 @@ import { createStore } from 'react-sweet-state';
 const initialState = {
   category: 'all',
   loading: null,
+  isSearch: false,
 };
 
 const actions = {
@@ -16,6 +17,12 @@ const actions = {
     const { loading } = getState;
     setState({
       loading: arg,
+    });
+  },
+  openSearch: (arg) => ({ getState, setState }) => {
+    const { isSearch } = getState();
+    setState({
+      isSearch: arg,
     });
   },
 };

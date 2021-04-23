@@ -187,12 +187,23 @@
 }
 .product--searched {
   min-height: 6.2rem;
-  max-height: 6.2rem;
+  max-height: 8rem;
 
+  .product__price {
+    margin-top: 1rem;
+  }
+  .product__data {
+    border-radius: 100rem;
+  }
+
+  .product__name {
+    margin-bottom: 2rem;
+  }
   .product__container-img {
     width: 6rem;
   }
   .product__img {
+    border-radius: 4px;
     min-height: 6.2rem;
     max-height: 6.2rem;
     width: 100%;
@@ -303,63 +314,63 @@
     text-transform: capitalize;
   }
 }
-@keyframes jumping {
-  0% {
-    transform: scale(1);
-    transform: translateY(0px);
-  }
-  50% {
-    transform: scale(1.2);
-    transform: translateY(20px);
-  }
-  100% {
-    transform: scale(1);
-    transform: translateY(0px);
-  }
-}
-.loading {
-  margin-top: 5rem;
+// @keyframes jumping {
+//   0% {
+//     transform: scale(1);
+//     transform: translateY(0px);
+//   }
+//   50% {
+//     transform: scale(1.2);
+//     transform: translateY(20px);
+//   }
+//   100% {
+//     transform: scale(1);
+//     transform: translateY(0px);
+//   }
+// }
+// .loading {
+//   margin-top: 5rem;
 
-  &__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  &__text {
-    margin-top: 3rem;
-    color: a.$font-clr;
-    font-size: a.$fs-300;
-    text-align: center;
-  }
-  &__circle {
-    height: 3rem;
-    width: 3rem;
-    background: a.$main-yellow;
-    border-radius: 10rem;
-    margin: 0 1rem;
-    animation-name: jumping;
-    animation-delay: 1s;
-    animation-iteration-count: infinite;
-    animation-duration: 2s;
-  }
-  &__circle--1 {
-    animation-name: jumping;
-    animation-iteration-count: infinite;
-    animation-duration: 2s;
-  }
-  &__circle--2 {
-    animation-name: jumping;
-    animation-delay: 1s;
-    animation-iteration-count: infinite;
-    animation-duration: 1s;
-  }
-  &__circle--3 {
-    animation-name: jumping;
-    animation-delay: 2s;
-    animation-iteration-count: infinite;
-    animation-duration: 2s;
-  }
-}
+//   &__container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
+//   &__text {
+//     margin-top: 3rem;
+//     color: a.$font-clr;
+//     font-size: a.$fs-300;
+//     text-align: center;
+//   }
+//   &__circle {
+//     height: 3rem;
+//     width: 3rem;
+//     background: a.$main-yellow;
+//     border-radius: 10rem;
+//     margin: 0 1rem;
+//     animation-name: jumping;
+//     animation-delay: 1s;
+//     animation-iteration-count: infinite;
+//     animation-duration: 2s;
+//   }
+//   &__circle--1 {
+//     animation-name: jumping;
+//     animation-iteration-count: infinite;
+//     animation-duration: 2s;
+//   }
+//   &__circle--2 {
+//     animation-name: jumping;
+//     animation-delay: 1s;
+//     animation-iteration-count: infinite;
+//     animation-duration: 1s;
+//   }
+//   &__circle--3 {
+//     animation-name: jumping;
+//     animation-delay: 2s;
+//     animation-iteration-count: infinite;
+//     animation-duration: 2s;
+//   }
+// }
 .all-products {
   padding: 2rem;
   background: a.$main-complementary;
@@ -370,7 +381,10 @@
   &__container-search {
     border-radius: 100rem;
     background: a.$main-yellow;
-    padding: 1rem;
+    width: 4rem;
+    height: 4rem;
+    display: grid;
+    place-content: center;
   }
   &__actions {
     display: flex;
@@ -528,4 +542,8 @@
   border: a.$border-width solid rgb(68, 68, 68);
   font-size: 18px;
   margin-top: 10px;
+}
+.animation {
+  font-size: a.$fs-500;
+  font-weight: 500;
 }

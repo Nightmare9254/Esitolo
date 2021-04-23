@@ -1,12 +1,12 @@
 import Product from '../Product/Product';
 import Menu from '../Menu/Menu';
-import Loading from '../Loading/Loading';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useCounter } from '../../store/sub';
 import { Link } from 'react-router-dom';
 import { categoryList } from '../../assets/Consts/categoryList';
 import { AnimatePresence } from 'framer-motion';
 import SearchProducts from './SearchProducts';
+import { LoadingAnimation } from '../../framer/Transitions';
 
 const Products = () => {
   const [page, setPage] = useState(1);
@@ -17,7 +17,7 @@ const Products = () => {
   const [filterLoading, setFilterLoading] = useState(false);
   const [filtered, setFiltered] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(state.isSearch);
   const [sortBy, setSortBy] = useState('0');
 
   const sortProducts = (a, b) => {
@@ -62,7 +62,6 @@ const Products = () => {
         .then((json) => {
           setProducts((prev) => [...prev, ...json.items]);
           setHasMore(json.hasMore);
-          console.log(json);
           setLoading(false);
         });
     }
@@ -95,6 +94,7 @@ const Products = () => {
 
   const toggleState = () => {
     setToggle(!toggle);
+    actions.openSearch(false);
   };
 
   return (
@@ -176,7 +176,7 @@ const Products = () => {
               );
             }
           })}
-        {loading && <Loading />}
+        {loading && <LoadingAnimation />}
         {!hasMore && (
           <div className="all-products__container-information">
             {state.category === 'all' && (
