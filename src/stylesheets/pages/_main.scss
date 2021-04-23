@@ -186,15 +186,15 @@
   }
 }
 .product--searched {
-  min-height: 6rem;
-  max-height: 6rem;
+  min-height: 6.2rem;
+  max-height: 6.2rem;
 
   .product__container-img {
     width: 6rem;
   }
   .product__img {
-    min-height: 6rem;
-    max-height: 6rem;
+    min-height: 6.2rem;
+    max-height: 6.2rem;
     width: 100%;
   }
 }
@@ -450,7 +450,7 @@
   &__results {
     overflow-y: scroll;
     max-height: 90vh;
-    padding-bottom: 5rem;
+    padding-bottom: 10rem;
   }
 
   &__results::-webkit-scrollbar {

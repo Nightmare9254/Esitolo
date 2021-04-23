@@ -55,12 +55,14 @@ const Products = () => {
   useEffect(() => {
     if (hasMore) {
       setLoading(true);
-      fetch(`https://esitolo-backend.herokuapp.com/products/all-products?${params.toString()}`)
+      fetch(
+        `https://esitolo-backend.herokuapp.com/products/all-products?${params.toString()}`
+      )
         .then((res) => res.json())
         .then((json) => {
           setProducts((prev) => [...prev, ...json.items]);
           setHasMore(json.hasMore);
-          console.log(json)
+          console.log(json);
           setLoading(false);
         });
     }
