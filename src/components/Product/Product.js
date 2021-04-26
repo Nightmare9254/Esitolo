@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useLocal } from '../../hooks/cart';
 
 const Product = ({
   id,
@@ -13,6 +14,7 @@ const Product = ({
   removeItem,
   isInCart,
   quantity,
+  addQuantity,
 }) => {
   return (
     <div ref={refItem} className={`${isBottom ? 'isBottom' : ''}`}>
@@ -42,13 +44,16 @@ const Product = ({
         </div>
       </Link>
       {isInCart && (
-        <button
-          onClick={() => {
-            removeItem(id);
-          }}
-        >
-          Remove
-        </button>
+        <div>
+          <button
+            onClick={() => {
+              removeItem(id);
+            }}
+          >
+            Remove
+          </button>
+          <button onClick={() => addQuantity(id)}>add</button>
+        </div>
       )}
     </div>
   );

@@ -153,7 +153,7 @@ const SingleProduct = () => {
               <button
                 onClick={() =>
                   addItem({
-                    id: product.id,
+                    id: id,
                     productName: product.productName,
                     price: product.price,
                     image: product.image,

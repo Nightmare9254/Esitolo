@@ -5,13 +5,13 @@ export const useLocal = () => {
     ADD: 'add-item',
     REMOVE: 'remove-item',
     DELETE: 'delete-cart',
+    QUANTITY: 'add-item-quantity',
   };
 
   const newItem = ({ id, productName, price, image, quantity }, arr) => {
     const index = arr.findIndex((item) => item.id === id);
-
     if (index !== -1) {
-      arr[index].quantity += 1;
+      arr[index].quantity += quantity;
       return false;
     }
 
@@ -28,24 +28,29 @@ export const useLocal = () => {
     switch (action.type) {
       case ACTIONS.ADD:
         const item = newItem(action.payload.values, cartItems);
+
         if (item === false) return [...cartItems];
         return [...cartItems, newItem(action.payload.values, cartItems)];
 
       case ACTIONS.REMOVE:
         const index = cartItems.findIndex((i) => i.id === action.payload.id);
-        console.log('mam go');
+
         if (index !== -1) {
-          console.log('o kurwa double');
           cartItems[index].quantity--;
           if (cartItems[index].quantity < 1) {
             cartItems.splice(index, 1);
           }
           return [...cartItems];
         }
-        break;
 
       case ACTIONS.DELETE:
         return cartItems.splice(0, cartItems.length);
+
+      case ACTIONS.QUANTITY:
+        console.log('dupa');
+        const id = cartItems.findIndex((i) => i.id === action.payload.id);
+        cartItems[id].quantity += 1;
+        return [...cartItems];
 
       default:
         return null;
@@ -75,12 +80,16 @@ export const useLocal = () => {
         total = element.price * element.quantity + total;
       });
     }
-
-    return total;
+    return total.toFixed(2);
   };
 
   const removeCart = () => {
     dispatch({ type: ACTIONS.DELETE });
   };
-  return [addItem, removeItem, calculate, removeCart, cartItems];
+
+  const addQuantity = (id) => {
+    dispatch({ type: ACTIONS.QUANTITY, payload: { id } });
+  };
+
+  return [addItem, removeItem, calculate, removeCart, addQuantity, cartItems];
 };

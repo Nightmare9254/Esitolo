@@ -3,15 +3,14 @@ import { useLocal } from '../../hooks/cart';
 import Product from '../Product/Product';
 
 const Cart = () => {
-  const [addItem, removeItem, calculate, removeCart, cartItems] = useLocal();
-  console.log(cartItems);
-
-  // const [total, setTotal] = useState(0);
-  // useEffect(() => {
-  //   cartItems.forEach((element) => {
-  //     setTotal(element.quantity * element.price);
-  //   });
-  // }, [cartItems]);
+  const [
+    addItem,
+    removeItem,
+    calculate,
+    removeCart,
+    addQuantity,
+    cartItems,
+  ] = useLocal();
 
   return (
     <div style={{ background: '#333', minHeight: '100vh', padding: '1rem' }}>
@@ -28,6 +27,7 @@ const Cart = () => {
               image={image}
               isInCart={true}
               removeItem={removeItem}
+              addQuantity={addQuantity}
             />
           );
         })}
