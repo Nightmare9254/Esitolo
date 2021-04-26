@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoadingAnimation, ShowInput } from '../../framer/Transitions';
+import { PulsingAnimation, ShowInput } from '../../framer/Transitions';
 import Product from '../Product/Product';
 
 const SearchProducts = ({
@@ -32,7 +32,7 @@ const SearchProducts = ({
         </div>
         <div className="all-products__search-container">
           <div className="all-products__loading-container">
-            {filterLoading && search.length > 0 && <LoadingAnimation />}
+            {filterLoading && search.length > 0 && <PulsingAnimation />}
             {!filterLoading && filtered.length > 0 && (
               <p className="all-products__loading-status">
                 Results for:{' '}

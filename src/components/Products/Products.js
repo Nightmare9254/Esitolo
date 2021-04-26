@@ -1,12 +1,13 @@
 import Product from '../Product/Product';
 import Menu from '../Menu/Menu';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { useCounter } from '../../store/sub';
 import { Link } from 'react-router-dom';
 import { categoryList } from '../../assets/Consts/categoryList';
 import { AnimatePresence } from 'framer-motion';
 import SearchProducts from './SearchProducts';
-import { LoadingAnimation } from '../../framer/Transitions';
+import { PulsingAnimation } from '../../framer/Transitions';
+import { ADD } from '../../assets/Consts/Actions';
 
 const Products = () => {
   const [page, setPage] = useState(1);
@@ -176,7 +177,7 @@ const Products = () => {
               );
             }
           })}
-        {loading && <LoadingAnimation />}
+        {loading && <PulsingAnimation />}
         {!hasMore && (
           <div className="all-products__container-information">
             {state.category === 'all' && (

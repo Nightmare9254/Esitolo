@@ -3,6 +3,7 @@ import {
   Switch,
   Route,
   Redirect,
+  useHistory,
 } from 'react-router-dom';
 import Main from './components/Main/Main';
 import FormAdd from './components/Form/FormAdd';
@@ -11,6 +12,7 @@ import Auth from './components/Auth/Auth';
 import Account from './components/UserAccount/Account';
 import { useCookies } from 'react-cookie';
 import SingleProduct from './components/Product/SingleProduct/SingleProduct';
+import Cart from './components/Cart/Cart';
 
 const App = () => {
   const [cookies] = useCookies();
@@ -28,6 +30,7 @@ const App = () => {
           </Route>
           <Route exacth path="/products" component={Products} />
           <Route exacth path="/product/:id" component={SingleProduct} />
+          <Route exacth path="/basket" component={Cart} />
           <Route exact path="/account">
             {user && <Account />}
             {!user && <Redirect to="/auth" />}

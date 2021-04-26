@@ -1,9 +1,9 @@
 import { useFetch } from '../../hooks/useFetch';
 import Product from '../Product/Product';
 import { Link } from 'react-router-dom';
-import { LoadingAnimation } from '../../framer/Transitions';
+import { PulsingAnimation } from '../../framer/Transitions';
 
-const Restocked = () => {
+const Restocked = ({ dispatch }) => {
   const { data, loading } = useFetch('/products/restocked');
 
   return (
@@ -18,11 +18,12 @@ const Restocked = () => {
               price={price}
               image={image}
               description={description}
+              dispatch={dispatch}
             />
           ))}
         </div>
       )}
-      {loading && <LoadingAnimation />}
+      {loading && <PulsingAnimation />}
       <button className="button button__restocked">
         <Link to="/products">See more</Link>
       </button>

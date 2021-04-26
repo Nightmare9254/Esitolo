@@ -390,7 +390,7 @@
 .all-products__results {
   overflow-y: scroll;
   max-height: 90vh;
-  padding-bottom: 10rem;
+  padding-bottom: 15rem;
 }
 .all-products__results::-webkit-scrollbar {
   height: 1px;
@@ -472,11 +472,6 @@
   border: 2px solid #444444;
   font-size: 18px;
   margin-top: 10px;
-}
-
-.animation {
-  font-size: 2.8rem;
-  font-weight: 500;
 }
 
 .auth__login {
@@ -851,6 +846,40 @@ a {
 /**
  * Basic typography style for copy text
  */
+.animation {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.test-active {
+  border-bottom-color: #fac646;
+  border-top-color: transparent;
+}
+
+.rotate {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  position: relative;
+  padding-top: 2rem;
+}
+.rotate__wrapper {
+  border-radius: 100rem;
+  display: grid;
+  place-content: center;
+  width: 6rem;
+  height: 6rem;
+  border: 3px solid #fac646;
+  border-bottom-color: transparent;
+  grid-area: 1/1;
+}
+.rotate__title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  grid-area: 1/1;
+  place-self: center;
+}
+
 .button {
   color: #23252f;
   background-color: #fac646;

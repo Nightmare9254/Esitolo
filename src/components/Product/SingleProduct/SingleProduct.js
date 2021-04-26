@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Menu from '../../Menu/Menu';
+import { ScrollToTop } from '../../SingleComponents/ScrollToTop';
 import TopProducts from '../../SingleComponents/TopProducts';
 
 const SingleProduct = () => {
@@ -12,7 +13,6 @@ const SingleProduct = () => {
   const [loading, setLoading] = useState(true);
   const [amount, setAmount] = useState(1);
   const [imagePosition, setImagePosition] = useState(0);
-
 
   useEffect(() => {
     fetch(`https://esitolo-backend.herokuapp.com/products?id=${id}`)
@@ -26,20 +26,22 @@ const SingleProduct = () => {
   }, [id]);
 
   useEffect(() => {
-    if(product.category !== undefined) {
+    if (product.category !== undefined) {
       const params = new URLSearchParams({
         category: product.category,
         id: id,
       });
-  
-      fetch(`https://esitolo-backend.herokuapp.com/products/similar?${params.toString()}`)
+
+      fetch(
+        `https://esitolo-backend.herokuapp.com/products/similar?${params.toString()}`
+      )
         .then((res) => res.json())
         .then((json) => {
           setSimiliar(json);
           // setLoading(false);
         });
     }
-  }, [id,loading])
+  }, [id, loading]);
 
   const nextImg = () => {
     if (imagePosition >= product.image.length - 1) {
@@ -55,6 +57,7 @@ const SingleProduct = () => {
     }
     setImagePosition(imagePosition - 1);
   };
+  ScrollToTop();
 
   return (
     <>
@@ -84,7 +87,7 @@ const SingleProduct = () => {
                 src={product.image[imagePosition]}
                 alt="products"
                 className="single__image"
-                drag='x'
+                drag="x"
                 dragElastic={1}
                 dragConstraints={{ left: 1, right: 1 }}
                 onDragEnd={(e, { offset, velocity }) => {
@@ -167,15 +170,18 @@ const SingleProduct = () => {
           <div className="single__similiar-container">
             <h4>Similiar products</h4>
             <div className="single__similiar">
-              {similiar.map(({ _id, image, price, productName }) => (
-                <TopProducts
-                  key={_id}
-                  id={_id}
-                  image={image}
-                  price={price}
-                  productName={productName}
-                />
-              ))}
+              {similiar.map(
+                ({ _id, image, price, productName, description }) => (
+                  <TopProducts
+                    key={_id}
+                    id={_id}
+                    image={image}
+                    price={price}
+                    productName={productName}
+                    description={description}
+                  />
+                )
+              )}
             </div>
           </div>
           {/* placeholder */}

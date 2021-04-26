@@ -1,0 +1,36 @@
+@use '../abstracts' as a;
+
+.animation {
+  font-size: a.$fs-200;
+  font-weight: 500;
+}
+
+.test-active {
+  border-bottom-color: a.$main-yellow;
+  border-top-color: transparent;
+}
+
+.rotate {
+  display: grid;
+  place-content: center;
+  width: 100%;
+  position: relative;
+  padding-top: 2rem;
+
+  &__wrapper {
+    border-radius: 100rem;
+    display: grid;
+    place-content: center;
+    width: 6rem;
+    height: 6rem;
+    border: 3px solid a.$main-yellow;
+    border-bottom-color: transparent;
+    grid-area: 1/1;
+  }
+  &__title {
+    font-size: a.$fs-200;
+    font-weight: 500;
+    grid-area: 1/1;
+    place-self: center;
+  }
+}

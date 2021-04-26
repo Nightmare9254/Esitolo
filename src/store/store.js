@@ -14,7 +14,7 @@ const actions = {
     });
   },
   loadCategory: (arg) => ({ getState, setState }) => {
-    const { loading } = getState;
+    const { loading } = getState();
     setState({
       loading: arg,
     });

@@ -1,4 +1,4 @@
-import { LoadingAnimation } from '../../framer/Transitions';
+import { PulsingAnimation } from '../../framer/Transitions';
 import { useFetch } from '../../hooks/useFetch';
 import TopProducts from '../SingleComponents/TopProducts';
 
@@ -8,16 +8,17 @@ const Bestsellers = () => {
   return (
     <>
       {!loading &&
-        data.map(({ _id, image, price, productName }) => (
+        data.map(({ _id, image, price, productName, description }) => (
           <TopProducts
             key={_id}
             id={_id}
             image={image}
             price={price}
             productName={productName}
+            description={description}
           />
         ))}
-      {loading && <LoadingAnimation />}
+      {loading && <PulsingAnimation />}
     </>
   );
 };

@@ -1,4 +1,9 @@
-import { animateSlideTop, staggerChildren, animateOpacity } from './Variants';
+import {
+  animateSlideTop,
+  staggerChildren,
+  animateOpacity,
+  rotateVariants,
+} from './Variants';
 import { motion } from 'framer-motion';
 
 export const AnimateContainer = ({ children }) => {
@@ -42,14 +47,23 @@ export const ShowInput = ({ children }) => {
   );
 };
 
-export const LoadingAnimation = () => {
+export const PulsingAnimation = () => {
   return (
-    <motion.p
-      className="animation"
-      animate={{ opacity: 1, color: ['#929292', '#fac646'] }}
-      transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1 }}
-    >
-      Esitolo
-    </motion.p>
+    <div className="rotate">
+      <motion.div
+        variants={rotateVariants}
+        animate="rotate"
+        className="rotate__wrapper"
+      />
+      <motion.p
+        variants={rotateVariants}
+        initial="scaleInitial"
+        animate="scaleAnimate"
+        transition={{ repeat: Infinity, repeatType: 'reverse', duration: 1 }}
+        className="rotate__title"
+      >
+        Esitolo
+      </motion.p>
+    </div>
   );
 };

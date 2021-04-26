@@ -464,7 +464,7 @@
   &__results {
     overflow-y: scroll;
     max-height: 90vh;
-    padding-bottom: 10rem;
+    padding-bottom: 15rem;
   }
 
   &__results::-webkit-scrollbar {
@@ -542,8 +542,4 @@
   border: a.$border-width solid rgb(68, 68, 68);
   font-size: 18px;
   margin-top: 10px;
-}
-.animation {
-  font-size: a.$fs-500;
-  font-weight: 500;
 }
