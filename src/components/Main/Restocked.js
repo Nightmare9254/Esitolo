@@ -3,7 +3,7 @@ import Product from '../Product/Product';
 import { Link } from 'react-router-dom';
 import { PulsingAnimation } from '../../framer/Transitions';
 
-const Restocked = ({ dispatch }) => {
+const Restocked = ({ addItem }) => {
   const { data, loading } = useFetch('/products/restocked');
 
   return (
@@ -18,7 +18,7 @@ const Restocked = ({ dispatch }) => {
               price={price}
               image={image}
               description={description}
-              dispatch={dispatch}
+              addItem={addItem}
             />
           ))}
         </div>

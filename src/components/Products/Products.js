@@ -8,6 +8,7 @@ import { AnimatePresence } from 'framer-motion';
 import SearchProducts from './SearchProducts';
 import { PulsingAnimation } from '../../framer/Transitions';
 import { ADD } from '../../assets/Consts/Actions';
+import { useLocal } from '../../hooks/cart';
 
 const Products = () => {
   const [page, setPage] = useState(1);
@@ -98,6 +99,8 @@ const Products = () => {
     actions.openSearch(false);
   };
 
+  const [addItem] = useLocal();
+
   return (
     <>
       <div className="all-products">
@@ -161,6 +164,7 @@ const Products = () => {
                   image={image}
                   price={price}
                   blur={search.length > 0 ? true : false}
+                  addItem={addItem}
                 />
               );
             } else {
@@ -172,6 +176,7 @@ const Products = () => {
                   productName={productName}
                   image={image}
                   price={price}
+                  addItem={addItem}
                   blur={search.length > 0 ? true : false}
                 />
               );

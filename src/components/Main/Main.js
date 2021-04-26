@@ -6,6 +6,7 @@ import Restocked from './Restocked';
 import Footer from '../Footer/Footer';
 import { useEffect } from 'react';
 import { useCounter } from '../../store/sub';
+import { useLocal } from '../../hooks/cart';
 
 const Main = () => {
   const [state, actions] = useCounter();
@@ -13,6 +14,8 @@ const Main = () => {
   useEffect(() => {
     actions.updateCategory('all');
   }, []);
+
+  const [addItem] = useLocal();
 
   return (
     <>
@@ -30,11 +33,11 @@ const Main = () => {
         </Link>
         <h3 className="main__heading-3">Bestsellers</h3>
         <div className="main__bestsellers">
-          <Bestsellers />
+          <Bestsellers addItem={addItem} />
         </div>
         <h4 className="main__heading-4">Browse by categories</h4>
         <Categories />
-        <Restocked />
+        <Restocked addItem={addItem} />
       </section>
       <Footer />
       <Menu />

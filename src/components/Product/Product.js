@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { ADD } from '../../assets/Consts/Actions';
 
 const Product = ({
   id,
@@ -10,9 +9,22 @@ const Product = ({
   refItem,
   isBottom,
   view,
+  addItem,
+  removeItem,
+  isInCart,
+  quantity,
 }) => {
   return (
     <div ref={refItem} className={`${isBottom ? 'isBottom' : ''}`}>
+      {!isInCart && (
+        <button
+          onClick={() =>
+            addItem({ id, productName, price, image, quantity: 1 })
+          }
+        >
+          add to basekt
+        </button>
+      )}
       {/* <i className="fas fa-plus product__icon-add"></i> */}
       <Link to={`/product/${id}`}>
         <div className={`product ${view ? 'product--searched' : ''}`}>
@@ -23,9 +35,21 @@ const Product = ({
             <p className="product__price">{price} $</p>
             <p className="product__name">{productName}</p>
             <p className="product__description">{description}</p>
+            {isInCart && (
+              <p className="product__description">Quantity: {quantity}</p>
+            )}
           </div>
         </div>
       </Link>
+      {isInCart && (
+        <button
+          onClick={() => {
+            removeItem(id);
+          }}
+        >
+          Remove
+        </button>
+      )}
     </div>
   );
 };

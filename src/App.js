@@ -13,10 +13,13 @@ import Account from './components/UserAccount/Account';
 import { useCookies } from 'react-cookie';
 import SingleProduct from './components/Product/SingleProduct/SingleProduct';
 import Cart from './components/Cart/Cart';
+import { useLocal } from './hooks/cart';
 
 const App = () => {
   const [cookies] = useCookies();
   const { user } = cookies;
+
+  useLocal();
 
   return (
     <div>
@@ -35,6 +38,7 @@ const App = () => {
             {user && <Account />}
             {!user && <Redirect to="/auth" />}
           </Route>
+          <Route exact path="/cart" component={Cart} />
         </Switch>
       </Router>
     </div>

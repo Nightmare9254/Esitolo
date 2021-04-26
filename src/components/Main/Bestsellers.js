@@ -2,7 +2,7 @@ import { PulsingAnimation } from '../../framer/Transitions';
 import { useFetch } from '../../hooks/useFetch';
 import TopProducts from '../SingleComponents/TopProducts';
 
-const Bestsellers = () => {
+const Bestsellers = ({ addItem }) => {
   const { data, loading } = useFetch('/products/bestsellers');
 
   return (
@@ -16,6 +16,7 @@ const Bestsellers = () => {
             price={price}
             productName={productName}
             description={description}
+            addItem={addItem}
           />
         ))}
       {loading && <PulsingAnimation />}

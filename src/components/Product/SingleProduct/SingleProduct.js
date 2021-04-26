@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useLocal } from '../../../hooks/cart';
 import Menu from '../../Menu/Menu';
 import { ScrollToTop } from '../../SingleComponents/ScrollToTop';
 import TopProducts from '../../SingleComponents/TopProducts';
@@ -11,7 +12,7 @@ const SingleProduct = () => {
   const [product, setProduct] = useState({});
   const [similiar, setSimiliar] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [amount, setAmount] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const [imagePosition, setImagePosition] = useState(0);
 
   useEffect(() => {
@@ -59,6 +60,7 @@ const SingleProduct = () => {
   };
   ScrollToTop();
 
+  const [addItem] = useLocal();
   return (
     <>
       {!loading && (
@@ -124,8 +126,8 @@ const SingleProduct = () => {
               <div className="single__counter">
                 <button
                   onClick={() => {
-                    if (amount !== 1) {
-                      setAmount(amount - 1);
+                    if (quantity !== 1) {
+                      setQuantity(quantity - 1);
                     }
                     return;
                   }}
@@ -133,11 +135,11 @@ const SingleProduct = () => {
                 >
                   -
                 </button>
-                <p className="single__choose-amount">{amount}</p>
+                <p className="single__choose-amount">{quantity}</p>
                 <button
                   onClick={() => {
-                    if (amount !== product.amount) {
-                      setAmount(amount + 1);
+                    if (quantity !== product.amount) {
+                      setQuantity(quantity + 1);
                     }
                   }}
                   className="single__action single__action-plus"
@@ -148,7 +150,20 @@ const SingleProduct = () => {
               <div className="single__amount">{product.amount} available</div>
             </div>
             <div className="single__container-btn">
-              <button className="button single__button">Add to basket</button>
+              <button
+                onClick={() =>
+                  addItem({
+                    id: product.id,
+                    productName: product.productName,
+                    price: product.price,
+                    image: product.image,
+                    quantity: quantity,
+                  })
+                }
+                className="button single__button"
+              >
+                Add to basket
+              </button>
             </div>
           </div>
           <div className="single__description">
@@ -179,6 +194,7 @@ const SingleProduct = () => {
                     price={price}
                     productName={productName}
                     description={description}
+                    addItem={addItem}
                   />
                 )
               )}
