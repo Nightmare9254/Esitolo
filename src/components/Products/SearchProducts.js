@@ -1,5 +1,6 @@
 import React from 'react';
 import { PulsingAnimation, ShowInput } from '../../framer/Transitions';
+import { useLocal } from '../../hooks/cart';
 import Product from '../Product/Product';
 
 const SearchProducts = ({
@@ -10,6 +11,8 @@ const SearchProducts = ({
   search,
   setSearch,
 }) => {
+  const [addItem] = useLocal();
+
   return (
     <ShowInput>
       <div>
@@ -64,6 +67,7 @@ const SearchProducts = ({
                   productName={productName}
                   image={image}
                   price={price}
+                  addItem={addItem}
                 />
               )
             )}

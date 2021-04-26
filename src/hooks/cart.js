@@ -7,18 +7,20 @@ export const useLocal = () => {
     DELETE: 'delete-cart',
   };
 
-  const newItem = (product, arr) => {
-    const index = arr.findIndex((i) => i.id === product.id);
+  const newItem = ({ id, productName, price, image, quantity }, arr) => {
+    const index = arr.findIndex((item) => item.id === id);
+
     if (index !== -1) {
       arr[index].quantity += 1;
       return false;
     }
+
     return {
-      id: product.id,
-      productName: product.productName,
-      price: product.price,
-      image: product.image,
-      quantity: product.quantity,
+      id,
+      productName,
+      price,
+      image,
+      quantity,
     };
   };
 
@@ -31,15 +33,22 @@ export const useLocal = () => {
 
       case ACTIONS.REMOVE:
         const index = cartItems.findIndex((i) => i.id === action.payload.id);
+        console.log('mam go');
         if (index !== -1) {
-          cartItems[index].quantity -= 1;
+          console.log('o kurwa double');
+          cartItems[index].quantity--;
           if (cartItems[index].quantity < 1) {
             cartItems.splice(index, 1);
           }
           return [...cartItems];
         }
+        break;
+
       case ACTIONS.DELETE:
         return cartItems.splice(0, cartItems.length);
+
+      default:
+        return null;
     }
   };
   const [cartItems, dispatch] = useReducer(reducer, [], () => {
