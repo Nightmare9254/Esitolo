@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { PulsingAnimation, ShowInput } from '../../framer/Transitions';
 import { useLocal } from '../../hooks/cart';
 import Product from '../Product/Product';
@@ -12,6 +12,35 @@ const SearchProducts = ({
   setSearch,
 }) => {
   const [addItem] = useLocal();
+
+  const actions = (tags, action) => {
+    switch (action.type) {
+      case 'ADD':
+        const index = tags.indexOf(search);
+        if (index === -1) {
+          if (tags.length >= 10) {
+            tags.shift();
+          }
+          tags.push(search);
+          return [...tags];
+        }
+        return [...tags];
+      case 'REMOVE':
+        tags.splice(0, tags.length);
+        return [...tags];
+      default:
+        break;
+    }
+  };
+
+  const [tags, dispatch] = useReducer(actions, [], () => {
+    const local = localStorage.getItem('tags');
+    return local ? JSON.parse(local) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('tags', JSON.stringify(tags));
+  }, [tags]);
 
   return (
     <ShowInput>
@@ -30,6 +59,11 @@ const SearchProducts = ({
             value={search}
             placeholder="Search for favourites things"
             onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.keyCode === 13) {
+                dispatch({ type: 'ADD' });
+              }
+            }}
             className="all-products__input"
           />
         </div>
@@ -57,6 +91,30 @@ const SearchProducts = ({
               </p>
             )}
           </div>
+          {tags.length >= 1 && search.length < 1 && (
+            <>
+              <div className="all-products__recent">
+                <h4>Recent</h4>
+                <button
+                  onClick={() => dispatch({ type: 'REMOVE' })}
+                  className="all-products__btn-remove"
+                >
+                  Clear
+                </button>
+              </div>
+              <div className="all-products__recent-container">
+                {tags.map((item, index) => (
+                  <p
+                    className="all-products__recent-item"
+                    key={index}
+                    onClick={() => setSearch(item)}
+                  >
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </>
+          )}
           <div className="all-products__results">
             {filtered.map(
               ({ image, _id, productName, price, description }, index) => (

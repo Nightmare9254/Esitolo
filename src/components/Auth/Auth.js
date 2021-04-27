@@ -41,7 +41,7 @@ const Auth = () => {
               isVisible={signIn}
               init="closed"
               animate="open"
-              className="auth__login"
+              className="auth__login "
             >
               <SignIn />
             </AnimateHeight>
@@ -51,15 +51,12 @@ const Auth = () => {
               isVisible={signIn}
               init="closed"
               animate="open"
-              className="auth__toggle-box"
+              className="auth__toggle-box auth__toggle--on"
             >
               <p className="auth__toggle-txt">
                 Welcome back, please login to you account
               </p>
-              <button
-                onClick={togglePage}
-                className=" auth__toggle-btn auth__button"
-              >
+              <button onClick={togglePage} className=" auth__toggle-btn">
                 SIGN IN
               </button>
             </AnimateHeight>

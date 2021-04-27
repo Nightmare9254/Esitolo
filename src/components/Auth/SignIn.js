@@ -19,6 +19,7 @@ const SignIn = () => {
     })
       .then((res) => res.json())
       .then((json) => {
+        console.log(json);
         if (json.valid) {
           history.push('/');
           window.location.reload();

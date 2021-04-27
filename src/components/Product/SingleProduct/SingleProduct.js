@@ -123,7 +123,7 @@ const SingleProduct = () => {
             </Link>
             <p className="single__price">{product.price}$</p>
             <div className="single__container-configuration">
-              <div className="single__counter">
+              <div className="single__counter single__counter--product">
                 <button
                   onClick={() => {
                     if (quantity !== 1) {

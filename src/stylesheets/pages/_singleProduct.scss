@@ -72,41 +72,6 @@
     margin-top: 2rem;
     align-items: center;
   }
-  &__counter {
-    display: flex;
-    border: 1px solid #fff;
-    border-radius: 100rem;
-    width: 30%;
-    display: flex;
-    justify-content: space-between;
-    font-size: a.$fs-300;
-    height: 3rem;
-  }
-  &__action {
-    width: 20%;
-    line-height: 3rem;
-    text-align: center;
-    background: transparent;
-    border: none;
-    color: a.$font-clr;
-  }
-  &__action:focus {
-    outline: none;
-  }
-  &__choose-amount {
-    line-height: 3rem;
-  }
-  &__action-plus {
-    border-left: 1px solid #fff;
-  }
-  &__action-minus {
-    border-right: 1px solid #fff;
-  }
-  &__amount {
-    margin-left: 2rem;
-    color: a.$font-gray-clr;
-    font-size: a.$fs-300;
-  }
   &__content,
   &__description,
   &__clients-opinions,
@@ -167,4 +132,44 @@
     background: a.$main-yellow;
     border-radius: 100rem;
   }
+}
+
+.single__counter {
+  display: flex;
+  border: 1px solid #fff;
+  border-radius: 100rem;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: a.$fs-300;
+  height: 3rem;
+}
+.single__counter--product {
+  width: 40%;
+}
+.single__action {
+  width: 20%;
+  line-height: 3rem;
+  text-align: center;
+  background: transparent;
+  border: none;
+  color: a.$font-clr;
+}
+.single__action:focus {
+  outline: none;
+}
+.single__choose-amount {
+  line-height: 3rem;
+  color: a.$font-clr;
+}
+.single__action-plus {
+  border-left: 1px solid #fff;
+}
+.single__action-minus {
+  border-right: 1px solid #fff;
+}
+.single__amount {
+  margin-left: 2rem;
+  color: a.$font-gray-clr;
+  font-size: a.$fs-300;
 }

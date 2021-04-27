@@ -17,17 +17,11 @@ const Product = ({
   addQuantity,
 }) => {
   return (
-    <div ref={refItem} className={`${isBottom ? 'isBottom' : ''}`}>
-      {!isInCart && (
-        <button
-          onClick={() =>
-            addItem({ id, productName, price, image, quantity: 1 })
-          }
-        >
-          add to basekt
-        </button>
-      )}
-      {/* <i className="fas fa-plus product__icon-add"></i> */}
+    <div
+      style={{ position: 'relative' }}
+      ref={refItem}
+      className={`${isBottom ? 'isBottom' : ''}`}
+    >
       <Link to={`/product/${id}`}>
         <div className={`product ${view ? 'product--searched' : ''}`}>
           <div className="product__container-img">
@@ -37,24 +31,44 @@ const Product = ({
             <p className="product__price">{price} $</p>
             <p className="product__name">{productName}</p>
             <p className="product__description">{description}</p>
-            {isInCart && (
-              <p className="product__description">Quantity: {quantity}</p>
-            )}
           </div>
         </div>
       </Link>
-      {isInCart && (
-        <div>
+      <div
+        className={` ${
+          isInCart
+            ? 'product__btns-container--left '
+            : 'product__btns-container'
+        }`}
+      >
+        {!isInCart && (
           <button
-            onClick={() => {
-              removeItem(id);
-            }}
+            className="product__add"
+            onClick={() =>
+              addItem({ id, productName, price, image, quantity: 1 })
+            }
           >
-            Remove
+            <i className="fas fa-plus"></i>
           </button>
-          <button onClick={() => addQuantity(id)}>add</button>
-        </div>
-      )}
+        )}
+        {isInCart && (
+          <div className="single__counter">
+            <button
+              onClick={() => removeItem(id)}
+              className="single__action single__action-minus"
+            >
+              -
+            </button>
+            <p className="single__choose-amount">{quantity}</p>
+            <button
+              onClick={() => addQuantity(id)}
+              className="single__action single__action-plus"
+            >
+              +
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -80,7 +80,7 @@ export const useLocal = () => {
         total = element.price * element.quantity + total;
       });
     }
-    return total.toFixed(2);
+    return total;
   };
 
   const removeCart = () => {

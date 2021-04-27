@@ -21,14 +21,14 @@
     border-radius: 100rem;
     display: grid;
     place-content: center;
-    width: 6rem;
-    height: 6rem;
+    width: 9rem;
+    height: 9rem;
     border: 3px solid a.$main-yellow;
     border-bottom-color: transparent;
     grid-area: 1/1;
   }
   &__title {
-    font-size: a.$fs-200;
+    font-size: a.$fs-300;
     font-weight: 500;
     grid-area: 1/1;
     place-self: center;

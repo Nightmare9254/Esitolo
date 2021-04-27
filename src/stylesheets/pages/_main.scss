@@ -91,47 +91,46 @@
 }
 
 .bestsellers {
-  margin: 0 5px;
   background: a.$medium-gray;
-  width: 14rem;
   color: a.$font-clr;
-  text-align: right;
-  position: relative;
+  display: grid;
+  margin: 0 1rem;
 
-  &__price {
-    margin-top: 1rem;
-    font-weight: 200;
-    font-size: a.$fs-200;
-    text-align: left;
-  }
-  &__name {
-    font-size: a.$fs-300;
-    text-align: left;
-    margin-top: 0.7rem;
-  }
-  &__icon-add {
-    background: a.$main-yellow;
-    padding: 0.5rem;
-    position: absolute;
-    top: 0rem;
-    left: 0;
-    color: a.$dark-gray;
-    font-size: a.$fs-200;
+  &__add {
+    grid-area: 1/1;
+    height: 25px;
+    justify-self: end;
+    background-color: a.$main-yellow;
     border: none;
+    color: a.$font-dark-gray;
+    padding: 0.5rem;
+    z-index: 5;
+  }
+  &__add:focus {
+    transform: scale(1.1);
+    filter: brightness(0.7);
+  }
+  &__link {
+    grid-area: 1/1;
   }
   &__img-container {
-    height: 15rem;
-    width: 100%;
+    min-width: 13rem;
+    max-width: 14rem;
+    height: 14rem;
   }
-  &__img {
+  &__product-img {
     width: 100%;
     height: 100%;
   }
-  &__cart-btn {
-    border: none;
-    background: transparent;
-    color: a.$main-yellow;
-    margin-top: 1rem;
+  &__data {
+    justify-self: start;
+  }
+  &__price {
+    margin: 1rem 0;
+    font-size: a.$fs-200;
+  }
+  &__name {
+    font-size: a.$fs-300;
   }
 }
 
@@ -183,6 +182,28 @@
     color: a.$font-clr;
     font-size: 1.7rem;
     right: 0.5rem;
+  }
+  &__btns-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &__btns-container--left {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 35%;
+    padding: 1rem;
+  }
+  &__add {
+    background: transparent;
+    padding: 1rem;
+    border: none;
+    color: a.$font-clr;
+  }
+  &__add:focus {
+    background-color: a.$main-yellow;
+    color: a.$font-dark-gray;
   }
 }
 .product--searched {
@@ -314,63 +335,6 @@
     text-transform: capitalize;
   }
 }
-// @keyframes jumping {
-//   0% {
-//     transform: scale(1);
-//     transform: translateY(0px);
-//   }
-//   50% {
-//     transform: scale(1.2);
-//     transform: translateY(20px);
-//   }
-//   100% {
-//     transform: scale(1);
-//     transform: translateY(0px);
-//   }
-// }
-// .loading {
-//   margin-top: 5rem;
-
-//   &__container {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//   }
-//   &__text {
-//     margin-top: 3rem;
-//     color: a.$font-clr;
-//     font-size: a.$fs-300;
-//     text-align: center;
-//   }
-//   &__circle {
-//     height: 3rem;
-//     width: 3rem;
-//     background: a.$main-yellow;
-//     border-radius: 10rem;
-//     margin: 0 1rem;
-//     animation-name: jumping;
-//     animation-delay: 1s;
-//     animation-iteration-count: infinite;
-//     animation-duration: 2s;
-//   }
-//   &__circle--1 {
-//     animation-name: jumping;
-//     animation-iteration-count: infinite;
-//     animation-duration: 2s;
-//   }
-//   &__circle--2 {
-//     animation-name: jumping;
-//     animation-delay: 1s;
-//     animation-iteration-count: infinite;
-//     animation-duration: 1s;
-//   }
-//   &__circle--3 {
-//     animation-name: jumping;
-//     animation-delay: 2s;
-//     animation-iteration-count: infinite;
-//     animation-duration: 2s;
-//   }
-// }
 .all-products {
   padding: 2rem;
   background: a.$main-complementary;
@@ -491,6 +455,34 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  &__recent-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+  &__recent {
+    background-color: a.$dark-gray;
+    font-size: a.$fs-300;
+    color: a.$font-clr;
+    display: flex;
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+    justify-content: space-between;
+  }
+  &__recent-item {
+    background-color: a.$dark-gray;
+    font-size: a.$fs-300;
+    color: a.$font-clr;
+    padding: 0.7rem;
+    margin: 1rem;
+  }
+  &__btn-remove {
+    border: none;
+    color: a.$bright-red;
+    background: transparent;
+    font-size: a.$fs-300;
   }
 }
 .isBottom {

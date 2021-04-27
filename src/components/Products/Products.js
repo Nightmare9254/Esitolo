@@ -112,9 +112,11 @@ const Products = () => {
             <i className="fas fa-search fa-2x" />
           </div>
         </div>
+
         <AnimatePresence>
           {toggle && (
             <SearchProducts
+              showTags={toggle}
               reset={reset}
               toggleState={toggleState}
               filtered={filtered}
