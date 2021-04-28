@@ -4,7 +4,7 @@ import Menu from '../Menu/Menu';
 import HeaderTitle from '../SingleComponents/HeaderTitle';
 
 const Account = () => {
-  const [, cookies, removeCookie] = useCookies(['user']);
+  const [cookies, , removeCookie] = useCookies(['user']);
   const { user } = cookies;
   const history = useHistory();
 
