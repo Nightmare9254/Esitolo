@@ -27,7 +27,12 @@ const Cart = () => {
       <div className="cart">
         <header className="cart__header">
           <h2 className="cart__title">Cart</h2>
-          <button onClick={() => removeCart()} className="cart__remove-btn">
+          <button
+            onClick={() => {
+              removeCart();
+            }}
+            className="cart__remove-btn"
+          >
             <i className="fas fa-trash-alt fa-2x"></i>
           </button>
         </header>

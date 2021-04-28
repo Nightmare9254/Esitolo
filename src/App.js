@@ -15,7 +15,7 @@ import Cart from './components/Cart/Cart';
 import { useLocal } from './hooks/cart';
 
 const App = () => {
-  const [cookies] = useCookies();
+  const [cookies] = useCookies(['user']);
   const { user } = cookies;
 
   useLocal();

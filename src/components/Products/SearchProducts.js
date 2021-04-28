@@ -1,46 +1,31 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { PulsingAnimation, ShowInput } from '../../framer/Transitions';
 import { useLocal } from '../../hooks/cart';
 import Product from '../Product/Product';
 
-const SearchProducts = ({
-  reset,
-  toggleState,
-  filtered,
-  filterLoading,
-  search,
-  setSearch,
-}) => {
-  const [addItem] = useLocal();
+const SearchProducts = ({ toggleState }) => {
+  const [filterLoading, setFilterLoading] = useState(true);
+  const [filtered, setFiltered] = useState([]);
+  const [search, setSearch] = useState('');
+  const [isSearch, setIsSearch] = useState(false);
 
-  const actions = (tags, action) => {
-    switch (action.type) {
-      case 'ADD':
-        const index = tags.indexOf(search);
-        if (index === -1) {
-          if (tags.length >= 10) {
-            tags.shift();
-          }
-          tags.push(search);
-          return [...tags];
-        }
-        return [...tags];
-      case 'REMOVE':
-        tags.splice(0, tags.length);
-        return [...tags];
-      default:
-        break;
-    }
+  const searchItems = () => {
+    setIsSearch(true);
+    setFilterLoading(true);
+    fetch(
+      `https://esitolo-backend.herokuapp.com/products/products-search?search=${search}`
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        setFiltered(json);
+        setFilterLoading(false);
+      });
   };
 
-  const [tags, dispatch] = useReducer(actions, [], () => {
-    const local = localStorage.getItem('tags');
-    return local ? JSON.parse(local) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem('tags', JSON.stringify(tags));
-  }, [tags]);
+  const reset = () => {
+    setSearch('');
+    setFiltered([]);
+  };
 
   return (
     <ShowInput>
@@ -61,16 +46,24 @@ const SearchProducts = ({
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => {
               if (e.keyCode === 13) {
-                dispatch({ type: 'ADD' });
+                // dispatch({ type: 'ADD' });
               }
             }}
             className="all-products__input"
           />
+          <button
+            style={{ background: 'transparent', border: 'none', color: '#fff' }}
+            onClick={searchItems}
+          >
+            <i className="fas fa-search" />
+          </button>
         </div>
         <div className="all-products__search-container">
           <div className="all-products__loading-container">
-            {filterLoading && search.length > 0 && <PulsingAnimation />}
-            {!filterLoading && filtered.length > 0 && (
+            {isSearch && filterLoading && search.length > 0 && (
+              <PulsingAnimation />
+            )}
+            {!filterLoading && isSearch && filtered.length > 0 && (
               <p className="all-products__loading-status">
                 Results for:{' '}
                 <span className="all-products__loading-item">{search}</span>
@@ -91,18 +84,18 @@ const SearchProducts = ({
               </p>
             )}
           </div>
-          {tags.length >= 1 && search.length < 1 && (
-            <>
-              <div className="all-products__recent">
-                <h4>Search History</h4>
-                <button
-                  onClick={() => dispatch({ type: 'REMOVE' })}
-                  className="all-products__btn-remove"
-                >
-                  Clear
-                </button>
-              </div>
-              <div className="all-products__recent-container">
+          {/* {tags.length >= 1 && search.length < 1 && ( */}
+          <>
+            <div className="all-products__recent">
+              <h4>Search History</h4>
+              <button
+                // onClick={() => dispatch({ type: 'REMOVE' })}
+                className="all-products__btn-remove"
+              >
+                <i className="fas fa-times" />
+              </button>
+            </div>
+            {/* <div className="all-products__recent-container">
                 {tags.map((item, index) => (
                   <p
                     className="all-products__recent-item"
@@ -112,9 +105,9 @@ const SearchProducts = ({
                     {item}
                   </p>
                 ))}
-              </div>
-            </>
-          )}
+              </div> */}
+          </>
+
           <div className="all-products__results">
             {filtered.map(
               ({ image, _id, productName, price, description }, index) => (
@@ -125,7 +118,7 @@ const SearchProducts = ({
                   productName={productName}
                   image={image}
                   price={price}
-                  addItem={addItem}
+                  // addItem={addItem}
                 />
               )
             )}

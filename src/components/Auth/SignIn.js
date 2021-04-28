@@ -9,9 +9,8 @@ import { useCookies } from 'react-cookie';
 const SignIn = () => {
   const history = useHistory();
   const [message, setMessage] = useState('');
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [, setCookie] = useCookies(['user']);
 
-  //
   const loginUser = (values) => {
     fetch('https://esitolo-backend.herokuapp.com/auth/login', {
       method: 'POST',

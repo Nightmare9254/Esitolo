@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useLocal } from '../../hooks/cart';
 
 const Product = ({
   id,

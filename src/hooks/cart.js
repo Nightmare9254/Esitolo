@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 import { ACTIONS } from '../assets/Consts/Actions';
 
 export const useLocal = () => {
@@ -18,7 +18,7 @@ export const useLocal = () => {
     };
   };
 
-  const reducer = (cartItems, action) => {
+  const reducer = useCallback((cartItems, action) => {
     switch (action.type) {
       case ACTIONS.ADD:
         const item = newItem(action.payload.values, cartItems);
@@ -38,17 +38,21 @@ export const useLocal = () => {
         }
         break;
       case ACTIONS.DELETE:
-        return cartItems.splice(0, cartItems.length);
-
-      case ACTIONS.QUANTITY:
-        const id = cartItems.findIndex((i) => i.id === action.payload.id);
-        cartItems[id].quantity += 1;
+        cartItems.splice(0, cartItems.length);
         return [...cartItems];
 
+      case ACTIONS.QUANTITY: {
+        const id = cartItems.findIndex((i) => i.id === action.payload.id);
+
+        cartItems[id].quantity++;
+
+        return [...cartItems];
+      }
       default:
         return [...cartItems];
     }
-  };
+  }, []);
+
   const [cartItems, dispatch] = useReducer(reducer, [], () => {
     const localData = localStorage.getItem('cart-items');
     return localData ? JSON.parse(localData) : [];
@@ -60,10 +64,6 @@ export const useLocal = () => {
 
   const addItem = (values) => {
     dispatch({ type: ACTIONS.ADD, payload: { values } });
-  };
-
-  const removeItem = (id) => {
-    dispatch({ type: ACTIONS.REMOVE, payload: { id: id } });
   };
 
   const calculate = () => {
@@ -80,8 +80,12 @@ export const useLocal = () => {
     dispatch({ type: ACTIONS.DELETE });
   };
 
+  const removeItem = (id) => {
+    dispatch({ type: ACTIONS.REMOVE, payload: { id: id } });
+  };
+
   const addQuantity = (id) => {
-    dispatch({ type: ACTIONS.QUANTITY, payload: { id } });
+    dispatch({ type: ACTIONS.QUANTITY, payload: { id: id } });
   };
 
   return [addItem, removeItem, calculate, removeCart, addQuantity, cartItems];

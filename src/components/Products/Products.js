@@ -1,13 +1,12 @@
 import Product from '../Product/Product';
 import Menu from '../Menu/Menu';
-import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useCounter } from '../../store/sub';
 import { Link } from 'react-router-dom';
 import { categoryList } from '../../assets/Consts/categoryList';
 import { AnimatePresence } from 'framer-motion';
 import SearchProducts from './SearchProducts';
 import { PulsingAnimation } from '../../framer/Transitions';
-import { ADD } from '../../assets/Consts/Actions';
 import { useLocal } from '../../hooks/cart';
 
 const Products = () => {
@@ -16,8 +15,6 @@ const Products = () => {
   const [loading, setLoading] = useState(true);
   const [state, actions] = useCounter();
   const [search, setSearch] = useState('');
-  const [filterLoading, setFilterLoading] = useState(false);
-  const [filtered, setFiltered] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [toggle, setToggle] = useState(state.isSearch);
   const [sortBy, setSortBy] = useState('0');
@@ -69,31 +66,6 @@ const Products = () => {
     }
   }, [page, state.category]);
 
-  useEffect(() => {
-    if (search === '') setFiltered([]);
-
-    if (search.length > 0) {
-      setFilterLoading(true);
-      const timeout = setTimeout(() => {
-        fetch(
-          `https://esitolo-backend.herokuapp.com/products/products-search?search=${search}`
-        )
-          .then((res) => res.json())
-          .then((json) => {
-            setFiltered(json);
-            setFilterLoading(false);
-          });
-      }, 1000);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [search]);
-
-  const reset = () => {
-    setSearch('');
-    setFiltered([]);
-  };
-
   const toggleState = () => {
     setToggle(!toggle);
     actions.openSearch(false);
@@ -114,17 +86,7 @@ const Products = () => {
         </div>
 
         <AnimatePresence>
-          {toggle && (
-            <SearchProducts
-              showTags={toggle}
-              reset={reset}
-              toggleState={toggleState}
-              filtered={filtered}
-              filterLoading={filterLoading}
-              search={search}
-              setSearch={setSearch}
-            />
-          )}
+          {toggle && <SearchProducts toggleState={toggleState} />}
         </AnimatePresence>
 
         {search.length === 0 && (
