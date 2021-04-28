@@ -459,12 +459,16 @@
   color: #eaeae7;
   padding: 0.9rem;
   margin: 0.8rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .all-products__btn-remove {
   border: none;
   color: #fa4646;
   background: transparent;
   font-size: 1.6rem;
+  margin-left: 0.5rem;
 }
 
 .isBottom {

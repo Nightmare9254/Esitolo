@@ -7,13 +7,14 @@ const SearchProducts = ({ toggleState }) => {
   const [filterLoading, setFilterLoading] = useState(true);
   const [filtered, setFiltered] = useState([]);
   const [search, setSearch] = useState('');
-  const [isSearch, setIsSearch] = useState(false);
+  const [key, setKey] = useState('');
 
-  const searchItems = () => {
-    setIsSearch(true);
+  const searchItems = (query) => {
+    setFiltered([]);
     setFilterLoading(true);
+    setKey(query);
     fetch(
-      `https://esitolo-backend.herokuapp.com/products/products-search?search=${search}`
+      `https://esitolo-backend.herokuapp.com/products/products-search?search=${query}`
     )
       .then((res) => res.json())
       .then((json) => {
@@ -26,6 +27,38 @@ const SearchProducts = ({ toggleState }) => {
     setSearch('');
     setFiltered([]);
   };
+
+  const [addItem] = useLocal();
+
+  const actions = (tags, action) => {
+    switch (action.type) {
+      case 'ADD':
+        const index = tags.indexOf(search);
+        if (index === -1 && search !== '') {
+          if (tags.length >= 10) {
+            tags.shift();
+          }
+          tags.push(search);
+          return [...tags];
+        }
+        return [...tags];
+      case 'REMOVE':
+        console.log(action.payload.id);
+        tags.splice(action.payload.id, 1);
+        return [...tags];
+      default:
+        break;
+    }
+  };
+
+  const [tags, dispatch] = useReducer(actions, [], () => {
+    const local = localStorage.getItem('tags');
+    return local ? JSON.parse(local) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('tags', JSON.stringify(tags));
+  }, [tags]);
 
   return (
     <ShowInput>
@@ -46,36 +79,35 @@ const SearchProducts = ({ toggleState }) => {
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => {
               if (e.keyCode === 13) {
-                // dispatch({ type: 'ADD' });
+                dispatch({ type: 'ADD' });
+                searchItems(search);
               }
             }}
             className="all-products__input"
           />
           <button
             style={{ background: 'transparent', border: 'none', color: '#fff' }}
-            onClick={searchItems}
+            onClick={() => searchItems(search)}
           >
             <i className="fas fa-search" />
           </button>
         </div>
         <div className="all-products__search-container">
           <div className="all-products__loading-container">
-            {isSearch && filterLoading && search.length > 0 && (
-              <PulsingAnimation />
-            )}
-            {!filterLoading && isSearch && filtered.length > 0 && (
+            {filterLoading && key.length > 0 && <PulsingAnimation />}
+            {!filterLoading && filtered.length > 0 && (
               <p className="all-products__loading-status">
                 Results for:{' '}
-                <span className="all-products__loading-item">{search}</span>
+                <span className="all-products__loading-item">{key}</span>
               </p>
             )}
-            {!filterLoading && search.length > 0 && filtered.length === 0 && (
+            {!filterLoading && filtered.length === 0 && (
               <p className="all-products__loading-status">
                 No result for{' '}
-                <span className="all-products__loading-item">{search}</span>
+                <span className="all-products__loading-item">{key}</span>
               </p>
             )}
-            {!filterLoading && search.length > 0 && (
+            {!filterLoading && (
               <p className="all-products__loading-status">
                 Total results:{' '}
                 <span className="all-products__loading-item">
@@ -84,44 +116,55 @@ const SearchProducts = ({ toggleState }) => {
               </p>
             )}
           </div>
-          {/* {tags.length >= 1 && search.length < 1 && ( */}
-          <>
-            <div className="all-products__recent">
-              <h4>Search History</h4>
-              <button
-                // onClick={() => dispatch({ type: 'REMOVE' })}
-                className="all-products__btn-remove"
-              >
-                <i className="fas fa-times" />
-              </button>
-            </div>
-            {/* <div className="all-products__recent-container">
+          {tags.length >= 1 && filtered.length < 1 && (
+            <>
+              <div className="all-products__recent">
+                <h4>Search History</h4>
+              </div>
+              <div className="all-products__recent-container">
                 {tags.map((item, index) => (
-                  <p
-                    className="all-products__recent-item"
-                    key={index}
-                    onClick={() => setSearch(item)}
-                  >
-                    {item}
-                  </p>
+                  <div key={index} className="all-products__recent-item">
+                    <p
+                      key={index}
+                      onClick={() => {
+                        searchItems(item);
+                      }}
+                    >
+                      {item}
+                    </p>
+                    <button
+                      className="all-products__btn-remove"
+                      onClick={() =>
+                        dispatch({ type: 'REMOVE', payload: { id: index } })
+                      }
+                    >
+                      <i
+                        style={{
+                          marginLeft: '.5rem',
+                          fontSize: '20px',
+                          color: 'tomato',
+                        }}
+                        className="fas fa-times"
+                      />
+                    </button>
+                  </div>
                 ))}
-              </div> */}
-          </>
+              </div>
+            </>
+          )}
 
           <div className="all-products__results">
-            {filtered.map(
-              ({ image, _id, productName, price, description }, index) => (
-                <Product
-                  view={true}
-                  key={index}
-                  id={_id}
-                  productName={productName}
-                  image={image}
-                  price={price}
-                  // addItem={addItem}
-                />
-              )
-            )}
+            {filtered.map(({ image, _id, productName, price }, index) => (
+              <Product
+                view={true}
+                key={index}
+                id={_id}
+                productName={productName}
+                image={image}
+                price={price}
+                addItem={addItem}
+              />
+            ))}
           </div>
         </div>
       </div>

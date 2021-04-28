@@ -477,12 +477,16 @@
     color: a.$font-clr;
     padding: 0.9rem;
     margin: 0.8rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
   &__btn-remove {
     border: none;
     color: a.$bright-red;
     background: transparent;
     font-size: a.$fs-300;
+    margin-left: 0.5rem;
   }
 }
 .isBottom {
