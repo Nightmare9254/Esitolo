@@ -11,9 +11,9 @@ const SignIn = () => {
   const [message, setMessage] = useState('');
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
-  // https://esitolo-backend.herokuapp.com
+  //
   const loginUser = (values) => {
-    fetch('/auth/login', {
+    fetch('https://esitolo-backend.herokuapp.com/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
