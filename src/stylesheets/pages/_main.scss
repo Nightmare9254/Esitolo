@@ -97,18 +97,11 @@
   margin: 0 1rem;
 
   &__add {
-    grid-area: 1/1;
     height: 25px;
-    justify-self: end;
     background-color: a.$main-yellow;
     border: none;
     color: a.$font-dark-gray;
     padding: 0.5rem;
-    z-index: 5;
-  }
-  &__add:focus {
-    transform: scale(1.1);
-    filter: brightness(0.7);
   }
   &__link {
     grid-area: 1/1;
@@ -266,6 +259,22 @@
       color: inherit;
     }
   }
+  &__item-basket-icon {
+    position: relative;
+  }
+  &__item-basket-total {
+    color: a.$font-clr;
+    font-size: a.$fs-200;
+    background: a.$bright-red;
+    padding: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    border-radius: 100rem;
+  }
 }
 
 .footer {
@@ -367,11 +376,6 @@
     border-bottom: 2px solid a.$light-gray;
     padding-bottom: 1rem;
   }
-  // &__container-input:focus-within {
-  //   outline: none;
-  //   border: 1px solid a.$main-yellow;
-  //   // border-left: none;
-  // }
   &__container-icon {
     padding: 1rem;
     border-radius: 10rem 0rem 0rem 10rem;
@@ -380,7 +384,7 @@
     padding: 0.5rem;
     width: 100%;
     border: none;
-    border-radius: 0 10rem 10rem 0;
+
     background-color: a.$medium-gray;
     color: a.$font-clr;
     font-size: a.$fs-300;
@@ -388,7 +392,6 @@
   &__input:focus {
     outline: none;
     border: 1px solid a.$main-yellow;
-    // border-left: none;
   }
   .fa-arrow-left {
     color: a.$font-clr;
@@ -487,6 +490,17 @@
     background: transparent;
     font-size: a.$fs-300;
     margin-left: 0.5rem;
+  }
+  &__search-btn {
+    background: transparent;
+    border: none;
+    color: a.$font-clr;
+    margin-left: 1rem;
+    padding: 0 0 0.5rem;
+  }
+  &__search-btn:focus {
+    background: a.$main-yellow;
+    color: a.$font-dark-gray;
   }
 }
 .isBottom {

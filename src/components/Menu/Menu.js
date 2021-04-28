@@ -1,10 +1,14 @@
 import { useCookies } from 'react-cookie';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useLocal } from '../../hooks/cart';
+import { ScaleButtonClick } from '../../framer/Transitions';
 
 const Menu = ({ isSelected }) => {
   const [cookies] = useCookies();
   const { user } = cookies;
+  const [, , , , , cartItems] = useLocal();
+  console.log(cartItems.length);
 
   const location = useLocation();
 
@@ -26,16 +30,27 @@ const Menu = ({ isSelected }) => {
           className={`menu__item ${pos === 2 ? 'menu__item--active' : null}`}
         >
           <Link to="/">
-            <i className="fas fa-home fa-3x"></i>
-            <p className="menu__describe">Home</p>
+            <ScaleButtonClick>
+              <i className="fas fa-home fa-3x"></i>
+              <p className="menu__describe">Home</p>
+            </ScaleButtonClick>
           </Link>
         </div>
         <div
           className={`menu__item ${pos === 1 ? 'menu__item--active' : null}`}
         >
           <Link to="/basket">
-            <i className="fas fa-shopping-basket fa-3x"></i>
-            <p className="menu__describe">Basket</p>
+            <ScaleButtonClick>
+              <div className="menu__item-basket-icon">
+                {cartItems.length >= 1 && (
+                  <span className="menu__item-basket-total">
+                    {cartItems.length}
+                  </span>
+                )}
+                <i className="fas fa-shopping-basket fa-3x"></i>
+                <p className="menu__describe">Basket</p>
+              </div>
+            </ScaleButtonClick>
           </Link>
         </div>
         <div
@@ -44,16 +59,20 @@ const Menu = ({ isSelected }) => {
           {user && (
             <>
               <Link to="/account">
-                <i className="fas fa-user fa-3x"></i>
-                <p className="menu__describe">Account</p>
+                <ScaleButtonClick>
+                  <i className="fas fa-user fa-3x"></i>
+                  <p className="menu__describe">Account</p>
+                </ScaleButtonClick>
               </Link>
             </>
           )}
           {!user && (
             <>
               <Link to="/auth">
-                <i className="fas fa-sign-in-alt fa-3x"></i>
-                <p className="menu__describe">Join us</p>
+                <ScaleButtonClick>
+                  <i className="fas fa-sign-in-alt fa-3x"></i>
+                  <p className="menu__describe">Join us</p>
+                </ScaleButtonClick>
               </Link>
             </>
           )}

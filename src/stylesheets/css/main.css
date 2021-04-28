@@ -92,18 +92,11 @@
   margin: 0 1rem;
 }
 .bestsellers__add {
-  grid-area: 1/1;
   height: 25px;
-  justify-self: end;
   background-color: #fac646;
   border: none;
   color: #23252f;
   padding: 0.5rem;
-  z-index: 5;
-}
-.bestsellers__add:focus {
-  transform: scale(1.1);
-  filter: brightness(0.7);
 }
 .bestsellers__link {
   grid-area: 1/1;
@@ -258,6 +251,22 @@
 .menu__item--active .menu__describe {
   color: inherit;
 }
+.menu__item-basket-icon {
+  position: relative;
+}
+.menu__item-basket-total {
+  color: #eaeae7;
+  font-size: 1.2rem;
+  background: #fa4646;
+  padding: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  border-radius: 100rem;
+}
 
 .footer {
   color: #eaeae7;
@@ -364,7 +373,6 @@
   padding: 0.5rem;
   width: 100%;
   border: none;
-  border-radius: 0 10rem 10rem 0;
   background-color: #23252f;
   color: #eaeae7;
   font-size: 1.6rem;
@@ -469,6 +477,17 @@
   background: transparent;
   font-size: 1.6rem;
   margin-left: 0.5rem;
+}
+.all-products__search-btn {
+  background: transparent;
+  border: none;
+  color: #eaeae7;
+  margin-left: 1rem;
+  padding: 0 0 0.5rem;
+}
+.all-products__search-btn:focus {
+  background: #fac646;
+  color: #23252f;
 }
 
 .isBottom {
@@ -961,11 +980,6 @@ a {
   font-weight: 500;
 }
 
-.test-active {
-  border-bottom-color: #fac646;
-  border-top-color: transparent;
-}
-
 .rotate {
   display: grid;
   place-content: center;
@@ -988,6 +1002,12 @@ a {
   font-weight: 500;
   grid-area: 1/1;
   place-self: center;
+}
+
+.scalebutton {
+  grid-area: 1/1;
+  justify-self: end;
+  z-index: 5;
 }
 
 .button {

@@ -1,22 +1,19 @@
 import { Link } from 'react-router-dom';
-import { useCounter } from '../../store/sub';
+import { ScaleButtonClick } from '../../framer/Transitions';
 
-const TopProducts = ({
-  id,
-  image,
-  price,
-  description,
-  productName,
-  addItem,
-}) => {
+const TopProducts = ({ id, image, price, productName, addItem }) => {
   return (
     <div className="bestsellers">
-      <button
-        onClick={() => addItem({ id, productName, price, image, quantity: 1 })}
-        className="bestsellers__add"
-      >
-        Add to cart
-      </button>
+      <ScaleButtonClick className="scalebutton">
+        <button
+          className="bestsellers__add"
+          onClick={() =>
+            addItem({ id, productName, price, image, quantity: 1 })
+          }
+        >
+          Add to cart
+        </button>
+      </ScaleButtonClick>
       <Link to={`/product/${id}`} className="bestsellers__link">
         <div className="bestsellers__img-container">
           <img

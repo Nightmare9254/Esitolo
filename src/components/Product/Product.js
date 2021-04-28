@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ScaleButtonClick } from '../../framer/Transitions';
 
 const Product = ({
   id,
@@ -41,14 +42,16 @@ const Product = ({
         }`}
       >
         {!isInCart && (
-          <button
-            className="product__add"
-            onClick={() =>
-              addItem({ id, productName, price, image, quantity: 1 })
-            }
-          >
-            <i className="fas fa-plus"></i>
-          </button>
+          <ScaleButtonClick>
+            <button
+              className="product__add"
+              onClick={() =>
+                addItem({ id, productName, price, image, quantity: 1 })
+              }
+            >
+              <i className="fas fa-plus"></i>
+            </button>
+          </ScaleButtonClick>
         )}
         {isInCart && (
           <div className="single__counter">

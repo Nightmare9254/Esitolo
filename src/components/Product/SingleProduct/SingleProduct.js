@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { ScaleButtonClick } from '../../../framer/Transitions';
 import { useLocal } from '../../../hooks/cart';
 import Menu from '../../Menu/Menu';
 import { ScrollToTop } from '../../SingleComponents/ScrollToTop';
@@ -150,20 +151,22 @@ const SingleProduct = () => {
               <div className="single__amount">{product.amount} available</div>
             </div>
             <div className="single__container-btn">
-              <button
-                onClick={() =>
-                  addItem({
-                    id: id,
-                    productName: product.productName,
-                    price: product.price,
-                    image: product.image,
-                    quantity: quantity,
-                  })
-                }
-                className="button single__button"
-              >
-                Add to basket
-              </button>
+              <ScaleButtonClick>
+                <button
+                  onClick={() =>
+                    addItem({
+                      id: id,
+                      productName: product.productName,
+                      price: product.price,
+                      image: product.image,
+                      quantity: quantity,
+                    })
+                  }
+                  className="button single__button"
+                >
+                  Add to basket
+                </button>
+              </ScaleButtonClick>
             </div>
           </div>
           <div className="single__description">
