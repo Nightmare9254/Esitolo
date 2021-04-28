@@ -19,7 +19,7 @@ const Cart = () => {
   let total = calculate();
 
   if (user) {
-    total = total * 0.95;
+    total = total * 0.98;
   }
 
   return (
@@ -60,5 +60,4 @@ const Cart = () => {
     </>
   );
 };
-
 export default Cart;

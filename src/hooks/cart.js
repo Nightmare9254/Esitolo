@@ -1,13 +1,7 @@
 import { useEffect, useReducer } from 'react';
+import { ACTIONS } from '../assets/Consts/Actions';
 
 export const useLocal = () => {
-  const ACTIONS = {
-    ADD: 'add-item',
-    REMOVE: 'remove-item',
-    DELETE: 'delete-cart',
-    QUANTITY: 'add-item-quantity',
-  };
-
   const newItem = ({ id, productName, price, image, quantity }, arr) => {
     const index = arr.findIndex((item) => item.id === id);
     if (index !== -1) {
@@ -42,18 +36,17 @@ export const useLocal = () => {
           }
           return [...cartItems];
         }
-
+        break;
       case ACTIONS.DELETE:
         return cartItems.splice(0, cartItems.length);
 
       case ACTIONS.QUANTITY:
-        console.log('dupa');
         const id = cartItems.findIndex((i) => i.id === action.payload.id);
         cartItems[id].quantity += 1;
         return [...cartItems];
 
       default:
-        return null;
+        return [...cartItems];
     }
   };
   const [cartItems, dispatch] = useReducer(reducer, [], () => {
@@ -62,7 +55,7 @@ export const useLocal = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem('cart-items', JSON.stringify(cartItems));
+    window.localStorage.setItem('cart-items', JSON.stringify(cartItems));
   }, [cartItems]);
 
   const addItem = (values) => {

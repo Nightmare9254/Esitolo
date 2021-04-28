@@ -94,7 +94,7 @@ const SearchProducts = ({
           {tags.length >= 1 && search.length < 1 && (
             <>
               <div className="all-products__recent">
-                <h4>Recent</h4>
+                <h4>Search History</h4>
                 <button
                   onClick={() => dispatch({ type: 'REMOVE' })}
                   className="all-products__btn-remove"

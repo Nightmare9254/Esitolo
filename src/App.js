@@ -3,7 +3,6 @@ import {
   Switch,
   Route,
   Redirect,
-  useHistory,
 } from 'react-router-dom';
 import Main from './components/Main/Main';
 import FormAdd from './components/Form/FormAdd';
@@ -38,7 +37,6 @@ const App = () => {
             {user && <Account />}
             {!user && <Redirect to="/auth" />}
           </Route>
-          <Route exact path="/cart" component={Cart} />
         </Switch>
       </Router>
     </div>

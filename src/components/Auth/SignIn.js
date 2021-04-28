@@ -4,13 +4,16 @@ import { formSchemaSignIn } from '../Formik/YupValidation';
 import { AnimateContainer, AnimateItem } from '../../framer/Transitions';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 const SignIn = () => {
   const history = useHistory();
   const [message, setMessage] = useState('');
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
+  // https://esitolo-backend.herokuapp.com
   const loginUser = (values) => {
-    fetch('https://esitolo-backend.herokuapp.com/auth/login', {
+    fetch('/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,8 +22,11 @@ const SignIn = () => {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         if (json.valid) {
+          setCookie('user', json.user, {
+            path: '/',
+            maxAge: 24 * 60 * 60 * 1000,
+          });
           history.push('/');
           window.location.reload();
         }

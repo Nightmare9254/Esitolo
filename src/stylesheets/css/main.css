@@ -445,20 +445,20 @@
   overflow: hidden;
 }
 .all-products__recent {
-  background-color: #1a1d22;
   font-size: 1.6rem;
   color: #eaeae7;
   display: flex;
   margin: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0;
   justify-content: space-between;
 }
 .all-products__recent-item {
-  background-color: #1a1d22;
+  background-color: #31343a;
+  border-radius: 100rem;
   font-size: 1.6rem;
   color: #eaeae7;
-  padding: 0.7rem;
-  margin: 1rem;
+  padding: 0.9rem;
+  margin: 0.8rem;
 }
 .all-products__btn-remove {
   border: none;

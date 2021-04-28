@@ -463,20 +463,20 @@
     overflow: hidden;
   }
   &__recent {
-    background-color: a.$dark-gray;
     font-size: a.$fs-300;
     color: a.$font-clr;
     display: flex;
     margin: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
     justify-content: space-between;
   }
   &__recent-item {
-    background-color: a.$dark-gray;
+    background-color: a.$main-complementary;
+    border-radius: 100rem;
     font-size: a.$fs-300;
     color: a.$font-clr;
-    padding: 0.7rem;
-    margin: 1rem;
+    padding: 0.9rem;
+    margin: 0.8rem;
   }
   &__btn-remove {
     border: none;
