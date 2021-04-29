@@ -4,11 +4,10 @@ import { useEffect, useState } from 'react';
 import { useLocal } from '../../hooks/cart';
 import { ScaleButtonClick } from '../../framer/Transitions';
 
-const Menu = ({ isSelected }) => {
+const Menu = () => {
   const [cookies] = useCookies();
   const { user } = cookies;
   const [, , , , , cartItems] = useLocal();
-  console.log(cartItems.length);
 
   const location = useLocation();
 
@@ -47,9 +46,9 @@ const Menu = ({ isSelected }) => {
                     {cartItems.length}
                   </span>
                 )}
-                <i className="fas fa-shopping-basket fa-3x"></i>
-                <p className="menu__describe">Basket</p>
               </div>
+              <i className="fas fa-shopping-basket fa-3x"></i>
+              <p className="menu__describe">Basket</p>
             </ScaleButtonClick>
           </Link>
         </div>

@@ -2,6 +2,7 @@ import { useCookies } from 'react-cookie';
 import { useLocal } from '../../hooks/cart';
 import Menu from '../Menu/Menu';
 import Product from '../Product/Product';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [
@@ -58,7 +59,9 @@ const Cart = () => {
           <p style={{ color: '#fff', fontSize: '20px' }}>
             Total: {total.toFixed(2)}$
           </p>
-          <button className="cart__btn">Checkout ({cartItems.length})</button>
+          <Link to="/order-confirmation" className="cart__btn">
+            Checkout ({cartItems.length})
+          </Link>
         </div>
       </div>
       <Menu />

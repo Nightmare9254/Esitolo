@@ -15,6 +15,7 @@ const Product = ({
   isInCart,
   quantity,
   addQuantity,
+  isInOrder,
 }) => {
   return (
     <div
@@ -31,6 +32,9 @@ const Product = ({
             <p className="product__price">{price} $</p>
             <p className="product__name">{productName}</p>
             <p className="product__description">{description}</p>
+            {isInOrder && (
+              <p className="product__quantity">Quantity: {quantity}</p>
+            )}
           </div>
         </div>
       </Link>
@@ -41,7 +45,7 @@ const Product = ({
             : 'product__btns-container'
         }`}
       >
-        {!isInCart && (
+        {!isInCart && !isInOrder && (
           <ScaleButtonClick>
             <button
               className="product__add"

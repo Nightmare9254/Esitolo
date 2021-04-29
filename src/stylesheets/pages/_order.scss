@@ -1,0 +1,123 @@
+@use '../abstracts' as a;
+
+.order {
+  min-height: 100vh;
+  background: a.$main-complementary;
+
+  &__shipping-container {
+    background: a.$dark-gray;
+    margin-top: 2rem;
+    color: a.$font-clr;
+    padding: 1rem;
+  }
+  &__shipping {
+    font-size: a.$fs-400;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__shipping-change {
+    color: a.$main-yellow;
+    font-size: a.$fs-300;
+  }
+  &__address-user {
+    margin-top: 1rem;
+    font-size: a.$fs-300;
+    color: a.$font-gray-clr;
+  }
+
+  &__payment-container {
+    margin-top: 2rem;
+  }
+  &__payment-method {
+    font-size: a.$fs-400;
+    color: a.$font-clr;
+    padding: 1rem;
+  }
+  &__container-methods {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &__method {
+    min-width: 10rem;
+    max-width: 14rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__method-img {
+    width: 6rem;
+  }
+
+  &__method--active {
+    border: 1px solid a.$main-yellow;
+    box-shadow: 0 0 10px -2px a.$main-yellow;
+  }
+
+  &__items {
+    background: a.$dark-gray;
+    margin-top: 6rem;
+    padding: 1rem;
+    color: a.$font-clr;
+  }
+
+  &__summary {
+    background: a.$dark-gray;
+    margin-top: 2rem;
+    color: a.$font-clr;
+    padding: 1rem;
+  }
+  &__title {
+    font-size: a.$fs-400;
+  }
+  &__info {
+    margin-top: 1rem;
+    font-size: a.$fs-300;
+    color: a.$font-gray-clr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__total {
+    color: a.$font-clr;
+    font-weight: bolder;
+  }
+  &__bar {
+    background: a.$medium-gray;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: a.$font-clr;
+    font-size: a.$fs-300;
+  }
+  &__btn {
+    background: a.$main-yellow;
+    color: a.$font-dark-gray;
+    padding: 0.5rem 1rem;
+    border-radius: 10rem;
+  }
+  //   FORM USER SHIPPING ADDRESS
+  &__shipping-data {
+    text-align: center;
+  }
+  &__enter {
+    font-size: a.$fs-300;
+  }
+  &__label {
+    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    font-size: a.$fs-200;
+  }
+  &__input {
+    background: a.$main-complementary;
+    border: none;
+    padding: 0.5rem;
+  }
+  //
+}

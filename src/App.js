@@ -13,6 +13,7 @@ import { useCookies } from 'react-cookie';
 import SingleProduct from './components/Product/SingleProduct/SingleProduct';
 import Cart from './components/Cart/Cart';
 import { useLocal } from './hooks/cart';
+import OrderSummary from './components/Order/OrderSummary';
 
 const App = () => {
   const [cookies] = useCookies(['user']);
@@ -37,6 +38,7 @@ const App = () => {
             {user && <Account />}
             {!user && <Redirect to="/auth" />}
           </Route>
+          <Route exact path="/order-confirmation" component={OrderSummary} />
         </Switch>
       </Router>
     </div>
