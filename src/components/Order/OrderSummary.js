@@ -8,6 +8,10 @@ import { useLocal } from '../../hooks/cart';
 import Product from '../Product/Product';
 import { ScrollToTop } from '../SingleComponents/ScrollToTop';
 import Menu from '../Menu/Menu';
+import { Formik, Form } from 'formik';
+import TextField from '../Formik/TextField';
+import { AnimateContainer } from '../../framer/Transitions';
+import { shippingAddress } from '../Formik/YupValidation';
 
 const OrderSummary = () => {
   const [cookies] = useCookies();
@@ -43,44 +47,75 @@ const OrderSummary = () => {
                   Change
                 </Link>
               </p>
-              <ul>
-                <li className="order__address-user">Name: {user.name}</li>
+              <ul style={{ listStyle: 'none' }}>
+                <li className="order__address-user">Name: {user?.name}</li>
                 <li className="order__address-user">
-                  City / Street: {user.shippingAddress.city},{' '}
-                  {user.shippingAddress.street}{' '}
-                  {user.shippingAddress.streetNumber}
+                  City / Street: {user?.shippingAddress.city},{' '}
+                  {user?.shippingAddress.street}{' '}
+                  {user?.shippingAddress.streetNumber}
                 </li>
                 <li className="order__address-user">
-                  Zip-Code: {user.shippingAddress.zipCode}
+                  Zip-Code: {user?.shippingAddress.zipCode}
                 </li>
                 <li className="order__address-user">
-                  Phone: {user.shippingAddress.phone}
+                  Phone: {user?.shippingAddress.phone}
                 </li>
               </ul>
             </div>
           )}
           {!user && (
             <div className="order__shipping-data">
-              {/* There will be FORMIK */}
-              <p className="order__enter">Enter your shipping address</p>
-              <form className="order__form">
-                <label className="order__label">
-                  Name:
-                  <input className="order__input" type="text" />
-                </label>
-                <label className="order__label">
-                  City:
-                  <input className="order__input" type="text" />
-                </label>
-                <label className="order__label">
-                  Street name / Number:
-                  <input className="order__input" type="text" />
-                </label>
-                <label className="order__label">
-                  Phone:
-                  <input className="order__input" type="text" />
-                </label>
-              </form>
+              <Formik
+                initialValues={{
+                  name: '',
+                  street: '',
+                  apartment: '',
+                  zipCode: '',
+                  phone: '',
+                }}
+                validationSchema={shippingAddress}
+                onSubmit={(values) => console.log(values)}
+              >
+                <Form>
+                  <AnimateContainer>
+                    <TextField
+                      key="name"
+                      placeholder="Name"
+                      icon="fas fa-user"
+                      name="name"
+                      type="text"
+                    />
+                    <TextField
+                      key="street"
+                      placeholder="Street"
+                      icon="fas fa-road"
+                      name="street"
+                      type="text"
+                    />
+                    <TextField
+                      key="apartment"
+                      placeholder="Apartment"
+                      icon="fas fa-map-marker"
+                      name="apartment"
+                      type="text"
+                    />
+                    <TextField
+                      key="zipCode"
+                      placeholder="Postal code e.g - 00-000"
+                      icon="fas fa-envelope"
+                      name="zipCode"
+                      type="text"
+                    />
+                    <TextField
+                      key="phone"
+                      placeholder="Phone +42-122-512-613"
+                      icon="fas fa-phone-alt"
+                      name="phone"
+                      type="tel"
+                    />
+                  </AnimateContainer>
+                </Form>
+              </Formik>
             </div>
           )}
         </div>
@@ -90,7 +125,7 @@ const OrderSummary = () => {
             <div
               onClick={() => chooseMethod(1)}
               className={`order__method ${
-                method === 1 ? 'order__method--active' : null
+                method === 1 ? 'order__method--active' : ''
               }`}
             >
               <img className="order__method-img" src={blik} alt="method" />
@@ -98,7 +133,7 @@ const OrderSummary = () => {
             <div
               onClick={() => chooseMethod(2)}
               className={`order__method ${
-                method === 2 ? 'order__method--active' : null
+                method === 2 ? 'order__method--active' : ''
               }`}
             >
               <img className="order__method-img" src={payu} alt="method" />

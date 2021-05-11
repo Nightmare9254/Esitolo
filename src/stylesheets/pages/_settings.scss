@@ -32,4 +32,22 @@
     color: a.$main-yellow;
     font-size: a.$fs-400;
   }
+  &__shipping-address-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 1rem 0;
+  }
+  &__txt--header {
+    color: a.$font-clr;
+    font-size: a.$fs-300;
+  }
+  .fa-map-marker,
+  .fa-phone-alt,
+  .fa-envelope,
+  .fa-road {
+    color: #fff;
+    font-size: a.$fs-300;
+  }
 }

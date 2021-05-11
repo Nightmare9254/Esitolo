@@ -704,6 +704,24 @@
   color: #fac646;
   font-size: 2.1rem;
 }
+.settings__shipping-address-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1rem 0;
+}
+.settings__txt--header {
+  color: #eaeae7;
+  font-size: 1.6rem;
+}
+.settings .fa-map-marker,
+.settings .fa-phone-alt,
+.settings .fa-envelope,
+.settings .fa-road {
+  color: #fff;
+  font-size: 1.6rem;
+}
 
 .single {
   background: #31343a;
