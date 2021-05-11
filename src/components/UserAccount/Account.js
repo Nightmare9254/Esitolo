@@ -35,7 +35,9 @@ const Account = () => {
             path: '/',
             maxAge: 24 * 60 * 60 * 1000,
           }),
-        window.location.reload()
+        setTimeout(() => {
+          window.location.reload();
+        }, 500)
       );
   };
 
@@ -94,6 +96,7 @@ const Account = () => {
                 {openAddress && (
                   <Formik
                     initialValues={{
+                      id: user._id,
                       name: user?.name,
                       city: user?.shippingAddress.city,
                       street: user?.shippingAddress.street,
@@ -107,16 +110,9 @@ const Account = () => {
                     <Form>
                       <AnimateContainer>
                         <TextField
-                          key="name"
-                          placeholder="Name"
-                          icon="fas fa-user"
-                          name="name"
-                          type="text"
-                        />
-                        <TextField
                           key="city"
                           placeholder="City"
-                          icon="fas fa-user"
+                          icon="fas fa-city"
                           name="city"
                           type="text"
                         />

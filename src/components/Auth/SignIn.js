@@ -12,7 +12,7 @@ const SignIn = () => {
   const [, setCookie] = useCookies(['user']);
 
   const loginUser = (values) => {
-    fetch('/auth/login', {
+    fetch('https://esitolo-backend.herokuapp.com/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
