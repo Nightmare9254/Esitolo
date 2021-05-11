@@ -44,23 +44,27 @@ const OrderSummary = () => {
               <p className="order__shipping">
                 Shipping address{' '}
                 <Link className="order__shipping-change" to="/account">
-                  Change
+                  {user.shippingAddress.street.length > 1
+                    ? 'Change'
+                    : 'Set address'}
                 </Link>
               </p>
-              <ul style={{ listStyle: 'none' }}>
-                <li className="order__address-user">Name: {user?.name}</li>
-                <li className="order__address-user">
-                  City / Street: {user?.shippingAddress.city},{' '}
-                  {user?.shippingAddress.street}{' '}
-                  {user?.shippingAddress.streetNumber}
-                </li>
-                <li className="order__address-user">
-                  Zip-Code: {user?.shippingAddress.zipCode}
-                </li>
-                <li className="order__address-user">
-                  Phone: {user?.shippingAddress.phone}
-                </li>
-              </ul>
+              {user.shippingAddress.street.length > 1 && (
+                <ul style={{ listStyle: 'none' }}>
+                  <li className="order__address-user">Name: {user?.name}</li>
+                  <li className="order__address-user">
+                    City / Street: {user?.shippingAddress.city},{' '}
+                    {user?.shippingAddress.street}{' '}
+                    {user?.shippingAddress.apartment}
+                  </li>
+                  <li className="order__address-user">
+                    Zip-Code: {user?.shippingAddress.zipCode}
+                  </li>
+                  <li className="order__address-user">
+                    Phone: {user?.shippingAddress.phone}
+                  </li>
+                </ul>
+              )}
             </div>
           )}
           {!user && (

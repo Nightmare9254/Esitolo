@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { string } from 'yup/lib/locale';
 
 export const formSchemaSignUp = yup.object({
   email: yup
@@ -37,6 +38,7 @@ export const shippingAddress = yup.object({
     .string()
     .min(2, 'Name must contains at least 2 letters ')
     .required('Name is required'),
+  city: yup.string().min(2).required('City is required'),
   street: yup.string().required('Street is required'),
   apartment: yup.number().min(1).required('Apartment number is required'),
   zipCode: yup

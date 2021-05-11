@@ -10,7 +10,7 @@ import { AnimateContainer } from '../../framer/Transitions';
 import TextField from '../Formik/TextField';
 
 const Account = () => {
-  const [cookies, , removeCookie] = useCookies(['user']);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [openAddress, setOpenAddress] = useState(false);
   const { user } = cookies;
   const history = useHistory();
@@ -18,6 +18,25 @@ const Account = () => {
   const logout = () => {
     removeCookie('user');
     history.push('/');
+  };
+
+  const upadteAddress = (data) => {
+    fetch('https://esitolo-backend.herokuapp.com/auth/address', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then(
+        (json) =>
+          setCookie('user', json, {
+            path: '/',
+            maxAge: 24 * 60 * 60 * 1000,
+          }),
+        window.location.reload()
+      );
   };
 
   return (
@@ -62,7 +81,7 @@ const Account = () => {
                     </p>
                     <p>
                       Apartment:
-                      <span>{user?.shippingAddress.streetNumber}</span>
+                      <span>{user?.shippingAddress.apartment}</span>
                     </p>
                     <p>
                       Zip-code: <span>{user?.shippingAddress.zipCode} </span>
@@ -76,13 +95,14 @@ const Account = () => {
                   <Formik
                     initialValues={{
                       name: user?.name,
+                      city: user?.shippingAddress.city,
                       street: user?.shippingAddress.street,
-                      apartment: user?.shippingAddress.streetNumber,
+                      apartment: user?.shippingAddress.apartment,
                       zipCode: user?.shippingAddress.zipCode,
                       phone: user?.shippingAddress.phone,
                     }}
                     validationSchema={shippingAddress}
-                    onSubmit={(values) => console.log(values)}
+                    onSubmit={(values) => upadteAddress(values)}
                   >
                     <Form>
                       <AnimateContainer>
@@ -91,6 +111,13 @@ const Account = () => {
                           placeholder="Name"
                           icon="fas fa-user"
                           name="name"
+                          type="text"
+                        />
+                        <TextField
+                          key="city"
+                          placeholder="City"
+                          icon="fas fa-user"
+                          name="city"
                           type="text"
                         />
                         <TextField
