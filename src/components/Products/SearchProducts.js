@@ -30,7 +30,7 @@ const SearchProducts = ({ toggleState }) => {
 
   const [addItem] = useLocal();
 
-  const actions = useCallback((tags, action) => {
+  const actions = (tags, action) => {
     switch (action.type) {
       case 'ADD':
         const index = tags.indexOf(search);
@@ -43,33 +43,13 @@ const SearchProducts = ({ toggleState }) => {
         }
         return [...tags];
       case 'REMOVE':
+        console.log(action.payload.id);
         tags.splice(action.payload.id, 1);
         return [...tags];
       default:
         break;
     }
-  }, []);
-  // BEFORE
-  // const actions = (tags, action) => {
-  //   switch (action.type) {
-  //     case 'ADD':
-  //       const index = tags.indexOf(search);
-  //       if (index === -1 && search !== '') {
-  //         if (tags.length >= 10) {
-  //           tags.shift();
-  //         }
-  //         tags.push(search);
-  //         return [...tags];
-  //       }
-  //       return [...tags];
-  //     case 'REMOVE':
-  //       console.log(action.payload.id);
-  //       tags.splice(action.payload.id, 1);
-  //       return [...tags];
-  //     default:
-  //       break;
-  //   }
-  // };
+  };
 
   const [tags, dispatch] = useReducer(actions, [], () => {
     const local = localStorage.getItem('tags');
@@ -106,10 +86,13 @@ const SearchProducts = ({ toggleState }) => {
             className="all-products__input"
           />
           <button
-            onClick={() => searchItems(search)}
+            onClick={() => {
+              dispatch({ type: 'ADD' });
+              searchItems(search);
+            }}
             className="all-products__search-btn"
           >
-            <i className="fas fa-search fa-2x" />
+            <i className="fas fa-search" />
           </button>
         </div>
         <div className="all-products__search-container">

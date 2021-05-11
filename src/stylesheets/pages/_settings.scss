@@ -23,4 +23,13 @@
     background: transparent;
     color: a.$main-yellow;
   }
+  &__header-medium {
+    color: a.$font-clr;
+    text-align: center;
+  }
+  &__joined-date {
+    text-align: center;
+    color: a.$main-yellow;
+    font-size: a.$fs-400;
+  }
 }

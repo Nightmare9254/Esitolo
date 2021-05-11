@@ -43,9 +43,20 @@ const OrderSummary = () => {
                   Change
                 </Link>
               </p>
-              <p className="order__address-user">
-                John Deep, Rzeszów 34/1, PL-12-213,+48-123123123
-              </p>
+              <ul>
+                <li className="order__address-user">Name: {user.name}</li>
+                <li className="order__address-user">
+                  City / Street: {user.shippingAddress.city},{' '}
+                  {user.shippingAddress.street}{' '}
+                  {user.shippingAddress.streetNumber}
+                </li>
+                <li className="order__address-user">
+                  Zip-Code: {user.shippingAddress.zipCode}
+                </li>
+                <li className="order__address-user">
+                  Phone: {user.shippingAddress.phone}
+                </li>
+              </ul>
             </div>
           )}
           {!user && (
@@ -136,7 +147,9 @@ const OrderSummary = () => {
         </div>
         <div className="order__bar">
           <p>USD: {total.toFixed(2)}$</p>
-          <Link className="order__btn">Pay now</Link>
+          <Link to="/pay-now" className="order__btn">
+            Pay now
+          </Link>
         </div>
       </div>
       <Menu />

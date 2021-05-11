@@ -385,7 +385,6 @@
     padding: 0.5rem;
     width: 100%;
     border: none;
-
     background-color: a.$medium-gray;
     color: a.$font-clr;
     font-size: a.$fs-300;
@@ -393,6 +392,8 @@
   &__input:focus {
     outline: none;
     border: 1px solid a.$main-yellow;
+  }
+  .fa-search {
   }
   .fa-arrow-left {
     color: a.$font-clr;
@@ -498,10 +499,10 @@
     color: a.$font-clr;
     margin-left: 1rem;
     padding: 0 0 0.5rem;
-  }
-  &__search-btn:focus {
-    background: a.$main-yellow;
-    color: a.$font-dark-gray;
+
+    .fa-search {
+      font-size: a.$fs-300;
+    }
   }
 }
 .isBottom {

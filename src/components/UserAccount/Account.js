@@ -2,6 +2,7 @@ import { useCookies } from 'react-cookie';
 import { useHistory } from 'react-router';
 import Menu from '../Menu/Menu';
 import HeaderTitle from '../SingleComponents/HeaderTitle';
+import moment from 'moment';
 
 const Account = () => {
   const [cookies, , removeCookie] = useCookies(['user']);
@@ -28,14 +29,15 @@ const Account = () => {
             </section>
             <section className="settings__section">
               <h3 className="settings__header-medium">You have joined:</h3>
-              <p className="settings__joined-date">{user.createdData}</p>
+              <p className="settings__joined-date">
+                {moment(user.createDate).fromNow()}
+              </p>
             </section>
             <section className="settings__section">
               <h4 className="settings__header-small">Account settings</h4>
               <div className="settings__options">
                 <p className="settings__txt--dimmed">Shipping address</p>
               </div>
-
               <div className="settings__options">
                 <p className="settings__txt--dimmed">Order history</p>
                 <button className="settings__change-btn">View</button>

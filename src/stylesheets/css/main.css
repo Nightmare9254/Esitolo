@@ -486,9 +486,8 @@
   margin-left: 1rem;
   padding: 0 0 0.5rem;
 }
-.all-products__search-btn:focus {
-  background: #fac646;
-  color: #23252f;
+.all-products__search-btn .fa-search {
+  font-size: 1.6rem;
 }
 
 .isBottom {
@@ -695,6 +694,15 @@
   border: none;
   background: transparent;
   color: #fac646;
+}
+.settings__header-medium {
+  color: #eaeae7;
+  text-align: center;
+}
+.settings__joined-date {
+  text-align: center;
+  color: #fac646;
+  font-size: 2.1rem;
 }
 
 .single {
