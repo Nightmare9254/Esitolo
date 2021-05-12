@@ -14,6 +14,7 @@ import SingleProduct from './components/Product/SingleProduct/SingleProduct';
 import Cart from './components/Cart/Cart';
 import { useLocal } from './hooks/cart';
 import OrderSummary from './components/Order/OrderSummary';
+import StripeTest from './components/Order/StripeTest';
 
 const App = () => {
   const [cookies] = useCookies(['user']);
@@ -31,14 +32,16 @@ const App = () => {
             {user && <Redirect to="/" />}
             {!user && <Auth />}
           </Route>
-          <Route exacth path="/products" component={Products} />
-          <Route exacth path="/product/:id" component={SingleProduct} />
-          <Route exacth path="/basket" component={Cart} />
+          <Route exact path="/products" component={Products} />
+          <Route exact path="/product/:id" component={SingleProduct} />
+          <Route exact path="/basket" component={Cart} />
           <Route exact path="/account">
             {user && <Account />}
             {!user && <Redirect to="/auth" />}
           </Route>
           <Route exact path="/order-confirmation" component={OrderSummary} />
+
+          <Route exact path="/stripe" component={StripeTest} />
         </Switch>
       </Router>
     </div>
