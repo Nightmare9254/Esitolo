@@ -5,14 +5,8 @@ import Product from '../Product/Product';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-  const [
-    ,
-    removeItem,
-    calculate,
-    removeCart,
-    addQuantity,
-    cartItems,
-  ] = useLocal();
+  const [, removeItem, calculate, removeCart, addQuantity, cartItems] =
+    useLocal();
 
   const [cookies] = useCookies();
   const { user } = cookies;
@@ -20,7 +14,7 @@ const Cart = () => {
   let total = calculate();
 
   if (user) {
-    total = total * 0.98;
+    total = total * 0.95;
   }
 
   return (

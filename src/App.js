@@ -14,7 +14,7 @@ import SingleProduct from './components/Product/SingleProduct/SingleProduct';
 import Cart from './components/Cart/Cart';
 import { useLocal } from './hooks/cart';
 import OrderSummary from './components/Order/OrderSummary';
-import StripeTest from './components/Order/StripeTest';
+import Payment from './components/Order/Payment';
 
 const App = () => {
   const [cookies] = useCookies(['user']);
@@ -41,7 +41,7 @@ const App = () => {
           </Route>
           <Route exact path="/order-confirmation" component={OrderSummary} />
 
-          <Route exact path="/stripe" component={StripeTest} />
+          <Route exact path="/pay-now" component={Payment} />
         </Switch>
       </Router>
     </div>

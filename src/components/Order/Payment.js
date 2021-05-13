@@ -7,6 +7,7 @@ import {
 } from '@stripe/react-stripe-js';
 import { useElements } from '@stripe/react-stripe-js';
 import { useCookies } from 'react-cookie';
+import { useLocal } from '../../hooks/cart';
 
 const StripeTest = () => {
   const elements = useElements();
@@ -15,7 +16,9 @@ const StripeTest = () => {
   const [cookies] = useCookies();
   const { user } = cookies;
 
-  console.log(user);
+  const [, , calculate, , ,] = useLocal();
+  const purchase = JSON.parse(localStorage.getItem('cart-items'));
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,11 +53,11 @@ const StripeTest = () => {
           address_zpiCode: user.shippingAddress.zipCode,
           phone: user.shippingAddress.phone,
         },
+        items: purchase,
       }),
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         const payload = stripe.confirmCardPayment(json.clientSecret, {
           payment_method: {
             card: elements.getElement(CardElement),
@@ -66,6 +69,7 @@ const StripeTest = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <p style={{ fontSize: '20px' }}>To pay: {calculate()}$</p>
         <CardElement />
         <button type="submit" disabled={!stripe}>
           PAY

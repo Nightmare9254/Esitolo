@@ -119,5 +119,11 @@
     border: none;
     padding: 0.5rem;
   }
-  //
+  .fa-user,
+  .fa-road,
+  .fa-map-marker,
+  .fa-envelope,
+  .fa-phone-alt {
+    font-size: a.$fs-300;
+  }
 }
