@@ -6,8 +6,9 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
 (async () => {
-  console.log(process.env.PK_STRIPE);
-  const stripeKey = loadStripe(process.env.PK_STRIPE);
+  const { REACT_APP_PK_STRIPE } = process.env;
+
+  const stripeKey = loadStripe(REACT_APP_PK_STRIPE);
   ReactDOM.render(
     <Elements stripe={stripeKey}>
       <App />
