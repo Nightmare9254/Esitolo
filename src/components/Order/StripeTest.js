@@ -15,6 +15,7 @@ const StripeTest = () => {
   const [cookies] = useCookies();
   const { user } = cookies;
 
+  console.log(user);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -32,7 +33,6 @@ const StripeTest = () => {
     } else {
       console.log(paymentMethod);
     }
-
     fetch('https://esitolo-backend.herokuapp.com/payment/instance', {
       method: 'POST',
       headers: {
@@ -40,10 +40,14 @@ const StripeTest = () => {
       },
       body: JSON.stringify({
         paymentMethod: paymentMethod,
+        stripeUserId: 'cus_JTZ6ggbzNj977t',
         userData: {
           name: user.name,
           email: user.email,
-          address: user.shippingAddress.city,
+          address_city: user.shippingAddress.city,
+          address_street: user.shippingAddress.street,
+          address_apartment: user.shippingAddress.apartment,
+          address_zpiCode: user.shippingAddress.zipCode,
           phone: user.shippingAddress.phone,
         },
       }),
