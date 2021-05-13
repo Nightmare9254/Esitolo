@@ -14,13 +14,13 @@ const Account = () => {
   const [openAddress, setOpenAddress] = useState(false);
   const { user } = cookies;
   const history = useHistory();
-
+  console.log(user);
   const logout = () => {
     removeCookie('user');
     history.push('/');
   };
 
-  const upadteAddress = (data) => {
+  const updateAddress = (data) => {
     fetch('https://esitolo-backend.herokuapp.com/auth/address', {
       method: 'POST',
       headers: {
@@ -86,6 +86,10 @@ const Account = () => {
                       <span>{user?.shippingAddress.apartment}</span>
                     </p>
                     <p>
+                      State:
+                      <span>{user?.shippingAddress.state}</span>
+                    </p>
+                    <p>
                       Zip-code: <span>{user?.shippingAddress.zipCode} </span>
                     </p>
                     <p>
@@ -102,10 +106,12 @@ const Account = () => {
                       street: user?.shippingAddress.street,
                       apartment: user?.shippingAddress.apartment,
                       zipCode: user?.shippingAddress.zipCode,
+                      state: user?.shippingAddress.state,
                       phone: user?.shippingAddress.phone,
+                      stripeUserId: user?.stripeUserId,
                     }}
                     validationSchema={shippingAddress}
-                    onSubmit={(values) => upadteAddress(values)}
+                    onSubmit={(values) => updateAddress(values)}
                   >
                     <Form>
                       <AnimateContainer>
@@ -135,6 +141,13 @@ const Account = () => {
                           placeholder="Postal code e.g - 00-000"
                           icon="fas fa-envelope"
                           name="zipCode"
+                          type="text"
+                        />
+                        <TextField
+                          key="state"
+                          placeholder="State e.g Podkarpackie"
+                          icon="fas fa-envelope"
+                          name="state"
                           type="text"
                         />
                         <TextField
