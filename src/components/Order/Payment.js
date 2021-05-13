@@ -36,8 +36,8 @@ const StripeTest = () => {
     } else {
       console.log(paymentMethod);
     }
-    // https://esitolo-backend.herokuapp.com
-    fetch('/payment/instance', {
+
+    fetch('https://esitolo-backend.herokuapp.com/payment/instance', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
