@@ -69,6 +69,7 @@ const OrderSummary = () => {
           )}
           {!user && (
             <div className="order__shipping-data">
+              <p className="order__payment-method">Add your shipping address</p>
               <Formik
                 initialValues={{
                   name: '',

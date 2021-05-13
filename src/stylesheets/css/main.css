@@ -1057,6 +1057,13 @@
   border: none;
   padding: 0.5rem;
 }
+.order .fa-user,
+.order .fa-road,
+.order .fa-map-marker,
+.order .fa-envelope,
+.order .fa-phone-alt {
+  font-size: 1.6rem;
+}
 
 * {
   padding: 0;

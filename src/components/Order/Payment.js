@@ -7,6 +7,7 @@ import {
 } from '@stripe/react-stripe-js';
 import { useElements } from '@stripe/react-stripe-js';
 import { useCookies } from 'react-cookie';
+import { useLocal } from '../../hooks/cart';
 
 const StripeTest = () => {
   const elements = useElements();
@@ -14,6 +15,9 @@ const StripeTest = () => {
 
   const [cookies] = useCookies();
   const { user } = cookies;
+
+  const [, , calculate, , ,] = useLocal();
+  const pucharse = JSON.parse(localStorage.getItem('cart-items'));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,8 +36,8 @@ const StripeTest = () => {
     } else {
       console.log(paymentMethod);
     }
-
-    fetch('https://esitolo-backend.herokuapp.com/payment/instance', {
+    // https://esitolo-backend.herokuapp.com
+    fetch('/payment/instance', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,11 +50,11 @@ const StripeTest = () => {
           address: user.shippingAddress.city,
           phone: user.shippingAddress.phone,
         },
+        items: pucharse,
       }),
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         const payload = stripe.confirmCardPayment(json.clientSecret, {
           payment_method: {
             card: elements.getElement(CardElement),
@@ -62,6 +66,7 @@ const StripeTest = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+        <p style={{ fontSize: '20px' }}>To pay: {calculate()}$</p>
         <CardElement />
         <button type="submit" disabled={!stripe}>
           PAY
