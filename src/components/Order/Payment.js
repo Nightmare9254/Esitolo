@@ -95,7 +95,7 @@ const Payment = () => {
 
     const order = createOrder();
 
-    fetch('https://esitolo-backend.herokuapp.com/payment/new-order', {
+    fetch('/payment/new-order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

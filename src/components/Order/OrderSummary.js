@@ -39,7 +39,7 @@ const OrderSummary = () => {
     if (user && user.shippingAddress.city.length > 1) {
       return true;
     }
-    if (annonymus) {
+    if (anonymous) {
       return true;
     }
     return false;
@@ -49,7 +49,7 @@ const OrderSummary = () => {
     setIsAddress(checkUserAddress());
   }, []);
 
-  const annonymus = JSON.parse(localStorage.getItem('anonymous-adress'));
+  const anonymous = JSON.parse(localStorage.getItem('anonymous-address'));
 
   return (
     <>
@@ -88,20 +88,20 @@ const OrderSummary = () => {
           {!user && (
             <div className="order__shipping-data">
               <p className="order__payment-method">
-                {annonymus
+                {anonymous
                   ? 'Your shipping address'
                   : 'Add your shipping address'}
               </p>
               <Formik
                 initialValues={{
-                  name: annonymus?.name,
-                  email: annonymus?.email,
-                  state: annonymus?.state,
-                  city: annonymus?.city,
-                  street: annonymus?.street,
-                  apartment: annonymus?.apartment,
-                  zipCode: annonymus?.zipCode,
-                  phone: annonymus?.phone,
+                  name: anonymous?.name,
+                  email: anonymous?.email,
+                  state: anonymous?.state,
+                  city: anonymous?.city,
+                  street: anonymous?.street,
+                  apartment: anonymous?.apartment,
+                  zipCode: anonymous?.zipCode,
+                  phone: anonymous?.phone,
                 }}
                 validationSchema={shippingAddress}
                 onSubmit={(values) => {

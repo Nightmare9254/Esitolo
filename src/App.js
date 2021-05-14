@@ -15,6 +15,10 @@ import Cart from './components/Cart/Cart';
 import { useLocal } from './hooks/cart';
 import OrderSummary from './components/Order/OrderSummary';
 import Payment from './components/Order/Payment';
+import TestCheckout, {
+  CheckoutFail,
+  CheckoutSuccess,
+} from './components/Order/TestCheckout';
 
 const App = () => {
   const [cookies] = useCookies(['user']);
@@ -40,8 +44,11 @@ const App = () => {
             {!user && <Redirect to="/auth" />}
           </Route>
           <Route exact path="/order-confirmation" component={OrderSummary} />
-
           <Route exact path="/pay-now" component={Payment} />
+
+          <Route exact path="/pay-test" component={TestCheckout} />
+          <Route exact path="/pay-test/failed" component={CheckoutFail} />
+          <Route exact path="/pay-test/success" component={CheckoutSuccess} />
         </Switch>
       </Router>
     </div>
