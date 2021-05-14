@@ -17,7 +17,7 @@ const StripeTest = () => {
   const { user } = cookies;
 
   const [, , calculate, , ,] = useLocal();
-  const purchase = JSON.parse(localStorage.getItem('cart-items'));
+  const totalToPay = calculate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,37 +30,38 @@ const StripeTest = () => {
       type: 'card',
       card: cardElement,
     });
-
+    console.log(paymentMethod);
     if (error) {
       console.log(error);
     } else {
       console.log(paymentMethod);
     }
-    fetch('https://esitolo-backend.herokuapp.com/payment/instance', {
+    fetch('/payment/instance', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         paymentMethod: paymentMethod,
-        stripeUserId: 'cus_JTZ6ggbzNj977t',
+        stripeUserId: user.stripeUserId,
         userData: {
           name: user.name,
           email: user.email,
           address_city: user.shippingAddress.city,
           address_street: user.shippingAddress.street,
           address_apartment: user.shippingAddress.apartment,
-          address_zpiCode: user.shippingAddress.zipCode,
+          address_zipCode: user.shippingAddress.zipCode,
+          address_state: user.shippingAddress.state,
           phone: user.shippingAddress.phone,
         },
-        items: purchase,
+        itemsPrice: totalToPay * 100,
       }),
     })
       .then((res) => res.json())
       .then((json) => {
         const payload = stripe.confirmCardPayment(json.clientSecret, {
           payment_method: {
-            card: elements.getElement(CardElement),
+            card: cardElement,
           },
         });
       });
@@ -69,12 +70,20 @@ const StripeTest = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <p style={{ fontSize: '20px' }}>To pay: {calculate()}$</p>
+        <p style={{ fontSize: '20px' }}>To pay: {totalToPay}$</p>
         <CardElement />
+
+        <br />
         <button type="submit" disabled={!stripe}>
           PAY
         </button>
       </form>
+      <br />
+      {/* <form onSubmit={updatePayment}>
+        <h1>defaul payment</h1>
+        <CardElement />
+        <button type="submit">ADD DEFAULTPAYMENT</button>
+      </form> */}
     </div>
   );
 };

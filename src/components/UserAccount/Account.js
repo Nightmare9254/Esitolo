@@ -21,7 +21,7 @@ const Account = () => {
   };
 
   const updateAddress = (data) => {
-    fetch('https://esitolo-backend.herokuapp.com/auth/address', {
+    fetch('/auth/address', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
