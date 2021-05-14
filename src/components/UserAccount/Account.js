@@ -21,7 +21,7 @@ const Account = () => {
   };
 
   const updateAddress = (data) => {
-    fetch('/auth/address', {
+    fetch('https://esitolo-backend.herokuapp.com/auth/address', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -29,16 +29,16 @@ const Account = () => {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then(
-        (json) =>
-          setCookie('user', json, {
-            path: '/',
-            maxAge: 24 * 60 * 60 * 1000,
-          }),
+      .then((json) => {
+        setCookie('user', json, {
+          path: '/',
+          maxAge: 24 * 60 * 60 * 1000,
+        });
+
         setTimeout(() => {
           window.location.reload();
-        }, 500)
-      );
+        }, 500);
+      });
   };
 
   return (
@@ -116,6 +116,13 @@ const Account = () => {
                     <Form>
                       <AnimateContainer>
                         <TextField
+                          key="state"
+                          placeholder="State e.g Podkarpackie"
+                          icon="fas fa-mountain"
+                          name="state"
+                          type="text"
+                        />
+                        <TextField
                           key="city"
                           placeholder="City"
                           icon="fas fa-city"
@@ -141,13 +148,6 @@ const Account = () => {
                           placeholder="Postal code e.g - 00-000"
                           icon="fas fa-envelope"
                           name="zipCode"
-                          type="text"
-                        />
-                        <TextField
-                          key="state"
-                          placeholder="State e.g Podkarpackie"
-                          icon="fas fa-envelope"
-                          name="state"
                           type="text"
                         />
                         <TextField

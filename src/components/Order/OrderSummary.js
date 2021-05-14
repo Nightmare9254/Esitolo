@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import HeaderTitle from '../SingleComponents/HeaderTitle';
 import blik from '../../assets/images/blik.png';
 import payu from '../../assets/images/payu.png';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocal } from '../../hooks/cart';
 import Product from '../Product/Product';
 import { ScrollToTop } from '../SingleComponents/ScrollToTop';
@@ -16,6 +16,7 @@ import { shippingAddress } from '../Formik/YupValidation';
 const OrderSummary = () => {
   const [cookies] = useCookies();
   const { user } = cookies;
+  const [isAddress, setIsAddress] = useState(false);
 
   const [method, setMethod] = useState(0);
 
@@ -28,10 +29,27 @@ const OrderSummary = () => {
   let subTotal = calculate();
   let discount = 0;
   let total = 0;
+
   if (user) {
     discount = subTotal * 0.05;
   }
   total = subTotal - discount;
+
+  const checkUserAddress = () => {
+    if (user && user.shippingAddress.city.length > 1) {
+      return true;
+    }
+    if (annonymus) {
+      return true;
+    }
+    return false;
+  };
+
+  useEffect(() => {
+    setIsAddress(checkUserAddress());
+  }, []);
+
+  const annonymus = JSON.parse(localStorage.getItem('anonymous-adress'));
 
   return (
     <>
@@ -69,17 +87,30 @@ const OrderSummary = () => {
           )}
           {!user && (
             <div className="order__shipping-data">
-              <p className="order__payment-method">Add your shipping address</p>
+              <p className="order__payment-method">
+                {annonymus
+                  ? 'Your shipping address'
+                  : 'Add your shipping address'}
+              </p>
               <Formik
                 initialValues={{
-                  name: '',
-                  street: '',
-                  apartment: '',
-                  zipCode: '',
-                  phone: '',
+                  name: annonymus?.name,
+                  email: annonymus?.email,
+                  state: annonymus?.state,
+                  city: annonymus?.city,
+                  street: annonymus?.street,
+                  apartment: annonymus?.apartment,
+                  zipCode: annonymus?.zipCode,
+                  phone: annonymus?.phone,
                 }}
                 validationSchema={shippingAddress}
-                onSubmit={(values) => console.log(values)}
+                onSubmit={(values) => {
+                  localStorage.setItem(
+                    'anonymous-adress',
+                    JSON.stringify(values)
+                  );
+                  setIsAddress(true);
+                }}
               >
                 <Form>
                   <AnimateContainer>
@@ -88,6 +119,27 @@ const OrderSummary = () => {
                       placeholder="Name"
                       icon="fas fa-user"
                       name="name"
+                      type="text"
+                    />
+                    <TextField
+                      key="email"
+                      placeholder="Email"
+                      icon="fas fa-envelope"
+                      name="email"
+                      type="email"
+                    />
+                    <TextField
+                      key="state"
+                      placeholder="State e.g Podkarpackie"
+                      icon="fas fa-mountain"
+                      name="state"
+                      type="text"
+                    />
+                    <TextField
+                      key="city"
+                      placeholder="City e.g Warszawa"
+                      icon="fas fa-city"
+                      name="city"
                       type="text"
                     />
                     <TextField
@@ -119,31 +171,17 @@ const OrderSummary = () => {
                       type="tel"
                     />
                   </AnimateContainer>
+                  <button
+                    onClick={() => console.log('dduud')}
+                    type="submit"
+                    className="button"
+                  >
+                    Save
+                  </button>
                 </Form>
               </Formik>
             </div>
           )}
-        </div>
-        <div className="order__payment-container">
-          <p className="order__payment-method">Payment method</p>
-          <div className="order__container-methods">
-            <div
-              onClick={() => chooseMethod(1)}
-              className={`order__method ${
-                method === 1 ? 'order__method--active' : ''
-              }`}
-            >
-              <img className="order__method-img" src={blik} alt="method" />
-            </div>
-            <div
-              onClick={() => chooseMethod(2)}
-              className={`order__method ${
-                method === 2 ? 'order__method--active' : ''
-              }`}
-            >
-              <img className="order__method-img" src={payu} alt="method" />
-            </div>
-          </div>
         </div>
         <div className="order__items">
           <p className="order__title">The items you buy</p>
@@ -187,9 +225,11 @@ const OrderSummary = () => {
         </div>
         <div className="order__bar">
           <p>USD: {total.toFixed(2)}$</p>
-          <Link to="/pay-now" className="order__btn">
-            Pay now
-          </Link>
+          {isAddress && (
+            <Link to="/pay-now" className="order__btn">
+              Pay now
+            </Link>
+          )}
         </div>
       </div>
       <Menu />

@@ -70,7 +70,7 @@ export const useLocal = () => {
     let total = 0;
     if (cartItems) {
       cartItems.forEach((element) => {
-        total = element.price * element.quantity + total;
+        total += element.price * element.quantity;
       });
     }
     return total;

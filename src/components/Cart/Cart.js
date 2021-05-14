@@ -53,9 +53,11 @@ const Cart = () => {
           <p style={{ color: '#fff', fontSize: '20px' }}>
             Total: {total.toFixed(2)}$
           </p>
-          <Link to="/order-confirmation" className="cart__btn">
-            Checkout ({cartItems.length})
-          </Link>
+          {cartItems.length > 0 && (
+            <Link to="/order-confirmation" className="cart__btn">
+              Checkout ({cartItems.length})
+            </Link>
+          )}
         </div>
       </div>
       <Menu />
