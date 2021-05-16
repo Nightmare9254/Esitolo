@@ -15,10 +15,10 @@ import Cart from './components/Cart/Cart';
 import { useLocal } from './hooks/cart';
 import OrderSummary from './components/Order/OrderSummary';
 import Payment from './components/Order/Payment';
-import TestCheckout, {
-  CheckoutFail,
-  CheckoutSuccess,
-} from './components/Order/TestCheckout';
+import TestCheckout from './components/Order/StripeTest/TestCheckout';
+import CheckoutSuccess from './components/Order/StripeTest/CheckoutSuccess';
+import { CheckoutFail } from './components/Order/StripeTest/CheckoutFail';
+import TestPaymentIntent from './components/Order/StripeTest/TestPaymentIntent';
 
 const App = () => {
   const [cookies] = useCookies(['user']);
@@ -47,6 +47,7 @@ const App = () => {
           <Route exact path="/pay-now" component={Payment} />
 
           <Route exact path="/pay-test" component={TestCheckout} />
+          <Route exact path="/pay-test-intent" component={TestPaymentIntent} />
           <Route exact path="/pay-test/failed" component={CheckoutFail} />
           <Route exact path="/pay-test/success" component={CheckoutSuccess} />
         </Switch>
