@@ -14,7 +14,7 @@ const Account = () => {
   const [openAddress, setOpenAddress] = useState(false);
   const { user } = cookies;
   const history = useHistory();
-  console.log(user);
+
   const logout = () => {
     removeCookie('user');
     history.push('/');

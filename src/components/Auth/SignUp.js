@@ -6,7 +6,6 @@ import { useHistory } from 'react-router-dom';
 
 const SignUp = () => {
   const history = useHistory();
-
   const registration = (values) => {
     fetch('https://esitolo-backend.herokuapp.com/auth/create-account', {
       method: 'POST',

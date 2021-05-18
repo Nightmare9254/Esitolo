@@ -15,21 +15,19 @@ const TestCheckout = () => {
 
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    cartItems.map((item) => {
-      setProducts([
-        {
-          name: item.productName,
-          description: 'Item from esitolo',
-          images: item.image,
-          amount: 899,
-          currency: 'usd',
-          quantity: item.quantity,
-        },
-      ]);
-      return products;
+  const fixedCartItems = [];
+  cartItems.forEach((item) => {
+    fixedCartItems.push({
+      name: item.productName,
+      description: 'Item from esitolo',
+      images: item.image,
+      amount: item.price,
+      currency: 'usd',
+      quantity: item.quantity,
     });
-  }, []);
+  });
+
+  console.log(fixedCartItems);
 
   const changeQuantity = (e, index) => {
     setProducts(
@@ -38,7 +36,7 @@ const TestCheckout = () => {
   };
 
   const handleSubmit = async () => {
-    const body = { line_items: products };
+    const body = { line_items: fixedCartItems };
     const { session } = await fetchFrom('payment/test-payment', {
       body,
     });
@@ -52,21 +50,19 @@ const TestCheckout = () => {
     <div style={{ background: '#171717', color: '#fff' }}>
       <h2>Stripe Checkout</h2>
       <p>Testing stripe 123</p>
-      {products.map((product, index) => (
+      {/* {products.map((product, index) => (
         <div key={index}>
           <h3>{product.name}</h3>
           <h4>Stripe Amount: {product.amount}</h4>
 
-          <img src={product.images[0]} alt="product" />
+          <img style={{ width: '50px' }} src={product.image[0]} alt="product" />
           <button onClick={() => changeQuantity(-1, index)}>-</button>
           <span>{product.quantity}</span>
           <button onClick={() => changeQuantity(1, index)}>+</button>
         </div>
-      ))}
+      ))} */}
 
-      <button onClick={handleSubmit} disabled={cartItems[0].quantity < 1}>
-        Start Checkout
-      </button>
+      <button onClick={handleSubmit}>Start Checkout</button>
     </div>
   );
 };
