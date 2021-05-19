@@ -106,7 +106,7 @@ const OrderSummary = () => {
                 validationSchema={shippingAddress}
                 onSubmit={(values) => {
                   localStorage.setItem(
-                    'anonymous-adress',
+                    'anonymous-address',
                     JSON.stringify(values)
                   );
                   setIsAddress(true);

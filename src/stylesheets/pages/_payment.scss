@@ -1,0 +1,110 @@
+@use '../abstracts' as a;
+
+.payment {
+  background: a.$main-complementary;
+  color: a.$font-clr;
+  min-height: 100vh;
+
+  &__attach {
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+  &__heading {
+    font-size: a.$fs-400;
+  }
+  &__button {
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    color: a.$main-yellow;
+  }
+  &__button--fully {
+    background: a.$main-yellow;
+    color: a.$font-dark-gray;
+    padding: 0.5rem;
+    margin: 0 1rem;
+  }
+  &__button--border {
+    border: 2px solid a.$main-yellow;
+    color: a.$font-clr;
+    padding: 0.5rem;
+    margin: 0 1rem;
+  }
+  &__action {
+    margin-top: 1rem;
+    text-align: right;
+  }
+  &__button--gray {
+    color: #929292;
+    margin-right: 1rem;
+  }
+  &__button--add {
+    color: #48d118;
+    text-decoration: underline;
+  }
+  &__parent-card {
+    padding: 1rem;
+    background: a.$medium-gray;
+    border: 1px solid #fff;
+    flex: 1;
+  }
+  &__attach-form {
+    padding: 1rem;
+  }
+
+  &__card-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__method {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  &__form-card {
+    display: flex;
+    margin-top: 2rem;
+  }
+  &__select-wrappe {
+    position: relative;
+    user-select: none;
+    width: 100%;
+  }
+  &__select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-width: 0 2px 0 2px;
+    border-style: solid;
+    border-color: a.$light-gray;
+  }
+  &__select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+    font-size: a.$fs-300;
+    height: 3em;
+    line-height: 3em;
+    cursor: pointer;
+    border-width: 2px 0 2px 0;
+    border-style: solid;
+    border-color: a.$light-gray;
+  }
+  &__card-container {
+    margin-top: 2rem;
+  }
+  &__options {
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 2px solid a.$light-gray;
+    border-top: none;
+    // visibility: hidden;
+    pointer-events: none;
+    z-index: 2;
+  }
+}
