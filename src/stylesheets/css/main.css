@@ -1129,9 +1129,16 @@
   display: flex;
   margin-top: 2rem;
 }
-.payment__select-wrappe {
+.payment__card-container {
+  margin-top: 2rem;
+}
+.payment__warning {
+  color: #fa4646;
+}
+.payment__select-wrapper {
   position: relative;
   user-select: none;
+  padding: 0 1rem;
   width: 100%;
 }
 .payment__select {
@@ -1143,31 +1150,55 @@
   border-color: #d0d0d0;
 }
 .payment__select-trigger {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
   font-size: 1.6rem;
-  height: 3em;
-  line-height: 3em;
+  font-weight: 300;
+  color: #eaeae7;
+  background: #23252f;
   cursor: pointer;
   border-width: 2px 0 2px 0;
   border-style: solid;
   border-color: #d0d0d0;
 }
-.payment__card-container {
-  margin-top: 2rem;
-}
-.payment__options {
+.payment__select-options {
   position: absolute;
   display: block;
   top: 100%;
   left: 0;
   right: 0;
   border: 2px solid #d0d0d0;
-  border-top: none;
+  border-top: 0;
+  background: #23252f;
+  transition: opacity 0.5s;
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   z-index: 2;
+  list-style-type: none;
+}
+.payment__select-options--open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+.payment__select-option {
+  position: relative;
+  display: block;
+  padding: 0 2rem;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: #eaeae7;
+  line-height: 60px;
+  cursor: pointer;
+}
+.payment__select-option:hover {
+  cursor: pointer;
+  background-color: #fac646;
+  color: #23252f;
 }
 
 * {

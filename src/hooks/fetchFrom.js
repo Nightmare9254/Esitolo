@@ -1,5 +1,3 @@
-import { useCookies } from 'react-cookie';
-
 // const API = 'http://localhost:8000';
 const API = 'https://esitolo-backend.herokuapp.com';
 

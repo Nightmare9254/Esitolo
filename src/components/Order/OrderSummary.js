@@ -12,6 +12,7 @@ import { Formik, Form } from 'formik';
 import TextField from '../Formik/TextField';
 import { AnimateContainer } from '../../framer/Transitions';
 import { shippingAddress } from '../Formik/YupValidation';
+import Annonymous from '../../functions/Annonymous';
 
 const OrderSummary = () => {
   const [cookies] = useCookies();
@@ -226,9 +227,14 @@ const OrderSummary = () => {
         <div className="order__bar">
           <p>USD: {total.toFixed(2)}$</p>
           {isAddress && (
-            <Link to="/pay-now" className="order__btn">
-              Pay now
-            </Link>
+            <>
+              {user && (
+                <Link className="order__btn" to="/basket/pay-now">
+                  Pay now
+                </Link>
+              )}
+              {!user && <Annonymous />}
+            </>
           )}
         </div>
       </div>

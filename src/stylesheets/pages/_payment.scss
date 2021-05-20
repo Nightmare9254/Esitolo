@@ -66,9 +66,17 @@
     display: flex;
     margin-top: 2rem;
   }
-  &__select-wrappe {
+  &__card-container {
+    margin-top: 2rem;
+  }
+  &__warning {
+    color: a.$font-important-clr;
+  }
+  //custom dd
+  &__select-wrapper {
     position: relative;
     user-select: none;
+    padding: 0 1rem;
     width: 100%;
   }
   &__select {
@@ -80,31 +88,54 @@
     border-color: a.$light-gray;
   }
   &__select-trigger {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1rem;
     font-size: a.$fs-300;
-    height: 3em;
-    line-height: 3em;
+    font-weight: 300;
+    color: a.$font-clr;
+    background: a.$medium-gray;
     cursor: pointer;
     border-width: 2px 0 2px 0;
     border-style: solid;
     border-color: a.$light-gray;
   }
-  &__card-container {
-    margin-top: 2rem;
-  }
-  &__options {
+  &__select-options {
     position: absolute;
     display: block;
     top: 100%;
     left: 0;
     right: 0;
     border: 2px solid a.$light-gray;
-    border-top: none;
-    // visibility: hidden;
+    border-top: 0;
+    background: a.$medium-gray;
+    transition: opacity 0.5s;
+    opacity: 0;
+    visibility: hidden;
     pointer-events: none;
     z-index: 2;
+    list-style-type: none;
+  }
+  &__select-options--open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+  &__select-option {
+    position: relative;
+    display: block;
+    padding: 0 2rem;
+    font-size: a.$fs-300;
+    font-weight: 300;
+    color: a.$font-clr;
+    line-height: 60px;
+    cursor: pointer;
+  }
+  &__select-option:hover {
+    cursor: pointer;
+    background-color: #fac646;
+    color: a.$font-dark-gray;
   }
 }

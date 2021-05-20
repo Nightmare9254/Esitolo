@@ -15,10 +15,9 @@ import Cart from './components/Cart/Cart';
 import { useLocal } from './hooks/cart';
 import OrderSummary from './components/Order/OrderSummary';
 import Payment from './components/Order/Payment';
-import TestCheckout from './components/Order/StripeTest/TestCheckout';
-import CheckoutSuccess from './components/Order/StripeTest/CheckoutSuccess';
-import { CheckoutFail } from './components/Order/StripeTest/CheckoutFail';
-import TestPaymentIntent from './components/Order/StripeTest/TestPaymentIntent';
+import { PulsingAnimation } from './framer/Transitions';
+import CheckoutSuccess from './components/Order/CheckoutSuccess';
+import CheckoutFail from './components/Order/CheckoutFail';
 
 const App = () => {
   const [cookies] = useCookies(['user']);
@@ -43,13 +42,36 @@ const App = () => {
             {user && <Account />}
             {!user && <Redirect to="/auth" />}
           </Route>
-          <Route exact path="/order-confirmation" component={OrderSummary} />
-          <Route exact path="/pay-now" component={Payment} />
+          <Route
+            exact
+            path="/basket/order-confirmation"
+            component={OrderSummary}
+          />
 
-          <Route exact path="/pay-test" component={TestCheckout} />
-          <Route exact path="/pay-test-intent" component={TestPaymentIntent} />
-          <Route exact path="/pay-test/failed" component={CheckoutFail} />
-          <Route exact path="/pay-test/success" component={CheckoutSuccess} />
+          <Route exact path="/basket/pay-now">
+            {user ? (
+              <Payment />
+            ) : (
+              <div
+                style={{
+                  minHeight: '100vh',
+                  background: '#31343a',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <PulsingAnimation />
+              </div>
+            )}
+          </Route>
+
+          <Route exact path="/basket/pay-now/failed" component={CheckoutFail} />
+          <Route
+            exact
+            path="/basket/pay-now/success"
+            component={CheckoutSuccess}
+          />
         </Switch>
       </Router>
     </div>

@@ -13,7 +13,7 @@ const Menu = () => {
 
   const [pos, setPos] = useState(0);
   useEffect(() => {
-    if (location.pathname === '/account') {
+    if (location.pathname.includes('/account')) {
       setPos(0);
     } else if (location.pathname.includes('/basket')) {
       setPos(1);

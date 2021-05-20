@@ -54,7 +54,7 @@ const Cart = () => {
             Total: {total.toFixed(2)}$
           </p>
           {cartItems.length > 0 && (
-            <Link to="/order-confirmation" className="cart__btn">
+            <Link to="/basket/order-confirmation" className="cart__btn">
               Checkout ({cartItems.length})
             </Link>
           )}

@@ -27,8 +27,8 @@ const Payment = () => {
   const [showCard, setShowCard] = useState(false);
   const [cardId, setCardId] = useState(0);
   const [payFrom, setPayfrom] = useState();
-
   const [attached, setAttached] = useState(false);
+  const [toggleList, setToggleList] = useState(false);
 
   const totalToPay = calculate() * 0.95;
 
@@ -112,6 +112,10 @@ const Payment = () => {
       await stripe.confirmCardPayment(paymentIntent, choosePayment(payFrom));
 
     setPaymentIntent(paymentStatus.status);
+
+    if (error) {
+      console.log(error);
+    }
   };
 
   if (paymentIntent === 'succeeded') {
@@ -126,6 +130,8 @@ const Payment = () => {
     },
   };
 
+  const [test, setTest] = useState('Select your card');
+
   return (
     <div className="payment">
       <HeaderTitle title="Payment" />
@@ -136,9 +142,10 @@ const Payment = () => {
           onClick={() => {
             setAttached(true);
             setupNewCard();
+            setShowCard(false);
           }}
         >
-          Attach New Card
+          Attach a new card
         </button>
 
         {attached && (
@@ -178,35 +185,50 @@ const Payment = () => {
       </section>
       <div className="payment__select-wrapper">
         <div className="payment__select">
-          <div className="payment__select-trigger">
-            <span>Chooose one cardddd</span>
-            <i className="fas fa-sort-down payment__select-icon"></i>
+          <div
+            className="payment__select-trigger"
+            onClick={() => setToggleList(!toggleList)}
+            onKeyDown={(e) => {
+              if (e.key === 'Tab') return;
+              setToggleList(!toggleList);
+            }}
+            tabIndex={0}
+          >
+            <p>{test}</p>
+            <div className="arrow"></div>
           </div>
-          <div className="payment__options">
+          <ul
+            className={`payment__select-options ${
+              toggleList ? 'payment__select-options--open' : ''
+            }`}
+          >
             {wallet.map(({ card }, index) => (
-              <span
-                className="payment__option"
-                onClick={(e) => setCardId(e.target.value)}
-                value={index}
+              <li
+                tabIndex={0}
                 key={index}
+                className={`payment__select-option `}
+                value={index}
+                onClick={(e) => {
+                  setTest(
+                    `${card.brand} **** **** ****  ${card.last4} expires ${card.exp_month}/${card.exp_year}`
+                  );
+                  setCardId(e.target.value);
+                  setToggleList(false);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Tab') return;
+
+                  setCardId(e.target.value);
+                  setToggleList(false);
+                }}
               >
                 {card.brand} **** **** **** {card.last4} expires{' '}
                 {card.exp_month}/{card.exp_year}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
-      {/* <select
-        className="payment__choose-card"
-        onChange={}
-      >
-       
-        ))}
-      </select>
-      
-      <span className=" payment__drop-icon"></span> */}
-
       <section className="payment__method">
         <h2 className="payment__heading">Choose payment Method</h2>
         <div className="payment__method-wrapper">
@@ -218,9 +240,10 @@ const Payment = () => {
               onClick={() => {
                 setPayfrom(1);
                 setShowCard(false);
+                setAttached(false);
               }}
             >
-              Pay with selected card {totalToPay}$
+              Pay with selected card {totalToPay.toFixed(2)}$
             </button>
             <button
               className="payment__button payment__button--fully"
@@ -228,10 +251,11 @@ const Payment = () => {
               disabled={!stripe}
               onClick={() => {
                 setPayfrom(0);
+                setAttached(false);
                 setShowCard(true);
               }}
             >
-              Pay with Credit Card {totalToPay}$
+              Pay with Credit Card {totalToPay.toFixed(2)}$
             </button>
           </form>
           {showCard && (
@@ -252,7 +276,17 @@ const Payment = () => {
         </div>
         {paymentIntent && (
           <div className="payment__action">
-            <button className="button" onClick={handleSubmitPayment}>
+            {attached && (
+              <p className="payment__warning">Add new card or Choose Card</p>
+            )}
+            <button
+              className="button"
+              disabled={attached}
+              onClick={(e) => {
+                console.log('work');
+                handleSubmitPayment(e);
+              }}
+            >
               PAY NOW
             </button>
           </div>
