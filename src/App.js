@@ -27,6 +27,7 @@ const App = () => {
 
   return (
     <div>
+      <p style={{ fontSize: '28px', color: 'red' }}>LOLOLOLOLO</p>
       <Router>
         <Switch>
           <Route exact path="/" component={Main} />
