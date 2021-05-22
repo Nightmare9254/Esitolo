@@ -27,7 +27,7 @@ const App = () => {
 
   return (
     <div>
-      <p style={{ fontSize: '50px', color: 'red' }}>LOLOLOLOLO</p>
+      <p style={{ fontSize: '50px', color: 'red' }}>KUTAS KOZLA</p>
       <Router>
         <Switch>
           <Route exact path="/" component={Main} />
