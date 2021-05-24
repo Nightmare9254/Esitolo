@@ -11,7 +11,7 @@ const SignIn = () => {
   const [message, setMessage] = useState('');
   const [, setCookie] = useCookies(['user']);
 
-  const loginUser = (values) => {
+  const loginUser = values => {
     fetch('https://esitolo-backend.herokuapp.com/auth/login', {
       method: 'POST',
       headers: {
@@ -19,8 +19,8 @@ const SignIn = () => {
       },
       body: JSON.stringify(values),
     })
-      .then((res) => res.json())
-      .then((json) => {
+      .then(res => res.json())
+      .then(json => {
         if (json.valid) {
           setCookie('user', json.user, {
             path: '/',
@@ -50,7 +50,7 @@ const SignIn = () => {
       </AnimateContainer>
       <Formik
         initialValues={{ email: '', password: '' }}
-        onSubmit={(values) => loginUser(values)}
+        onSubmit={values => loginUser(values)}
         validationSchema={formSchemaSignIn}
       >
         <Form className="auth__form">

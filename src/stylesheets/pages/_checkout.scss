@@ -1,0 +1,84 @@
+@use '../abstracts' as a;
+
+.checkout {
+  background: a.$main-complementary;
+  min-height: 100vh;
+
+  &__wrapper {
+    margin: 0 1rem;
+  }
+  &__main {
+    margin-top: 4rem;
+    background: a.$dark-gray;
+    min-height: 40vh;
+    border-radius: 3px;
+    color: a.$font-clr;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    text-align: center;
+    overflow: hidden;
+  }
+  &__desc {
+    font-size: a.$fs-300;
+    color: a.$font-gray-clr;
+  }
+  &__link {
+    font-size: clamp(1.2rem, 5vw, 3.7rem);
+    color: a.$font-clr;
+  }
+  &__history {
+    align-self: flex-end;
+    color: a.$font-clr;
+    font-size: a.$fs-300;
+  }
+  &__history-link {
+    color: a.$main-yellow;
+    font-weight: 500;
+  }
+  &__footer {
+    color: a.$font-gray-clr;
+    text-align: center;
+    font-size: a.$fs-300;
+    margin-top: 4rem;
+  }
+  &__link--highlight {
+    border-bottom: 2px solid #fff;
+    padding-bottom: 2px;
+    color: a.$main-yellow;
+    font-weight: 500;
+  }
+  &__information,
+  &__back {
+    background: a.$dark-gray;
+    padding: 1rem;
+    margin: 3rem 1rem;
+    color: a.$font-gray-clr;
+    font-size: a.$fs-300;
+    border-radius: 5px;
+  }
+  &__img {
+    text-align: center;
+  }
+  &__fail-link {
+    color: a.$main-yellow;
+    text-align: right;
+    display: inline-block;
+    width: 100%;
+  }
+  &__status {
+    font-size: a.$fs-400;
+    color: a.$font-clr;
+    text-align: center;
+  }
+  &__marked {
+    color: a.$font-important-clr;
+    font-weight: 900;
+  }
+  .fa-long-arrow-alt-right,
+  .fa-home,
+  .fa-envelope {
+    margin-left: 0.5rem;
+  }
+}

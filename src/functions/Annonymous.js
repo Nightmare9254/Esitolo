@@ -8,7 +8,7 @@ const Annonymous = () => {
   const stripe = useStripe();
 
   const fixedCartItems = [];
-  cartItems.forEach((item) => {
+  cartItems.forEach(item => {
     fixedCartItems.push({
       name: item.productName,
       description: 'Item from esitolo',
@@ -29,7 +29,6 @@ const Annonymous = () => {
       sessionId: session.id,
     });
   };
-
   return (
     <Link to="/basket/pay-now" className="order__btn" onClick={handleSubmit}>
       Pay now

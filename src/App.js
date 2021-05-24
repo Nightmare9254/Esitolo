@@ -18,6 +18,7 @@ import Payment from './components/Order/Payment';
 import { PulsingAnimation } from './framer/Transitions';
 import CheckoutSuccess from './components/Order/CheckoutSuccess';
 import CheckoutFail from './components/Order/CheckoutFail';
+import OrderTracking from './components/Order/Tracking/OrderTracking';
 
 const App = () => {
   const [cookies] = useCookies(['user']);
@@ -67,6 +68,7 @@ const App = () => {
           </Route>
 
           <Route exact path="/basket/pay-now/failed" component={CheckoutFail} />
+          <Route exact path="/order/:id" component={OrderTracking} />
           <Route
             exact
             path="/basket/pay-now/success"
