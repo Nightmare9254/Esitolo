@@ -75,7 +75,7 @@ const SearchProducts = ({ toggleState }) => {
           </div>
           <input
             value={search}
-            placeholder="Search for favourites things"
+            placeholder="Search for favorite's things"
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={(e) => {
               if (e.keyCode === 13) {

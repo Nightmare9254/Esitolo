@@ -126,4 +126,15 @@
   .fa-phone-alt {
     font-size: a.$fs-300;
   }
+
+  &__table {
+    width: 100%;
+    color: #fff;
+    text-align: left;
+
+    td,
+    th {
+      padding: 1rem;
+    }
+  }
 }

@@ -50,9 +50,7 @@ const Cart = () => {
             })}
         </div>
         <div className="cart__total-wrapper">
-          <p style={{ color: '#fff', fontSize: '20px' }}>
-            Total: {total.toFixed(2)}$
-          </p>
+          <p className="cart__total-desc">Total: {total.toFixed(2)}$</p>
           {cartItems.length > 0 && (
             <Link to="/basket/order-confirmation" className="cart__btn">
               Checkout ({cartItems.length})

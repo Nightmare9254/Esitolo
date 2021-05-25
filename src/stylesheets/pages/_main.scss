@@ -231,6 +231,7 @@
   position: sticky;
   width: 100%;
   bottom: 0;
+  z-index: 5;
 
   &__container {
     display: flex;
@@ -241,6 +242,7 @@
   }
   &__item {
     text-align: center;
+    position: relative;
     .fa-home,
     .fa-shopping-basket,
     .fa-user,
@@ -263,18 +265,18 @@
     }
   }
   &__item-basket-icon {
-    position: relative;
+    position: absolute;
+    background: a.$bright-red;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100rem;
+    top: -0.9rem;
+    right: -0.5rem;
   }
   &__item-basket-total {
     color: a.$font-clr;
     font-size: a.$fs-200;
-    background: a.$bright-red;
-    width: 2rem;
-    height: 2rem;
-    position: absolute;
-    top: -0.5rem;
-    right: -0.5rem;
-    border-radius: 100rem;
+    line-height: 2rem;
   }
 }
 

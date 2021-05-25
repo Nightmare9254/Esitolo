@@ -128,8 +128,6 @@ const FormAdd = () => {
         <label>
           Image:
           <input
-            // value={product.image}
-            // onChange={(e) => handlerInput(e)}
             onKeyDown={(e) => {
               if (e.code === 'Enter' && e.target.value.length > 1) {
                 product.image.push(e.target.value);

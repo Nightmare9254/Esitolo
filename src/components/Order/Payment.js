@@ -1,5 +1,4 @@
 import {
-  CardElement,
   CardCvcElement,
   CardExpiryElement,
   CardNumberElement,
@@ -9,24 +8,24 @@ import { useEffect, useState } from 'react';
 import { useElements } from '@stripe/react-stripe-js';
 import { useCookies } from 'react-cookie';
 import { useLocal } from '../../hooks/cart';
-import { Link } from 'react-router-dom';
 import { fetchFrom } from '../../hooks/fetchFrom';
 import { useHistory } from 'react-router-dom';
 import HeaderTitle from '../SingleComponents/HeaderTitle';
+import { style } from '../../assets/Consts/CardStyles';
 
 const Payment = () => {
   const elements = useElements();
   const stripe = useStripe();
   const [cookies] = useCookies();
   const { user } = cookies;
-  const [, , calculate, , , cartItems] = useLocal();
+  const [, , calculate, , ,] = useLocal();
   const history = useHistory();
   const [cardSetup, setCardSetup] = useState();
   const [wallet, setWallet] = useState([]);
   const [paymentIntent, setPaymentIntent] = useState();
   const [showCard, setShowCard] = useState(false);
   const [cardId, setCardId] = useState(0);
-  const [payFrom, setPayfrom] = useState();
+  const [payFrom, setPayFrom] = useState();
   const [attached, setAttached] = useState(false);
   const [toggleList, setToggleList] = useState(false);
 
@@ -54,7 +53,7 @@ const Payment = () => {
     }
   };
 
-  const handleSubmitCard = async (e) => {
+  const handleSubmitCard = async e => {
     e.preventDefault();
 
     if (!elements || !stripe) return;
@@ -77,7 +76,7 @@ const Payment = () => {
     await getCard();
   };
 
-  const handlePaymentIntent = async (e) => {
+  const handlePaymentIntent = async e => {
     e.preventDefault();
 
     const { paymentIntent } = await fetchFrom('payment/payment-intent', {
@@ -90,7 +89,7 @@ const Payment = () => {
     setPaymentIntent(paymentIntent.client_secret);
   };
 
-  const choosePayment = (argument) => {
+  const choosePayment = argument => {
     const cardElement = elements.getElement(CardNumberElement);
 
     if (argument === 0) {
@@ -103,7 +102,7 @@ const Payment = () => {
     };
   };
 
-  const handleSubmitPayment = async (e, index) => {
+  const handleSubmitPayment = async e => {
     e.preventDefault();
 
     if (!stripe && !elements) return;
@@ -111,32 +110,44 @@ const Payment = () => {
     const { paymentIntent: paymentStatus, error } =
       await stripe.confirmCardPayment(paymentIntent, choosePayment(payFrom));
 
-    setPaymentIntent(paymentStatus.status);
+    setPaymentIntent(paymentStatus);
 
     if (error) {
       console.log(error);
     }
   };
 
-  if (paymentIntent === 'succeeded') {
-    history.push('/');
-    localStorage.removeItem('cart-items');
-  }
-
-  const style = {
-    base: {
-      backgroundColor: '#23252f',
-      color: '#fff',
-    },
+  const removeCard = async id => {
+    // const { deletedCard } = await fetchFrom('payment/remove-card', {
+    //   body: { stripeUserId: wallet[id].customer, cardId: wallet[id].id },
+    // });
+    // console.log(deletedCard);
   };
 
-  const [test, setTest] = useState('Select your card');
+  if (paymentIntent?.status === 'succeeded') {
+    history.push(`/basket/pay-now/success?session_id=${paymentIntent.id}`);
+  }
+
+  const [prevWallet, setPrevWallet] = useState('');
+
+  const displayCard = () => {
+    if (prevWallet.length > 1) return prevWallet;
+
+    let test;
+    if (wallet[0]?.card.brand.length > 1) {
+      test = `${wallet[0]?.card.brand} **** **** ****  ${wallet[0]?.card.last4} expires ${wallet[0]?.card.exp_month}/${wallet[0]?.card.exp_year}`;
+      return test;
+    } else {
+      test = 'Select your card';
+      return test;
+    }
+  };
 
   return (
     <div className="payment">
       <HeaderTitle title="Payment" />
       <section className="payment__attach">
-        <h2 className="payment__heading">Add new Payment Mehod</h2>
+        <h2 className="payment__heading">Add new Payment Method</h2>
         <button
           className="payment__button"
           onClick={() => {
@@ -183,18 +194,19 @@ const Payment = () => {
           </form>
         )}
       </section>
-      <div className="payment__select-wrapper">
+
+      <section className="payment__select-wrapper">
         <div className="payment__select">
           <div
             className="payment__select-trigger"
             onClick={() => setToggleList(!toggleList)}
-            onKeyDown={(e) => {
+            onKeyDown={e => {
               if (e.key === 'Tab') return;
               setToggleList(!toggleList);
             }}
             tabIndex={0}
           >
-            <p>{test}</p>
+            <p>{displayCard()}</p>
             <div className="arrow"></div>
           </div>
           <ul
@@ -208,14 +220,14 @@ const Payment = () => {
                 key={index}
                 className={`payment__select-option `}
                 value={index}
-                onClick={(e) => {
-                  setTest(
+                onClick={e => {
+                  setPrevWallet(
                     `${card.brand} **** **** ****  ${card.last4} expires ${card.exp_month}/${card.exp_year}`
                   );
                   setCardId(e.target.value);
                   setToggleList(false);
                 }}
-                onKeyDown={(e) => {
+                onKeyDown={e => {
                   if (e.key === 'Tab') return;
 
                   setCardId(e.target.value);
@@ -228,7 +240,7 @@ const Payment = () => {
             ))}
           </ul>
         </div>
-      </div>
+      </section>
       <section className="payment__method">
         <h2 className="payment__heading">Choose payment Method</h2>
         <div className="payment__method-wrapper">
@@ -238,24 +250,24 @@ const Payment = () => {
               type="submit"
               disabled={wallet.length <= 0}
               onClick={() => {
-                setPayfrom(1);
+                setPayFrom(1);
                 setShowCard(false);
                 setAttached(false);
               }}
             >
-              Pay with selected card {totalToPay.toFixed(2)}$
+              Pay with selected card
             </button>
             <button
               className="payment__button payment__button--fully"
               type="submit"
               disabled={!stripe}
               onClick={() => {
-                setPayfrom(0);
+                setPayFrom(0);
                 setAttached(false);
                 setShowCard(true);
               }}
             >
-              Pay with Credit Card {totalToPay.toFixed(2)}$
+              Pay with Credit Card
             </button>
           </form>
           {showCard && (
@@ -280,86 +292,20 @@ const Payment = () => {
               <p className="payment__warning">Add new card or Choose Card</p>
             )}
             <button
-              className="button"
+              className="payment__button-toPay button"
               disabled={attached}
-              onClick={(e) => {
-                console.log('work');
+              onClick={e => {
                 handleSubmitPayment(e);
               }}
             >
-              PAY NOW
+              PAY NOW{' '}
+              <span className="payment__price">{totalToPay.toFixed(2)}$</span>
             </button>
           </div>
         )}
       </section>
-      <section className="payment__intent"></section>
     </div>
   );
 };
 
 export default Payment;
-
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
-
-//   if (!elements || !stripe) return;
-
-//   const cardElement = elements.getElement(CardElement);
-
-//   const { error, paymentMethod } = await stripe.createPaymentMethod({
-//     type: 'card',
-//     card: cardElement,
-//   });
-
-//   const userPayment = () => {
-//     if (user) {
-//       return {
-//         paymentMethod: paymentMethod,
-//         stripeUserId: user.stripeUserId,
-//         userData: {
-//           name: user.name,
-//           email: user.email,
-//           address_city: user.shippingAddress.city,
-//           address_street: user.shippingAddress.street,
-//           address_apartment: user.shippingAddress.apartment,
-//           address_zipCode: user.shippingAddress.zipCode,
-//           address_state: user.shippingAddress.state,
-//           phone: user.shippingAddress.phone,
-//         },
-//         itemsPrice: totalToPay * 100,
-//       };
-//     }
-//     return {
-//       annonymus: true,
-//       paymentMethod: paymentMethod,
-//       userData: JSON.parse(localStorage.getItem('anonymous-adress')),
-//       itemsPrice: totalToPay * 100,
-//     };
-//   };
-
-//   const createOrder = () => {
-//     if (user) {
-//       return {
-//         userId: user.id,
-//         shippingAddress: user.shippingAddress,
-//         items: cartItems,
-//         price: totalToPay,
-//       };
-//     }
-//     return {
-//       shippingAddress: JSON.parse(localStorage.getItem('anonymous-adress')),
-//       items: cartItems,
-//       price: totalToPay,
-//     };
-//   };
-
-//   const order = createOrder();
-
-//   fetch('/payment/new-order', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(order),
-//   })
-// };

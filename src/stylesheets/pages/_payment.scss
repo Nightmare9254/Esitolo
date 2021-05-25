@@ -21,7 +21,7 @@
   &__button--fully {
     background: a.$main-yellow;
     color: a.$font-dark-gray;
-    padding: 0.5rem;
+    padding: 1rem;
     margin: 0 1rem;
   }
   &__button--border {
@@ -29,6 +29,9 @@
     color: a.$font-clr;
     padding: 0.5rem;
     margin: 0 1rem;
+  }
+  &__button-toPay {
+    width: 100%;
   }
   &__action {
     margin-top: 1rem;
@@ -64,6 +67,7 @@
 
   &__form-card {
     display: flex;
+    justify-content: center;
     margin-top: 2rem;
   }
   &__card-container {
@@ -72,12 +76,17 @@
   &__warning {
     color: a.$font-important-clr;
   }
+  &__price {
+    font-weight: 700;
+  }
+
   //custom dd
   &__select-wrapper {
     position: relative;
     user-select: none;
     padding: 0 1rem;
     width: 100%;
+    margin: 2rem 0;
   }
   &__select {
     position: relative;
@@ -92,7 +101,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem 1rem;
+    padding: 1rem;
     font-size: a.$fs-300;
     font-weight: 300;
     color: a.$font-clr;
@@ -130,7 +139,7 @@
     font-size: a.$fs-300;
     font-weight: 300;
     color: a.$font-clr;
-    line-height: 60px;
+    padding: 1rem;
     cursor: pointer;
   }
   &__select-option:hover {

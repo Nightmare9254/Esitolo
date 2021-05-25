@@ -20,7 +20,7 @@ const Account = () => {
     history.push('/');
   };
 
-  const updateAddress = data => {
+  const updateAddress = (data) => {
     fetch('https://esitolo-backend.herokuapp.com/auth/address', {
       method: 'POST',
       headers: {
@@ -28,8 +28,8 @@ const Account = () => {
       },
       body: JSON.stringify(data),
     })
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         setCookie('user', json, {
           path: '/',
           maxAge: 24 * 60 * 60 * 1000,
@@ -111,7 +111,7 @@ const Account = () => {
                       stripeUserId: user?.stripeUserId,
                     }}
                     validationSchema={shippingAddress}
-                    onSubmit={values => updateAddress(values)}
+                    onSubmit={(values) => updateAddress(values)}
                   >
                     <Form>
                       <AnimateContainer>

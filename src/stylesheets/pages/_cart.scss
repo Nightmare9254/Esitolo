@@ -44,4 +44,8 @@
     padding: 1rem;
     font-weight: 300;
   }
+  &__total-desc {
+    color: a.$font-clr;
+    font-size: a.$fs-400;
+  }
 }

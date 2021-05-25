@@ -32,6 +32,6 @@
 
 .scalebutton {
   grid-area: 1/1;
-  justify-self: end;
-  z-index: 5;
+  z-index: 4;
+  place-self: start end;
 }

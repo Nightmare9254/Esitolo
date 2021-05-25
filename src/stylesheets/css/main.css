@@ -223,6 +223,7 @@
   position: sticky;
   width: 100%;
   bottom: 0;
+  z-index: 5;
 }
 .menu__container {
   display: flex;
@@ -233,6 +234,7 @@
 }
 .menu__item {
   text-align: center;
+  position: relative;
 }
 .menu__item .fa-home,
 .menu__item .fa-shopping-basket,
@@ -255,18 +257,18 @@
   color: inherit;
 }
 .menu__item-basket-icon {
-  position: relative;
+  position: absolute;
+  background: #fa4646;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100rem;
+  top: -0.9rem;
+  right: -0.5rem;
 }
 .menu__item-basket-total {
   color: #eaeae7;
   font-size: 1.2rem;
-  background: #fa4646;
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  top: -0.5rem;
-  right: -0.5rem;
-  border-radius: 100rem;
+  line-height: 2rem;
 }
 
 .footer {
@@ -719,6 +721,7 @@
 .settings .fa-map-marker,
 .settings .fa-phone-alt,
 .settings .fa-envelope,
+.settings .fa-mountain,
 .settings .fa-road {
   color: #fff;
   font-size: 1.6rem;
@@ -942,6 +945,10 @@
   padding: 1rem;
   font-weight: 300;
 }
+.cart__total-desc {
+  color: #eaeae7;
+  font-size: 2.1rem;
+}
 
 .order {
   min-height: 100vh;
@@ -1064,6 +1071,15 @@
 .order .fa-phone-alt {
   font-size: 1.6rem;
 }
+.order__table {
+  width: 100%;
+  color: #fff;
+  text-align: left;
+}
+.order__table td,
+.order__table th {
+  padding: 1rem;
+}
 
 .payment {
   background: #31343a;
@@ -1086,7 +1102,7 @@
 .payment__button--fully {
   background: #fac646;
   color: #23252f;
-  padding: 0.5rem;
+  padding: 1rem;
   margin: 0 1rem;
 }
 .payment__button--border {
@@ -1094,6 +1110,9 @@
   color: #eaeae7;
   padding: 0.5rem;
   margin: 0 1rem;
+}
+.payment__button-toPay {
+  width: 100%;
 }
 .payment__action {
   margin-top: 1rem;
@@ -1127,6 +1146,7 @@
 }
 .payment__form-card {
   display: flex;
+  justify-content: center;
   margin-top: 2rem;
 }
 .payment__card-container {
@@ -1135,11 +1155,15 @@
 .payment__warning {
   color: #fa4646;
 }
+.payment__price {
+  font-weight: 700;
+}
 .payment__select-wrapper {
   position: relative;
   user-select: none;
   padding: 0 1rem;
   width: 100%;
+  margin: 2rem 0;
 }
 .payment__select {
   position: relative;
@@ -1154,7 +1178,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   font-size: 1.6rem;
   font-weight: 300;
   color: #eaeae7;
@@ -1192,7 +1216,7 @@
   font-size: 1.6rem;
   font-weight: 300;
   color: #eaeae7;
-  line-height: 60px;
+  padding: 1rem;
   cursor: pointer;
 }
 .payment__select-option:hover {
@@ -1378,8 +1402,8 @@ button:hover {
 
 .scalebutton {
   grid-area: 1/1;
-  justify-self: end;
-  z-index: 5;
+  z-index: 4;
+  place-self: start end;
 }
 
 .button {

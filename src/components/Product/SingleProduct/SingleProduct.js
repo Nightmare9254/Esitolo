@@ -11,7 +11,7 @@ const SingleProduct = () => {
   const { id } = useParams();
 
   const [product, setProduct] = useState({});
-  const [similiar, setSimiliar] = useState([]);
+  const [similar, setSimilar] = useState([]);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [imagePosition, setImagePosition] = useState(0);
@@ -39,8 +39,7 @@ const SingleProduct = () => {
       )
         .then((res) => res.json())
         .then((json) => {
-          setSimiliar(json);
-          // setLoading(false);
+          setSimilar(json);
         });
     }
   }, [id, loading]);
@@ -185,10 +184,10 @@ const SingleProduct = () => {
             </p>
           </div>
 
-          <div className="single__similiar-container">
-            <h4>Similiar products</h4>
-            <div className="single__similiar">
-              {similiar.map(
+          <div className="single__similar-container">
+            <h4>similar products</h4>
+            <div className="single__similar">
+              {similar.map(
                 ({ _id, image, price, productName, description }) => (
                   <TopProducts
                     key={_id}
@@ -203,7 +202,7 @@ const SingleProduct = () => {
               )}
             </div>
           </div>
-          {/* placeholder */}
+
           <div className="single__clients-opinions">
             <h4>Clients opinions</h4>
             <div className="single__opinion">
