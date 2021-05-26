@@ -1,6 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../../../hooks/useFetch';
-import Product from '../../Product/Product';
+import HeaderTitle from '../../SingleComponents/HeaderTitle';
+import Menu from '../../Menu/Menu';
+import StarRating from '../../../functions/StarRating';
+import { PulsingAnimation } from '../../../framer/Transitions';
+import { Link } from 'react-router-dom';
 
 const OrderTracking = () => {
   const { id } = useParams();
@@ -18,54 +22,112 @@ const OrderTracking = () => {
       if (day < 10) day = `0${day}`;
       if (month < 10) month = `0${month}`;
 
-      const fullDate = `${day}:${month}:${year}`;
+      const fullDate = `${day}/${month}/${year}`;
       return fullDate;
     }
   };
 
+  console.log(data);
+
   return (
-    <div className="order">
-      <p>Order tracking: {id}</p>
-      {!loading && (
-        <table className="order__table" border="1">
-          <tr>
-            <th>Customer</th>
-            <td>{data.shippingAddress.name}</td>
-          </tr>
-          <tr>
-            <th>Address</th>
-            <td>
-              <ul>
-                <li>{data.shippingAddress.state}</li>
-                <li>{data.shippingAddress.city}</li>
-                <li>{data.shippingAddress.street}</li>
-                <li>{data.shippingAddress.zipCode}</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <th>Items</th>
-            <td>
-              {data.items.map(({ name, quantity, price }, id) => (
-                <div key={id}>
-                  <p>
-                    {name} {quantity} {price}
-                  </p>
-                </div>
-              ))}
-            </td>
-          </tr>
-          <tr>
-            <th>Order date</th>
-            <td>{formatDate()}</td>
-          </tr>
-          <tr>
-            <th>Total price</th>
-            <td>{data.price}</td>
-          </tr>
-        </table>
-      )}
-    </div>
+    <>
+      <div className="order">
+        <HeaderTitle title="Order details" />
+
+        {!loading && (
+          <>
+            <table className="order__table">
+              <thead>
+                <tr>
+                  <td
+                    style={{ padding: '2rem', border: 'none' }}
+                    colSpan="2"
+                    className="order__table-orderId"
+                  >
+                    ID: <span className="order__table-id">{id}</span>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Customer</th>
+                  <td>{data.shippingAddress.name}</td>
+                </tr>
+                <tr>
+                  <th>Address</th>
+                  <td>
+                    <ul className="order__list">
+                      <li>
+                        State: <span>{data.shippingAddress.state}</span>
+                      </li>
+                      <li>
+                        City: <span>{data.shippingAddress.city}</span>
+                      </li>
+                      <li>
+                        Street: <span>{data.shippingAddress.street}</span>
+                      </li>
+                      <li>
+                        Postal-Code: <span>{data.shippingAddress.zipCode}</span>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Items</th>
+                  <td>
+                    {data.items.map(({ name, quantity, price }, id) => (
+                      <ul className="order__list" key={id}>
+                        <li>
+                          Name:{' '}
+                          <span>
+                            {/* <Link to={`/product/${}`}>{name}</Link> */}
+                          </span>
+                        </li>
+                        <li>
+                          Quantity: <span>{quantity}</span>
+                        </li>
+                        <li>
+                          Price: <span>{price}$</span>
+                        </li>
+                      </ul>
+                    ))}
+                  </td>
+                </tr>
+                <tr>
+                  <th>Order date</th>
+                  <td>{formatDate()}</td>
+                </tr>
+                <tr>
+                  <th>Status</th>
+                  <td>{data.status}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th style={{ borderBottom: 'none' }}>Total price</th>
+                  <td
+                    style={{
+                      borderBottom: 'none',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    {data.price}$
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+            <section>
+              <h3 className="order__rate">Rate us</h3>
+              <div>
+                <StarRating orderId={id} orderRating={data.rating} />
+              </div>
+            </section>
+          </>
+        )}
+        {loading && <PulsingAnimation />}
+      </div>
+      <Menu />
+    </>
   );
 };
 

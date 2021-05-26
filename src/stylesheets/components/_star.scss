@@ -1,0 +1,16 @@
+@use '../abstracts' as a;
+
+.star {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__single {
+    margin-left: 1.5rem;
+    font-size: a.$fs-500;
+    color: a.$font-gray-clr;
+  }
+  &__single--selected {
+    color: a.$main-yellow;
+  }
+}

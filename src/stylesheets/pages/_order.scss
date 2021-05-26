@@ -128,13 +128,57 @@
   }
 
   &__table {
-    width: 100%;
-    color: #fff;
+    color: a.$font-gray-clr;
+    background-color: a.$dark-gray;
+    border-radius: 3px;
+    font-size: a.$fs-300;
     text-align: left;
+    margin: 4rem 0.5rem;
+    border-collapse: collapse;
 
+    &-id {
+      color: a.$main-yellow;
+      font-weight: 700;
+    }
     td,
     th {
+      border: 1px solid a.$font-gray-clr;
       padding: 1rem;
     }
+    td {
+      width: 100%;
+      color: a.$font-clr;
+      border-right: none;
+    }
+    th {
+      border-left: none;
+    }
+
+    &-orderId {
+      text-align: center;
+      padding: 2rem;
+      font-size: a.$fs-400;
+    }
+  }
+  &__list {
+    list-style: none;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      color: a.$font-gray-clr;
+
+      span {
+        color: a.$font-clr;
+      }
+    }
+  }
+  &__rate {
+    color: a.$font-gray-clr;
+
+    text-align: center;
+  }
+  &__rate::first-letter {
+    color: a.$main-yellow;
   }
 }

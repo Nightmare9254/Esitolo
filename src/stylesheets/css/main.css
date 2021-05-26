@@ -1072,13 +1072,53 @@
   font-size: 1.6rem;
 }
 .order__table {
-  width: 100%;
-  color: #fff;
+  color: #929292;
+  background-color: #1a1d22;
+  border-radius: 3px;
+  font-size: 1.6rem;
   text-align: left;
+  margin: 4rem 0.5rem;
+  border-collapse: collapse;
+}
+.order__table-id {
+  color: #fac646;
+  font-weight: 700;
 }
 .order__table td,
 .order__table th {
+  border: 1px solid #929292;
   padding: 1rem;
+}
+.order__table td {
+  width: 100%;
+  color: #eaeae7;
+  border-right: none;
+}
+.order__table th {
+  border-left: none;
+}
+.order__table-orderId {
+  text-align: center;
+  padding: 2rem;
+  font-size: 2.1rem;
+}
+.order__list {
+  list-style: none;
+}
+.order__list li {
+  display: flex;
+  justify-content: space-between;
+  color: #929292;
+}
+.order__list li span {
+  color: #eaeae7;
+}
+.order__rate {
+  color: #929292;
+  text-align: center;
+}
+.order__rate::first-letter {
+  color: #fac646;
 }
 
 .payment {
@@ -1435,6 +1475,20 @@ button:hover {
   font-weight: 300;
   padding: 1rem;
   color: #eaeae7;
+}
+
+.star {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.star__single {
+  margin-left: 1.5rem;
+  font-size: 2.8rem;
+  color: #929292;
+}
+.star__single--selected {
+  color: #fac646;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -23,6 +23,7 @@ const CheckoutSuccess = () => {
 
     items.forEach(element => {
       nameOfProducts.push({
+        id: element.id,
         name: element.productName,
         quantity: element.quantity,
         price: element.price,
