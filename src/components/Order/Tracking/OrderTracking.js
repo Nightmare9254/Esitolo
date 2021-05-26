@@ -75,22 +75,29 @@ const OrderTracking = () => {
                 <tr>
                   <th>Items</th>
                   <td>
-                    {data.items.map(({ name, quantity, price }, id) => (
-                      <ul className="order__list" key={id}>
-                        <li>
-                          Name:{' '}
-                          <span>
-                            {/* <Link to={`/product/${}`}>{name}</Link> */}
-                          </span>
-                        </li>
-                        <li>
-                          Quantity: <span>{quantity}</span>
-                        </li>
-                        <li>
-                          Price: <span>{price}$</span>
-                        </li>
-                      </ul>
-                    ))}
+                    <ul className="order__list">
+                      {data.items.map(({ name, quantity, price, id }) => (
+                        <div key={id}>
+                          <li>
+                            Name:{' '}
+                            <span>
+                              <Link
+                                className="order__link"
+                                to={`/product/${id}`}
+                              >
+                                {name}
+                              </Link>
+                            </span>
+                          </li>
+                          <li>
+                            Quantity: <span>{quantity}</span>
+                          </li>
+                          <li>
+                            Price: <span>{price}$</span>
+                          </li>
+                        </div>
+                      ))}
+                    </ul>
                   </td>
                 </tr>
                 <tr>

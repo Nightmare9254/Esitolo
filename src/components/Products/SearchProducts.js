@@ -3,21 +3,67 @@ import { PulsingAnimation, ShowInput } from '../../framer/Transitions';
 import { useLocal } from '../../hooks/cart';
 import Product from '../Product/Product';
 
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+const mic = new SpeechRecognition();
+
+mic.continuos = true;
+mic.interimResults = true;
+mic.lang = 'pl';
+
 const SearchProducts = ({ toggleState }) => {
   const [filterLoading, setFilterLoading] = useState(true);
   const [filtered, setFiltered] = useState([]);
   const [search, setSearch] = useState('');
   const [key, setKey] = useState('');
+  const [isListening, setIsListening] = useState(false);
 
-  const searchItems = (query) => {
+  const handleListen = () => {
+    if (isListening) {
+      mic.start();
+    } else {
+      mic.stop();
+    }
+
+    mic.onresult = e => {
+      const transcript = Array.from(e.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('');
+
+      if (transcript.length > 1) {
+        console.log(transcript);
+        setSearch(transcript);
+        mic.stop();
+        setIsListening(false);
+
+        if (!isListening) {
+          setTimeout(() => {
+            searchItems(transcript);
+          }, 500);
+        }
+      }
+
+      mic.onerror = e => {
+        console.log(e.error);
+      };
+    };
+  };
+
+  useEffect(() => {
+    handleListen();
+  }, [isListening]);
+
+  const searchItems = query => {
     setFiltered([]);
     setFilterLoading(true);
     setKey(query);
     fetch(
       `https://esitolo-backend.herokuapp.com/products/products-search?search=${query}`
     )
-      .then((res) => res.json())
-      .then((json) => {
+      .then(res => res.json())
+      .then(json => {
         setFiltered(json);
         setFilterLoading(false);
       });
@@ -76,8 +122,8 @@ const SearchProducts = ({ toggleState }) => {
           <input
             value={search}
             placeholder="Search for favorite's things"
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={(e) => {
+            onChange={e => setSearch(e.target.value)}
+            onKeyDown={e => {
               if (e.keyCode === 13) {
                 dispatch({ type: 'ADD' });
                 searchItems(search);
@@ -93,6 +139,29 @@ const SearchProducts = ({ toggleState }) => {
             className="all-products__search-btn"
           >
             <i className="fas fa-search" />
+          </button>
+
+          <button
+            onClick={() =>
+              setIsListening(prevState => setIsListening(!prevState))
+            }
+            className="all-products__search-btn all-products__search-btn--mic"
+          >
+            {isListening && (
+              <span>
+                <i className="fas fa-circle" />
+              </span>
+            )}
+            {!isListening && (
+              <span>
+                <i className="fas fa-microphone"></i>
+              </span>
+            )}
+            {isListening && (
+              <span>
+                <i class="fas fa-microphone-slash"></i>
+              </span>
+            )}
           </button>
         </div>
         <div className="all-products__search-container">

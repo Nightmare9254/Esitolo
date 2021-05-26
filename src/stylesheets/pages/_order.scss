@@ -181,4 +181,7 @@
   &__rate::first-letter {
     color: a.$main-yellow;
   }
+  &__link {
+    text-decoration: underline;
+  }
 }

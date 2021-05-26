@@ -502,9 +502,20 @@
     margin-left: 1rem;
     padding: 0 0 0.5rem;
 
-    .fa-search {
+    .fa-search,
+    .fa-microphone,
+    .fa-microphone-slash,
+    .fa-circle {
       font-size: a.$fs-300;
     }
+    .fa-circle {
+      color: a.$bright-red;
+    }
+  }
+  &__search-btn--mic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 .isBottom {

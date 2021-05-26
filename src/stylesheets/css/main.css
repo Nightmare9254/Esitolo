@@ -488,8 +488,19 @@
   margin-left: 1rem;
   padding: 0 0 0.5rem;
 }
-.all-products__search-btn .fa-search {
+.all-products__search-btn .fa-search,
+.all-products__search-btn .fa-microphone,
+.all-products__search-btn .fa-microphone-slash,
+.all-products__search-btn .fa-circle {
   font-size: 1.6rem;
+}
+.all-products__search-btn .fa-circle {
+  color: #fa4646;
+}
+.all-products__search-btn--mic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .isBottom {
@@ -1119,6 +1130,9 @@
 }
 .order__rate::first-letter {
   color: #fac646;
+}
+.order__link {
+  text-decoration: underline;
 }
 
 .payment {
