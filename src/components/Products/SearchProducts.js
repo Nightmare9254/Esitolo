@@ -8,7 +8,7 @@ const SpeechRecognition =
 
 const mic = new SpeechRecognition();
 
-mic.continuos = true;
+mic.continuous = true;
 mic.interimResults = true;
 mic.lang = 'pl';
 
@@ -33,17 +33,15 @@ const SearchProducts = ({ toggleState }) => {
         .join('');
 
       if (transcript.length > 1) {
-        console.log(transcript);
         setSearch(transcript);
         mic.stop();
         setIsListening(false);
-
-        if (!isListening) {
-          setTimeout(() => {
-            searchItems(transcript);
-          }, 500);
-        }
       }
+
+      setTimeout(() => {
+        searchItems(transcript);
+      }, 500);
+      console.log(transcript);
 
       mic.onerror = e => {
         console.log(e.error);
@@ -159,7 +157,7 @@ const SearchProducts = ({ toggleState }) => {
             )}
             {isListening && (
               <span>
-                <i class="fas fa-microphone-slash"></i>
+                <i className="fas fa-microphone-slash"></i>
               </span>
             )}
           </button>
