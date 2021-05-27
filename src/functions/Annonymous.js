@@ -13,7 +13,7 @@ const Annonymous = () => {
       name: item.productName,
       description: 'Item from esitolo',
       images: item.image,
-      amount: item.price * 100,
+      amount: (item.price * 100).toFixed(0),
       currency: 'usd',
       quantity: item.quantity,
     });

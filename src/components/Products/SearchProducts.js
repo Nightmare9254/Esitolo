@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { PulsingAnimation, ShowInput } from '../../framer/Transitions';
 import { useLocal } from '../../hooks/cart';
 import Product from '../Product/Product';

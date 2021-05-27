@@ -5,29 +5,12 @@ import Menu from '../../Menu/Menu';
 import StarRating from '../../../functions/StarRating';
 import { PulsingAnimation } from '../../../framer/Transitions';
 import { Link } from 'react-router-dom';
+import { formatDate } from '../../../functions/formatDate';
 
 const OrderTracking = () => {
   const { id } = useParams();
 
   const { data, loading } = useFetch(`/orders/order?id=${id}`);
-
-  const formatDate = () => {
-    if (!loading) {
-      const date = new Date(data.orderDate);
-
-      let day = date.getDate();
-      let month = date.getMonth() + 1;
-      const year = date.getFullYear();
-
-      if (day < 10) day = `0${day}`;
-      if (month < 10) month = `0${month}`;
-
-      const fullDate = `${day}/${month}/${year}`;
-      return fullDate;
-    }
-  };
-
-  console.log(data);
 
   return (
     <>
@@ -77,9 +60,9 @@ const OrderTracking = () => {
                   <td>
                     <ul className="order__list">
                       {data.items.map(({ name, quantity, price, id }) => (
-                        <div key={id}>
+                        <div className="order__list-wrapper" key={id}>
                           <li>
-                            Name:{' '}
+                            Name:
                             <span>
                               <Link
                                 className="order__link"
@@ -102,7 +85,7 @@ const OrderTracking = () => {
                 </tr>
                 <tr>
                   <th>Order date</th>
-                  <td>{formatDate()}</td>
+                  <td>{formatDate(data.orderDate, loading)}</td>
                 </tr>
                 <tr>
                   <th>Status</th>

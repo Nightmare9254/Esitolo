@@ -1,0 +1,54 @@
+@use '../abstracts' as a;
+
+.history {
+  margin-top: 5rem;
+  &__single-order {
+    margin-top: 2rem;
+    border-bottom: 1px solid #fff;
+  }
+
+  &__item-name {
+    font-size: a.$fs-400;
+  }
+  &__single-item {
+    margin-top: 1.5rem;
+  }
+  &__item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  &__item-quantity {
+    color: a.$font-gray-clr;
+    font-size: a.$fs-300;
+  }
+  &__item-price {
+    font-size: a.$fs-300;
+    color: a.$font-clr;
+  }
+  &__order-info {
+    margin-top: 4rem;
+  }
+  &__info-wrapper {
+    margin: 2rem 0;
+  }
+  &__order-details {
+    color: a.$font-gray-clr;
+    font-size: a.$fs-300;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+  }
+  &__details-price {
+    color: a.$main-yellow;
+    font-weight: 700;
+  }
+  &__order-status {
+    display: flex;
+    justify-content: space-between;
+    font-size: a.$fs-400;
+    color: a.$font-clr;
+    margin-bottom: 2rem;
+  }
+}

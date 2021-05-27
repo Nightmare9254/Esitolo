@@ -8,10 +8,12 @@ import { Form, Formik } from 'formik';
 import { shippingAddress } from '../Formik/YupValidation';
 import { AnimateContainer } from '../../framer/Transitions';
 import TextField from '../Formik/TextField';
+import OrderHistory from './OrderHistory';
 
 const Account = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [openAddress, setOpenAddress] = useState(false);
+  const [showOrders, setShowOrders] = useState(false);
   const { user } = cookies;
   const history = useHistory();
 
@@ -20,7 +22,7 @@ const Account = () => {
     history.push('/');
   };
 
-  const updateAddress = (data) => {
+  const updateAddress = data => {
     fetch('https://esitolo-backend.herokuapp.com/auth/address', {
       method: 'POST',
       headers: {
@@ -28,8 +30,8 @@ const Account = () => {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
-      .then((json) => {
+      .then(res => res.json())
+      .then(json => {
         setCookie('user', json, {
           path: '/',
           maxAge: 24 * 60 * 60 * 1000,
@@ -111,7 +113,7 @@ const Account = () => {
                       stripeUserId: user?.stripeUserId,
                     }}
                     validationSchema={shippingAddress}
-                    onSubmit={(values) => updateAddress(values)}
+                    onSubmit={values => updateAddress(values)}
                   >
                     <Form>
                       <AnimateContainer>
@@ -165,9 +167,19 @@ const Account = () => {
                   </Formik>
                 )}
               </div>
-              <div className="settings__options">
-                <p className="settings__txt--header">Order history</p>
-              </div>
+              <section>
+                <div className="settings__options">
+                  <p className="settings__txt--header">Order history</p>
+                  <button
+                    type="button"
+                    className="settings__change-btn"
+                    onClick={() => setShowOrders(!showOrders)}
+                  >
+                    {showOrders ? ' Close' : 'Show'}
+                  </button>
+                </div>
+                {showOrders && <OrderHistory />}
+              </section>
             </section>
           </main>
           <div style={{ textAlign: 'center' }}>
