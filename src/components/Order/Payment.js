@@ -12,9 +12,15 @@ import { fetchFrom } from '../../hooks/fetchFrom';
 import { useHistory } from 'react-router-dom';
 import HeaderTitle from '../SingleComponents/HeaderTitle';
 import AttacheCard from '../Stripe/AttacheCard';
-import { style } from '../../assets/Consts/cardStyles';
 import { useCounter } from '../../store/sub';
 import { ScaleButtonClick } from '../../framer/Transitions';
+
+const style = {
+  base: {
+    backgroundColor: '#23252f',
+    color: '#fff',
+  },
+};
 
 const Payment = () => {
   const elements = useElements();

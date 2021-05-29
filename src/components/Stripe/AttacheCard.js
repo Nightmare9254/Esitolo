@@ -6,12 +6,18 @@ import {
   CardCvcElement,
 } from '@stripe/react-stripe-js';
 import { useCookies } from 'react-cookie';
-import { style } from '../../assets/Consts/cardStyles';
 import { useState } from 'react';
 import { setUpNewCard } from '../../functions/stripeCard';
 import UserCardList from './UserCardList';
 import { useCounter } from '../../store/sub';
 import { ScaleButtonClick } from '../../framer/Transitions';
+
+const style = {
+  base: {
+    backgroundColor: '#23252f',
+    color: '#fff',
+  },
+};
 
 const AttachCard = () => {
   const stripe = useStripe();
