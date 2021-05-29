@@ -1,8 +1,6 @@
 import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 import HeaderTitle from '../SingleComponents/HeaderTitle';
-import blik from '../../assets/images/blik.png';
-import payu from '../../assets/images/payu.png';
 import { useEffect, useState } from 'react';
 import { useLocal } from '../../hooks/cart';
 import Product from '../Product/Product';
@@ -10,20 +8,17 @@ import { ScrollToTop } from '../SingleComponents/ScrollToTop';
 import Menu from '../Menu/Menu';
 import { Formik, Form } from 'formik';
 import TextField from '../Formik/TextField';
-import { AnimateContainer } from '../../framer/Transitions';
+import { AnimateContainer, ScaleButtonClick } from '../../framer/Transitions';
 import { shippingAddress } from '../Formik/YupValidation';
 import Annonymous from '../../functions/Annonymous';
 
 const OrderSummary = () => {
   const [cookies] = useCookies();
   const { user } = cookies;
-  const [isAddress, setIsAddress] = useState(false);
-
-  const [method, setMethod] = useState(0);
-
-  const chooseMethod = (arg) => {
-    setMethod(arg);
-  };
+  const [isAddress, setIsAddress] = useState({
+    address: false,
+    message: '',
+  });
 
   const [, , calculate, , , cartItems] = useLocal();
 
@@ -37,17 +32,17 @@ const OrderSummary = () => {
   total = subTotal - discount;
 
   const checkUserAddress = () => {
-    if (user && user.shippingAddress.city.length > 1) {
+    if (anonymous) {
       return true;
     }
-    if (anonymous) {
+    if (user && user.shippingAddress.city.length > 2) {
       return true;
     }
     return false;
   };
 
   useEffect(() => {
-    setIsAddress(checkUserAddress());
+    setIsAddress({ ...isAddress, address: checkUserAddress() });
   }, []);
 
   const anonymous = JSON.parse(localStorage.getItem('anonymous-address'));
@@ -105,12 +100,15 @@ const OrderSummary = () => {
                   phone: anonymous?.phone,
                 }}
                 validationSchema={shippingAddress}
-                onSubmit={(values) => {
+                onSubmit={values => {
                   localStorage.setItem(
                     'anonymous-address',
                     JSON.stringify(values)
                   );
-                  setIsAddress(true);
+                  setIsAddress({
+                    address: true,
+                    message: 'Address saved successfully',
+                  });
                 }}
               >
                 <Form>
@@ -172,15 +170,16 @@ const OrderSummary = () => {
                       type="tel"
                     />
                   </AnimateContainer>
-                  <button
-                    onClick={() => console.log('dduud')}
-                    type="submit"
-                    className="button"
-                  >
-                    Save
-                  </button>
+                  <ScaleButtonClick>
+                    <button type="submit" className="button">
+                      Save
+                    </button>
+                  </ScaleButtonClick>
                 </Form>
               </Formik>
+              {isAddress.message.length > 1 && (
+                <p className="order__message--saved">{isAddress.message}</p>
+              )}
             </div>
           )}
         </div>
@@ -229,9 +228,11 @@ const OrderSummary = () => {
           {isAddress && (
             <>
               {user && (
-                <Link className="order__btn" to="/basket/pay-now">
-                  Pay now
-                </Link>
+                <ScaleButtonClick>
+                  <Link className="order__btn" to="/basket/pay-now">
+                    Pay now
+                  </Link>
+                </ScaleButtonClick>
               )}
               {!user && <Annonymous />}
             </>

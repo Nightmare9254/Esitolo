@@ -3,6 +3,7 @@ import { useLocal } from '../../hooks/cart';
 import Menu from '../Menu/Menu';
 import Product from '../Product/Product';
 import { Link } from 'react-router-dom';
+import { ScaleButtonClick } from '../../framer/Transitions';
 
 const Cart = () => {
   const [, removeItem, calculate, removeCart, addQuantity, cartItems] =
@@ -49,14 +50,16 @@ const Cart = () => {
               );
             })}
         </div>
-        <div className="cart__total-wrapper">
-          <p className="cart__total-desc">Total: {total.toFixed(2)}$</p>
-          {cartItems.length > 0 && (
+      </div>
+      <div className="cart__total-wrapper">
+        <p className="cart__total-desc">Total: {total.toFixed(2)}$</p>
+        {cartItems.length > 0 && (
+          <ScaleButtonClick>
             <Link to="/basket/order-confirmation" className="cart__btn">
               Checkout ({cartItems.length})
             </Link>
-          )}
-        </div>
+          </ScaleButtonClick>
+        )}
       </div>
       <Menu />
     </>

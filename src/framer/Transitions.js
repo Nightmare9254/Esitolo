@@ -68,9 +68,13 @@ export const PulsingAnimation = () => {
   );
 };
 
-export const ScaleButtonClick = ({ children, className = null }) => {
+export const ScaleButtonClick = ({ children, from = 0, className = null }) => {
   return (
-    <motion.div whileTap={{ scale: 1.1 }} className={className}>
+    <motion.div
+      initial={{ originX: from }}
+      whileTap={{ scale: 1.05 }}
+      className={className}
+    >
       {children}
     </motion.div>
   );

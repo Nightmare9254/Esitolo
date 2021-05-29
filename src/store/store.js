@@ -4,27 +4,62 @@ const initialState = {
   category: 'all',
   loading: null,
   isSearch: false,
+  showCard: false,
+  attached: false,
+  wallet: [],
+  toggleDD: false,
+  cardId: 0,
 };
 
 const actions = {
-  updateCategory: (arg) => ({ getState, setState }) => {
-    const { category } = getState();
-    setState({
-      category: arg,
-    });
-  },
-  loadCategory: (arg) => ({ getState, setState }) => {
-    const { loading } = getState();
-    setState({
-      loading: arg,
-    });
-  },
-  openSearch: (arg) => ({ getState, setState }) => {
-    const { isSearch } = getState();
-    setState({
-      isSearch: arg,
-    });
-  },
+  updateCategory:
+    arg =>
+    ({ getState, setState }) => {
+      const { category } = getState();
+      setState({
+        category: arg,
+      });
+    },
+  loadCategory:
+    arg =>
+    ({ getState, setState }) => {
+      const { loading } = getState();
+      setState({
+        loading: arg,
+      });
+    },
+  openSearch:
+    arg =>
+    ({ getState, setState }) => {
+      const { isSearch } = getState();
+      setState({
+        isSearch: arg,
+      });
+    },
+  showCard:
+    arg =>
+    ({ getState, setState }) => {
+      const { showCard } = getState();
+      setState({ showCard: arg });
+    },
+  attachCardForm:
+    arg =>
+    ({ getState, setState }) => {
+      const { attached } = getState();
+      setState({ attached: arg });
+    },
+  wallet:
+    arg =>
+    ({ getState, setState }) => {
+      const { wallet } = getState();
+      setState({ wallet: arg });
+    },
+  toggleDropDown:
+    arg =>
+    ({ getState, setState }) => {
+      const { toggleDD } = getState();
+      setState({ toggleDD: arg });
+    },
 };
 
 const Store = createStore({ initialState, actions });

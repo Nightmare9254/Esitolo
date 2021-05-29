@@ -15,6 +15,7 @@
   &__button {
     background: transparent;
     border-radius: 0;
+    height: 100%;
     border: none;
     color: a.$main-yellow;
   }
@@ -75,6 +76,9 @@
   }
   &__warning {
     color: a.$font-important-clr;
+    text-align: center;
+    font-size: a.$fs-300;
+    padding: 2rem 0;
   }
   &__price {
     font-weight: 700;
@@ -134,13 +138,16 @@
   }
   &__select-option {
     position: relative;
-    display: block;
+    display: inline-block;
     padding: 0 2rem;
     font-size: a.$fs-300;
     font-weight: 300;
     color: a.$font-clr;
     padding: 1rem;
     cursor: pointer;
+  }
+  &__remove {
+    padding: 0 1rem;
   }
   &__select-option:hover {
     cursor: pointer;

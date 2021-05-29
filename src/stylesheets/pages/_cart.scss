@@ -2,7 +2,7 @@
 
 .cart {
   background: a.$main-complementary;
-  min-height: 100vh;
+  min-height: 90vh;
 
   &__header {
     display: flex;
@@ -29,9 +29,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 1rem;
-    padding: 1rem;
+    padding: 1rem 2rem;
     position: sticky;
+    min-height: 50px;
+    bottom: 0;
     bottom: 7.7rem;
     width: 100%;
   }
@@ -41,7 +42,7 @@
     font-size: a.$fs-300;
     border: none;
     border-radius: 100rem;
-    padding: 1rem;
+    padding: 0.5rem;
     font-weight: 300;
   }
   &__total-desc {

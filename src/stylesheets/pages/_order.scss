@@ -80,13 +80,18 @@
     justify-content: space-between;
     align-items: center;
   }
+  &__message--saved {
+    font-size: a.$fs-300;
+    padding: 2rem 0;
+  }
   &__total {
     color: a.$font-clr;
     font-weight: bolder;
   }
   &__bar {
     background: a.$medium-gray;
-    padding: 1rem;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
