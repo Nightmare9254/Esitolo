@@ -10,7 +10,7 @@ import { Formik, Form } from 'formik';
 import TextField from '../Formik/TextField';
 import { AnimateContainer, ScaleButtonClick } from '../../framer/Transitions';
 import { shippingAddress } from '../Formik/YupValidation';
-import Annonymous from '../../functions/Annonymous';
+import Anonymous from '../../functions/Anonymous';
 
 const OrderSummary = () => {
   const [cookies] = useCookies();
@@ -234,7 +234,7 @@ const OrderSummary = () => {
                   </Link>
                 </ScaleButtonClick>
               )}
-              {!user && <Annonymous />}
+              {!user && <Anonymous />}
             </>
           )}
         </div>

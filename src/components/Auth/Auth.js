@@ -9,12 +9,12 @@ const Auth = () => {
   const [signIn, setSignIn] = useState(true);
 
   const togglePage = () => {
-    setSignIn((current) => !current);
+    setSignIn(current => !current);
   };
 
   return (
     <div className="auth">
-      <div className="auth__signin">
+      <div className="auth__signIn">
         <AnimatePresence>
           {signIn && (
             <AnimateHeight isVisible={signIn} className="auth__toggle-box">
@@ -34,7 +34,7 @@ const Auth = () => {
           )}
         </AnimatePresence>
       </div>
-      <div className="auth__signup">
+      <div className="auth__signUp">
         <AnimatePresence>
           {signIn && (
             <AnimateHeight

@@ -5,11 +5,11 @@
     display: grid;
     place-content: center;
   }
-  &__signin {
+  &__signIn {
     background-color: a.$main-yellow;
     color: a.$font-dark-gray;
   }
-  &__signup {
+  &__signUp {
     background-color: a.$main-complementary;
     color: a.$font-clr;
   }

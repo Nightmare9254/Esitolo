@@ -563,11 +563,11 @@
   display: grid;
   place-content: center;
 }
-.auth__signin {
+.auth__signIn {
   background-color: #fac646;
   color: #23252f;
 }
-.auth__signup {
+.auth__signUp {
   background-color: #31343a;
   color: #eaeae7;
 }

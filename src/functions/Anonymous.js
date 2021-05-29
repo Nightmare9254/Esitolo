@@ -3,7 +3,7 @@ import { useLocal } from '../hooks/cart';
 import { Link } from 'react-router-dom';
 import { fetchFrom } from '../hooks/fetchFrom';
 
-const Annonymous = () => {
+const Anonymous = () => {
   const [, , , , , cartItems] = useLocal();
   const stripe = useStripe();
 
@@ -36,4 +36,4 @@ const Annonymous = () => {
   );
 };
 
-export default Annonymous;
+export default Anonymous;
