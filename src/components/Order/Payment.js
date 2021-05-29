@@ -94,7 +94,7 @@ const Payment = () => {
   if (paymentIntent?.status === 'succeeded') {
     history.push(`/basket/pay-now/success?session_id=${paymentIntent.id}`);
   }
-
+  // console.log(12)
   return (
     <div className="payment">
       <HeaderTitle title="Payment" />
