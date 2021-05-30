@@ -39,6 +39,10 @@
     width: 100%;
     margin: 1rem 0;
   }
+  &__payments-methods {
+    background: a.$dark-gray;
+    padding: 1rem;
+  }
   &__txt--header {
     color: a.$font-clr;
     font-size: a.$fs-300;

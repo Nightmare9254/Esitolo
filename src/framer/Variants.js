@@ -70,22 +70,6 @@ const animateOpacity = {
   },
 };
 
-const rotateSquare = {
-  hidden: { x: 0, scale: 0.5 },
-  visible: {
-    x: '200px',
-    scale: 1.5,
-    rotate: '360deg',
-    transition: {
-      type: 'tween',
-      repeatType: 'reverse',
-
-      repeat: Infinity,
-      duration: 1,
-    },
-  },
-};
-
 const rotateVariants = {
   rotate: {
     rotate: '360deg',

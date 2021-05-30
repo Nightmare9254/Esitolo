@@ -6,9 +6,12 @@ import moment from 'moment';
 import { useState } from 'react';
 import { Form, Formik } from 'formik';
 import { shippingAddress } from '../Formik/YupValidation';
-import { AnimateContainer } from '../../framer/Transitions';
+import { AnimateContainer, AnimateItem } from '../../framer/Transitions';
 import TextField from '../Formik/TextField';
 import OrderHistory from './OrderHistory';
+import AttackCard from '../Stripe/AttacheCard';
+import UserCardList from '../Stripe/UserCardList';
+import { AnimatePresence } from 'framer-motion';
 
 const Account = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
@@ -75,97 +78,115 @@ const Account = () => {
                     {openAddress ? 'Close' : 'Change'}
                   </button>
                 </div>
-                {!openAddress && (
-                  <div className="settings__txt--dimmed">
-                    <p>
-                      City name: <span>{user?.shippingAddress.city}</span>
-                    </p>
-                    <p>
-                      Street name: <span> {user?.shippingAddress.street}</span>
-                    </p>
-                    <p>
-                      Apartment:
-                      <span>{user?.shippingAddress.apartment}</span>
-                    </p>
-                    <p>
-                      State:
-                      <span>{user?.shippingAddress.state}</span>
-                    </p>
-                    <p>
-                      Zip-code: <span>{user?.shippingAddress.zipCode} </span>
-                    </p>
-                    <p>
-                      Phone number: <span> {user?.shippingAddress.phone}</span>
-                    </p>
-                  </div>
-                )}
-                {openAddress && (
-                  <Formik
-                    initialValues={{
-                      id: user._id,
-                      name: user?.name,
-                      city: user?.shippingAddress.city,
-                      street: user?.shippingAddress.street,
-                      apartment: user?.shippingAddress.apartment,
-                      zipCode: user?.shippingAddress.zipCode,
-                      state: user?.shippingAddress.state,
-                      phone: user?.shippingAddress.phone,
-                      stripeUserId: user?.stripeUserId,
-                    }}
-                    validationSchema={shippingAddress}
-                    onSubmit={values => updateAddress(values)}
-                  >
-                    <Form>
-                      <AnimateContainer>
-                        <TextField
-                          key="state"
-                          placeholder="State e.g Podkarpackie"
-                          icon="fas fa-mountain"
-                          name="state"
-                          type="text"
-                        />
-                        <TextField
-                          key="city"
-                          placeholder="City"
-                          icon="fas fa-city"
-                          name="city"
-                          type="text"
-                        />
-                        <TextField
-                          key="street"
-                          placeholder="Street"
-                          icon="fas fa-road"
-                          name="street"
-                          type="text"
-                        />
-                        <TextField
-                          key="apartment"
-                          placeholder="Apartment"
-                          icon="fas fa-map-marker"
-                          name="apartment"
-                          type="text"
-                        />
-                        <TextField
-                          key="zipCode"
-                          placeholder="Postal code e.g - 00-000"
-                          icon="fas fa-envelope"
-                          name="zipCode"
-                          type="text"
-                        />
-                        <TextField
-                          key="phone"
-                          placeholder="Phone +42-122-512-613"
-                          icon="fas fa-phone-alt"
-                          name="phone"
-                          type="tel"
-                        />
-                      </AnimateContainer>
-                      <button className="button" type="submit">
-                        Update
-                      </button>
-                    </Form>
-                  </Formik>
-                )}
+                <AnimatePresence>
+                  {!openAddress && (
+                    <AnimateContainer className="settings__txt--dimmed">
+                      <AnimateItem align="left">
+                        <p>
+                          City name: <span>{user?.shippingAddress.city}</span>
+                        </p>
+                      </AnimateItem>
+                      <AnimateItem align="left">
+                        <p>
+                          Street name:
+                          <span> {user?.shippingAddress.street}</span>
+                        </p>
+                      </AnimateItem>
+                      <AnimateItem align="left">
+                        <p>
+                          Apartment:
+                          <span>{user?.shippingAddress.apartment}</span>
+                        </p>
+                      </AnimateItem>
+                      <AnimateItem align="left">
+                        <p>
+                          State:
+                          <span>{user?.shippingAddress.state}</span>
+                        </p>
+                      </AnimateItem>
+                      <AnimateItem align="left">
+                        <p>
+                          Zip-code:
+                          <span>{user?.shippingAddress.zipCode} </span>
+                        </p>
+                      </AnimateItem>
+                      <AnimateItem align="left">
+                        <p>
+                          Phone number:
+                          <span> {user?.shippingAddress.phone}</span>
+                        </p>
+                      </AnimateItem>
+                    </AnimateContainer>
+                  )}
+
+                  {openAddress && (
+                    <Formik
+                      initialValues={{
+                        id: user._id,
+                        name: user?.name,
+                        city: user?.shippingAddress.city,
+                        street: user?.shippingAddress.street,
+                        apartment: user?.shippingAddress.apartment,
+                        zipCode: user?.shippingAddress.zipCode,
+                        state: user?.shippingAddress.state,
+                        phone: user?.shippingAddress.phone,
+                        stripeUserId: user?.stripeUserId,
+                      }}
+                      validationSchema={shippingAddress}
+                      onSubmit={values => updateAddress(values)}
+                    >
+                      <Form>
+                        <AnimateContainer>
+                          <TextField
+                            key="state"
+                            placeholder="State e.g Podkarpackie"
+                            icon="fas fa-mountain"
+                            name="state"
+                            type="text"
+                          />
+                          <TextField
+                            key="city"
+                            placeholder="City"
+                            icon="fas fa-city"
+                            name="city"
+                            type="text"
+                          />
+                          <TextField
+                            key="street"
+                            placeholder="Street"
+                            icon="fas fa-road"
+                            name="street"
+                            type="text"
+                          />
+                          <TextField
+                            key="apartment"
+                            placeholder="Apartment"
+                            icon="fas fa-map-marker"
+                            name="apartment"
+                            type="text"
+                          />
+                          <TextField
+                            key="zipCode"
+                            placeholder="Postal code e.g - 00-000"
+                            icon="fas fa-envelope"
+                            name="zipCode"
+                            type="text"
+                          />
+                          <TextField
+                            key="phone"
+                            placeholder="Phone +42-122-512-613"
+                            icon="fas fa-phone-alt"
+                            name="phone"
+                            type="tel"
+                          />
+                        </AnimateContainer>
+                        <button className="button" type="submit">
+                          Update
+                        </button>
+                      </Form>
+                    </Formik>
+                  )}
+                </AnimatePresence>
               </div>
               <section>
                 <div className="settings__options">
@@ -180,6 +201,10 @@ const Account = () => {
                 </div>
                 {showOrders && <OrderHistory />}
               </section>
+            </section>
+            <section className="settings__payments-methods">
+              <AttackCard headerTitle="Remove or add credit card" />
+              <UserCardList />
             </section>
           </main>
           <div style={{ textAlign: 'center' }}>

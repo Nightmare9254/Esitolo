@@ -6,27 +6,28 @@ import {
 } from './Variants';
 import { motion } from 'framer-motion';
 
-export const AnimateContainer = ({ children }) => {
+export const AnimateContainer = ({ children, className = null }) => {
   return (
     <motion.div
       variants={staggerChildren}
       initial="hidden"
       animate="visible"
       exit="exit"
+      className={className}
     >
       {children}
     </motion.div>
   );
 };
 
-export const AnimateItem = ({ children }) => {
+export const AnimateItem = ({ children, align = 'center' }) => {
   return (
     <motion.div
       variants={animateSlideTop}
       initial="hidden"
       animate="visible"
       exit="exit"
-      style={{ marginTop: '1rem', textAlign: 'center' }}
+      style={{ marginTop: '1rem', textAlign: align }}
     >
       {children}
     </motion.div>

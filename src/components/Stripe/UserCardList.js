@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { getCard } from '../../functions/stripeCard';
 import { fetchFrom } from '../../hooks/fetchFrom';
 import { useCounter } from '../../store/sub';
 
@@ -9,21 +10,11 @@ const UserCardList = () => {
   const { user } = cookies;
   const [prevWallet, setPrevWallet] = useState('');
 
-  const getCard = async () => {
-    const body = { stripeUserId: user.stripeUserId };
-    if (user.stripeUserId) {
-      const creditCards = await fetchFrom('payment/get-cards', {
-        body,
-      });
-      return actions.wallet(creditCards);
-    }
-  };
-
-  const removeCard = async (id, stripeUserId) => {
+  const removeCard = async id => {
     const { deleted } = await fetchFrom('payment/remove-card', {
       body: { paymentMethodId: id },
     });
-    if (deleted) getCard();
+    if (deleted) getCard(user.stripeUserId, actions.wallet);
   };
 
   const displayCard = () => {
@@ -63,10 +54,9 @@ const UserCardList = () => {
           }`}
         >
           {state.wallet.map(({ card, id }, index) => (
-            <>
+            <div key={index}>
               <li
                 tabIndex={0}
-                key={index}
                 className="payment__select-option"
                 value={index}
                 onClick={e => {
@@ -93,7 +83,7 @@ const UserCardList = () => {
               >
                 Remove
               </button>
-            </>
+            </div>
           ))}
         </ul>
       </div>

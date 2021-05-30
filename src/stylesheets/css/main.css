@@ -724,6 +724,10 @@
   width: 100%;
   margin: 1rem 0;
 }
+.settings__payments-methods {
+  background: #1a1d22;
+  padding: 1rem;
+}
 .settings__txt--header {
   color: #eaeae7;
   font-size: 1.6rem;
@@ -1149,12 +1153,15 @@
   color: #eaeae7;
   min-height: 100vh;
 }
-.payment__attach {
-  margin-top: 1rem;
-  padding: 1rem;
+.payment__main {
+  background: #1a1d22;
+  padding: 2rem 1rem;
+  margin-top: 3rem;
 }
 .payment__heading {
   font-size: 2.1rem;
+  color: #eaeae7;
+  font-weight: 400;
 }
 .payment__button {
   background: transparent;
@@ -1162,18 +1169,19 @@
   height: 100%;
   border: none;
   color: #fac646;
+  margin: 1rem 0;
 }
 .payment__button--fully {
   background: #fac646;
   color: #23252f;
   padding: 1rem;
-  margin: 0 1rem;
+  margin: 0;
 }
 .payment__button--border {
   border: 2px solid #fac646;
   color: #eaeae7;
   padding: 0.5rem;
-  margin: 0 1rem;
+  margin: 0;
 }
 .payment__button-toPay {
   width: 100%;
@@ -1192,7 +1200,7 @@
 }
 .payment__parent-card {
   padding: 1rem;
-  background: #23252f;
+  background: #1a1d22;
   border: 1px solid #fff;
   flex: 1;
 }
@@ -1205,12 +1213,11 @@
   justify-content: center;
 }
 .payment__method {
-  padding: 1rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 .payment__form-card {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 2rem;
 }
 .payment__card-container {
@@ -1228,7 +1235,6 @@
 .payment__select-wrapper {
   position: relative;
   user-select: none;
-  padding: 0 1rem;
   width: 100%;
   margin: 2rem 0;
 }

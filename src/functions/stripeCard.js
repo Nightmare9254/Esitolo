@@ -7,12 +7,13 @@ export const setUpNewCard = async (stripeUserId, setCardSetup) => {
   });
   return setCardSetup(intent);
 };
-// export const getCard = async ({ stripeUserId, wallet }) => {
-//   const body = { stripeUserId };
-//   if (stripeUserId) {
-//     const creditCards = await fetchFrom('payment/get-cards', {
-//       body,
-//     });
-//     return wallet(creditCards);
-//   }
-// };
+
+export const getCard = async (stripeUserId, actions) => {
+  const body = { stripeUserId };
+  if (stripeUserId) {
+    const creditCards = await fetchFrom('payment/get-cards', {
+      body,
+    });
+    return actions(creditCards);
+  }
+};
