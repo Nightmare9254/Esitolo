@@ -6,9 +6,12 @@
   min-height: 100vh;
 
   &__main {
+    margin-top: 2rem;
+  }
+  &__wrapper {
+    margin-top: 2rem;
+    padding: 1rem;
     background: a.$dark-gray;
-    padding: 2rem 1rem;
-    margin-top: 3rem;
   }
   &__heading {
     font-size: a.$fs-400;
@@ -66,7 +69,7 @@
     justify-content: center;
   }
   &__method {
-    margin-top: 3rem;
+    margin: 1rem 0;
   }
   &__form-card {
     display: flex;
@@ -85,7 +88,13 @@
   &__price {
     font-weight: 700;
   }
-
+  &__back {
+    font-size: a.$fs-300;
+    margin-left: 1rem;
+  }
+  &__link-text {
+    padding-left: 0.5rem;
+  }
   //custom dd
   &__select-wrapper {
     position: relative;
@@ -154,5 +163,8 @@
     cursor: pointer;
     background-color: #fac646;
     color: a.$font-dark-gray;
+  }
+  .fa-arrow-left {
+    color: a.$font-clr;
   }
 }

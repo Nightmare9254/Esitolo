@@ -116,21 +116,10 @@
   &__similiar-container {
     margin-top: 2rem;
   }
-  &__similiar {
-    display: flex;
-    background: a.$medium-gray;
-    overflow-x: scroll;
-    padding: 1rem 1rem 2rem 1rem;
-  }
-  &__similiar::-webkit-scrollbar {
-    height: 5px;
-  }
-  &__similiar::-webkit-scrollbar-track {
-    border-radius: 100rem;
-  }
-  &__similiar::-webkit-scrollbar-thumb {
-    background: a.$main-yellow;
-    border-radius: 100rem;
+  &__similar-header {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: a.$font-dark-gray;
   }
 }
 

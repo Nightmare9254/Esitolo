@@ -1,5 +1,5 @@
-const API = 'http://localhost:8000';
-// const API = 'https://esitolo-backend.herokuapp.com';
+// const API = 'http://localhost:8000';
+const API = 'https://esitolo-backend.herokuapp.com';
 
 export const fetchFrom = async (endpointURL, options) => {
   const { method, body } = { method: 'POST', body: null, ...options };

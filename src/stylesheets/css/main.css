@@ -34,22 +34,6 @@
   margin-bottom: 2rem;
   font-weight: 400;
 }
-.main__bestsellers {
-  display: flex;
-  background: #23252f;
-  overflow-x: scroll;
-  padding: 1rem 1rem 2rem 1rem;
-}
-.main__bestsellers::-webkit-scrollbar {
-  height: 5px;
-}
-.main__bestsellers::-webkit-scrollbar-track {
-  border-radius: 100rem;
-}
-.main__bestsellers::-webkit-scrollbar-thumb {
-  background: #fac646;
-  border-radius: 100rem;
-}
 .main__heading-4 {
   margin: 4rem 0;
 }
@@ -89,6 +73,7 @@
   background: #23252f;
   color: #eaeae7;
   display: grid;
+  grid-auto-flow: column;
   margin: 0 1rem;
 }
 .bestsellers__add {
@@ -503,6 +488,26 @@
   justify-content: center;
 }
 
+.custom__scrollBar {
+  display: flex;
+  background: #23252f;
+  overflow-x: scroll;
+  padding: 1rem 1rem 2rem 1rem;
+}
+
+.custom__scrollBar::-webkit-scrollbar {
+  height: 5px;
+}
+
+.custom__scrollBar::-webkit-scrollbar-track {
+  border-radius: 100rem;
+}
+
+.custom__scrollBar::-webkit-scrollbar-thumb {
+  background: #fac646;
+  border-radius: 100rem;
+}
+
 .isBottom {
   margin-bottom: 5rem;
 }
@@ -852,21 +857,10 @@
 .single__similiar-container {
   margin-top: 2rem;
 }
-.single__similiar {
-  display: flex;
+.single__similar-header {
+  margin-top: 2rem;
+  padding: 1rem;
   background: #23252f;
-  overflow-x: scroll;
-  padding: 1rem 1rem 2rem 1rem;
-}
-.single__similiar::-webkit-scrollbar {
-  height: 5px;
-}
-.single__similiar::-webkit-scrollbar-track {
-  border-radius: 100rem;
-}
-.single__similiar::-webkit-scrollbar-thumb {
-  background: #fac646;
-  border-radius: 100rem;
 }
 
 .single__counter {
@@ -1154,9 +1148,12 @@
   min-height: 100vh;
 }
 .payment__main {
+  margin-top: 2rem;
+}
+.payment__wrapper {
+  margin-top: 2rem;
+  padding: 1rem;
   background: #1a1d22;
-  padding: 2rem 1rem;
-  margin-top: 3rem;
 }
 .payment__heading {
   font-size: 2.1rem;
@@ -1213,7 +1210,7 @@
   justify-content: center;
 }
 .payment__method {
-  margin-top: 3rem;
+  margin: 1rem 0;
 }
 .payment__form-card {
   display: flex;
@@ -1231,6 +1228,13 @@
 }
 .payment__price {
   font-weight: 700;
+}
+.payment__back {
+  font-size: 1.6rem;
+  margin-left: 1rem;
+}
+.payment__link-text {
+  padding-left: 0.5rem;
 }
 .payment__select-wrapper {
   position: relative;
@@ -1299,6 +1303,9 @@
   cursor: pointer;
   background-color: #fac646;
   color: #23252f;
+}
+.payment .fa-arrow-left {
+  color: #eaeae7;
 }
 
 .checkout {

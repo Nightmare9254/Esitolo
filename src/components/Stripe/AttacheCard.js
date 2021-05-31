@@ -8,13 +8,12 @@ import {
 import { useCookies } from 'react-cookie';
 import { useEffect, useState } from 'react';
 import { getCard, setUpNewCard } from '../../functions/stripeCard';
-import UserCardList from './UserCardList';
 import { useCounter } from '../../store/sub';
 import { ScaleButtonClick } from '../../framer/Transitions';
 
 const style = {
   base: {
-    backgroundColor: '#23252f',
+    backgroundColor: '#1a1d22',
     color: '#fff',
   },
 };

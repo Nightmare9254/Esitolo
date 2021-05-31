@@ -12,7 +12,15 @@ const Footer = () => {
         <section className="footer__section footer__section--right">
           <ul className="footer__list">
             <li className="footer__item">Facebook</li>
-            <li className="footer__item">Github</li>
+            <li className="footer__item">
+              <a
+                href="https://github.com/Nightmare9254/Esitolo"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Github
+              </a>
+            </li>
             <li className="footer__item">Twitter</li>
           </ul>
         </section>

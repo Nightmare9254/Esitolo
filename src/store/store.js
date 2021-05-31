@@ -60,6 +60,12 @@ const actions = {
       const { toggleDD } = getState();
       setState({ toggleDD: arg });
     },
+  cardId:
+    arg =>
+    ({ getState, setState }) => {
+      const { cardId } = getState();
+      setState({ cardId: arg });
+    },
 };
 
 const Store = createStore({ initialState, actions });

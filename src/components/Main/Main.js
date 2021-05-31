@@ -32,7 +32,7 @@ const Main = () => {
           </div>
         </Link>
         <h3 className="main__heading-3">Bestsellers</h3>
-        <div className="main__bestsellers">
+        <div className="custom__scrollBar">
           <Bestsellers addItem={addItem} />
         </div>
         <h4 className="main__heading-4">Browse by categories</h4>

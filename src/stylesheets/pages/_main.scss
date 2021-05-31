@@ -37,22 +37,7 @@
     margin-bottom: 2rem;
     font-weight: 400;
   }
-  &__bestsellers {
-    display: flex;
-    background: a.$medium-gray;
-    overflow-x: scroll;
-    padding: 1rem 1rem 2rem 1rem;
-  }
-  &__bestsellers::-webkit-scrollbar {
-    height: 5px;
-  }
-  &__bestsellers::-webkit-scrollbar-track {
-    border-radius: 100rem;
-  }
-  &__bestsellers::-webkit-scrollbar-thumb {
-    background: a.$main-yellow;
-    border-radius: 100rem;
-  }
+
   &__heading-4 {
     margin: 4rem 0;
   }
@@ -94,6 +79,7 @@
   background: a.$medium-gray;
   color: a.$font-clr;
   display: grid;
+  grid-auto-flow: column;
   margin: 0 1rem;
 
   &__add {
@@ -515,6 +501,22 @@
     align-items: center;
     justify-content: center;
   }
+}
+.custom__scrollBar {
+  display: flex;
+  background: a.$medium-gray;
+  overflow-x: scroll;
+  padding: 1rem 1rem 2rem 1rem;
+}
+.custom__scrollBar::-webkit-scrollbar {
+  height: 5px;
+}
+.custom__scrollBar::-webkit-scrollbar-track {
+  border-radius: 100rem;
+}
+.custom__scrollBar::-webkit-scrollbar-thumb {
+  background: a.$main-yellow;
+  border-radius: 100rem;
 }
 .isBottom {
   margin-bottom: 5rem;

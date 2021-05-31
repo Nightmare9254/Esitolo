@@ -18,8 +18,8 @@ const SingleProduct = () => {
 
   useEffect(() => {
     fetch(`https://esitolo-backend.herokuapp.com/products?id=${id}`)
-      .then((res) => res.json())
-      .then((json) => {
+      .then(res => res.json())
+      .then(json => {
         setProduct(json);
         setLoading(false);
       });
@@ -37,8 +37,8 @@ const SingleProduct = () => {
       fetch(
         `https://esitolo-backend.herokuapp.com/products/similar?${params.toString()}`
       )
-        .then((res) => res.json())
-        .then((json) => {
+        .then(res => res.json())
+        .then(json => {
           setSimilar(json);
         });
     }
@@ -69,6 +69,7 @@ const SingleProduct = () => {
             <Link to="/">
               <i className="fas fa-arrow-left fa-2x" />
             </Link>
+
             <Link to="/products">
               <i className="fas fa-search fa-2x" />
             </Link>
@@ -185,8 +186,8 @@ const SingleProduct = () => {
           </div>
 
           <div className="single__similar-container">
-            <h4>similar products</h4>
-            <div className="single__similar">
+            <h4 className="single__similar-header">Similar products</h4>
+            <div className="custom__scrollBar">
               {similar.map(
                 ({ _id, image, price, productName, description }) => (
                   <TopProducts
@@ -202,7 +203,6 @@ const SingleProduct = () => {
               )}
             </div>
           </div>
-
           <div className="single__clients-opinions">
             <h4>Clients opinions</h4>
             <div className="single__opinion">
