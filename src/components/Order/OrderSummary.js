@@ -9,7 +9,7 @@ import Menu from '../Menu/Menu';
 import { Formik, Form } from 'formik';
 import TextField from '../Formik/TextField';
 import { AnimateContainer, ScaleButtonClick } from '../../framer/Transitions';
-import { shippingAddress } from '../Formik/YupValidation';
+import { shippingAddressAnonymous } from '../Formik/YupValidation';
 import Anonymous from '../../functions/Anonymous';
 
 const OrderSummary = () => {
@@ -99,7 +99,7 @@ const OrderSummary = () => {
                   zipCode: anonymous?.zipCode,
                   phone: anonymous?.phone,
                 }}
-                validationSchema={shippingAddress}
+                validationSchema={shippingAddressAnonymous}
                 onSubmit={values => {
                   localStorage.setItem(
                     'anonymous-address',

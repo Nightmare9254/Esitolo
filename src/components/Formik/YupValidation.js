@@ -33,6 +33,24 @@ export const formSchemaSignIn = yup.object({
 });
 
 export const shippingAddress = yup.object({
+  state: yup
+    .string()
+    .min(2, 'Name must contains at least 2 letters')
+    .required(),
+  city: yup.string().min(2).required('City is required'),
+  street: yup.string().required('Street is required'),
+  apartment: yup.number().min(1).required('Apartment number is required'),
+  zipCode: yup
+    .string()
+    .matches(/^\d{2}(?:[-\s]\d{3})?$/, 'Invalid zip code')
+    .required('Postal code is required'),
+  phone: yup
+    .string()
+    .max(9, 'Phone number max 9')
+    .required('Phone number is required'),
+});
+
+export const shippingAddressAnonymous = yup.object({
   name: yup
     .string()
     .min(2, 'Name must contains at least 2 letters ')

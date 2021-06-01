@@ -2,26 +2,34 @@ import { useFetch } from '../../hooks/useFetch';
 import { useCookies } from 'react-cookie';
 import { formatDate } from '../../functions/formatDate';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const OrderHistory = () => {
   const [cookies] = useCookies();
   const { user } = cookies;
-
   const { data, loading } = useFetch(`/orders/history?userId=${user._id}`);
 
-  const cancelOrder = (paymentId, orderId, price) => {
-    fetch('https://esitolo-backend.herokuapp.com/orders/cancel', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ paymentId, orderId, price: price * 100 }),
-    });
+  const cancelOrder = async (paymentId, orderId, price) => {
+    const res = await fetch(
+      'https://esitolo-backend.herokuapp.com/orders/cancel',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ paymentId, orderId, price: price * 100 }),
+      }
+    );
+
+    window.location.reload();
   };
 
-  console.log(data);
   return (
     <main className="history">
+      {data.length === 0 && (
+        <p className="history__info">You don't have orders yet.</p>
+      )}
       {!loading && (
         <>
           {data.map(item => (

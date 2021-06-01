@@ -169,7 +169,7 @@ const Payment = () => {
                     handleSubmitPayment(e);
                   }}
                 >
-                  PAY NOW
+                  PAY NOW{' '}
                   <span className="payment__price">
                     {totalToPay.toFixed(2)}$
                   </span>
