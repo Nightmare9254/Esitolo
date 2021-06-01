@@ -1440,6 +1440,20 @@
   color: #eaeae7;
   margin-bottom: 2rem;
 }
+.history__container-actions {
+  text-align: right;
+}
+.history__delete-btn {
+  background: #fa4646;
+  border: none;
+  padding: 0.5rem;
+  margin: 2rem 0;
+}
+.history__info {
+  text-align: center;
+  color: #929292;
+  font-size: 1.6rem;
+}
 
 * {
   padding: 0;

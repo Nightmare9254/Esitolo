@@ -9,6 +9,17 @@ const OrderHistory = () => {
 
   const { data, loading } = useFetch(`/orders/history?userId=${user._id}`);
 
+  const cancelOrder = (paymentId, orderId, price) => {
+    fetch('https://esitolo-backend.herokuapp.com/orders/cancel', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ paymentId, orderId, price: price * 100 }),
+    });
+  };
+
+  console.log(data);
   return (
     <main className="history">
       {!loading && (
@@ -63,6 +74,19 @@ const OrderHistory = () => {
                   Status:
                   <span className="history__status-type">{item.status}</span>
                 </p>
+                <div className="history__container-actions">
+                  <p className="history__info">
+                    You can cancel your order when status is in transit
+                  </p>
+                  <button
+                    className="history__delete-btn"
+                    onClick={() =>
+                      cancelOrder(item.sessionId, item._id, item.price)
+                    }
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </section>
           ))}

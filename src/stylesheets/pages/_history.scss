@@ -51,4 +51,18 @@
     color: a.$font-clr;
     margin-bottom: 2rem;
   }
+  &__container-actions {
+    text-align: right;
+  }
+  &__delete-btn {
+    background: a.$bright-red;
+    border: none;
+    padding: 0.5rem;
+    margin: 2rem 0;
+  }
+  &__info {
+    text-align: center;
+    color: a.$font-gray-clr;
+    font-size: a.$fs-300;
+  }
 }
