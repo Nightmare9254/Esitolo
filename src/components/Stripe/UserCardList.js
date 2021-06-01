@@ -79,7 +79,7 @@ const UserCardList = () => {
               </li>
               <button
                 className="payment__button payment__remove"
-                onClick={() => removeCard(id, user.stripeUserId)}
+                onClick={() => removeCard(id)}
               >
                 Remove
               </button>
