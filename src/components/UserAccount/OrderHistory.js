@@ -1,13 +1,15 @@
 import { useFetch } from '../../hooks/useFetch';
 import { useCookies } from 'react-cookie';
 import { formatDate } from '../../functions/formatDate';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { cancelOrder } from '../../functions/stripeCard';
 
 const OrderHistory = () => {
   const [cookies] = useCookies();
   const { user } = cookies;
   const { data, loading } = useFetch(`/orders/history?userId=${user._id}`);
+
+  const history = useHistory();
 
   return (
     <main className="history">
@@ -76,7 +78,12 @@ const OrderHistory = () => {
                     <button
                       className="history__delete-btn"
                       onClick={() => {
-                        cancelOrder(item.sessionId, item._id, roundedPrice);
+                        cancelOrder(
+                          item.sessionId,
+                          item._id,
+                          roundedPrice,
+                          history
+                        );
                       }}
                     >
                       Cancel
