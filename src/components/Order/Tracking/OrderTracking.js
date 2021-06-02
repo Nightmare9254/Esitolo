@@ -8,15 +8,16 @@ import { Link } from 'react-router-dom';
 import { formatDate } from '../../../functions/formatDate';
 import { useCookies } from 'react-cookie';
 import { cancelOrder } from '../../../functions/stripeCard';
+import { useHistory, withRouter } from 'react-router-dom';
 
 const OrderTracking = () => {
   const { id } = useParams();
+  const history = useHistory();
 
   const { data, loading } = useFetch(`/orders/order?id=${id}`);
   const [cookies] = useCookies();
   const { user } = cookies;
 
-  console.log(data);
   return (
     <>
       <div className="order">
@@ -106,7 +107,7 @@ const OrderTracking = () => {
                       fontWeight: 'bold',
                     }}
                   >
-                    {data.price}$
+                    {!user ? data.price / 100 : data.price}$
                   </td>
                 </tr>
                 {!user && (
@@ -114,9 +115,14 @@ const OrderTracking = () => {
                     <th>Cancel order</th>
                     <td>
                       <button
+                        className="history__delete-btn"
                         onClick={() => {
-                          cancelOrder(data.sessionId, data._id, data.price);
-                          console.log('working...');
+                          cancelOrder(
+                            data.sessionId,
+                            data._id,
+                            data.price,
+                            history
+                          );
                         }}
                       >
                         Cancel
@@ -142,4 +148,4 @@ const OrderTracking = () => {
   );
 };
 
-export default OrderTracking;
+export default withRouter(OrderTracking);

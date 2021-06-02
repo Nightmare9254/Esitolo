@@ -25,6 +25,11 @@ const Anonymous = () => {
       body,
     });
 
+    sessionStorage.setItem(
+      'anonymous-session-id',
+      JSON.stringify(session.payment_intent)
+    );
+
     const { error } = await stripe.redirectToCheckout({
       sessionId: session.id,
     });

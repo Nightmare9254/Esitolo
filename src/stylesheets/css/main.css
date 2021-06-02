@@ -1446,6 +1446,7 @@
 }
 .history__delete-btn {
   background: #fa4646;
+  color: #eaeae7;
   border: none;
   padding: 0.5rem;
   margin: 2rem 0;
