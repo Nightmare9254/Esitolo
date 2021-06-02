@@ -17,3 +17,16 @@ export const getCard = async (stripeUserId, actions) => {
     return actions(creditCards);
   }
 };
+
+export const cancelOrder = async (paymentId, orderId, price) => {
+  console.log('ddd');
+  const body = { paymentId, orderId, price: price * 100 };
+
+  const res = await fetchFrom('orders/cancel', { body });
+
+  // if (user) {
+  window.location = '/';
+  return;
+  // }
+  // window.location = '/';
+};

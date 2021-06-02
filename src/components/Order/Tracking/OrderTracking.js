@@ -6,12 +6,17 @@ import StarRating from '../../../functions/StarRating';
 import { PulsingAnimation } from '../../../framer/Transitions';
 import { Link } from 'react-router-dom';
 import { formatDate } from '../../../functions/formatDate';
+import { useCookies } from 'react-cookie';
+import { cancelOrder } from '../../../functions/stripeCard';
 
 const OrderTracking = () => {
   const { id } = useParams();
 
   const { data, loading } = useFetch(`/orders/order?id=${id}`);
+  const [cookies] = useCookies();
+  const { user } = cookies;
 
+  console.log(data);
   return (
     <>
       <div className="order">
@@ -104,8 +109,24 @@ const OrderTracking = () => {
                     {data.price}$
                   </td>
                 </tr>
+                {!user && (
+                  <tr>
+                    <th>Cancel order</th>
+                    <td>
+                      <button
+                        onClick={() => {
+                          cancelOrder(data.sessionId, data._id, data.price);
+                          console.log('working...');
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    </td>
+                  </tr>
+                )}
               </tfoot>
             </table>
+
             <section>
               <h3 className="order__rate">Rate us</h3>
               <div>
