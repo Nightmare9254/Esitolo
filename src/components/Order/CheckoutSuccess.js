@@ -50,7 +50,7 @@ const CheckoutSuccess = () => {
       phone: user?.shippingAddress.phone,
     };
 
-    const { orderId } = await fetchFrom('order/create-order', {
+    const { orderId } = await fetchFrom('orders/create-order', {
       body: {
         userId: user ? user._id : 'anonymous',
         price: user ? totalToPay.toFixed(2) : details.amount_total,

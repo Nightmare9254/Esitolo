@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 const SignUp = () => {
   const history = useHistory();
-  const registration = (values) => {
+  const registration = values => {
     fetch('https://esitolo-backend.herokuapp.com/auth/create-account', {
       method: 'POST',
       headers: {
@@ -14,8 +14,8 @@ const SignUp = () => {
       },
       body: JSON.stringify(values),
     })
-      .then((res) => res.json())
-      .then((json) => {
+      .then(res => res.json())
+      .then(json => {
         if (json.created) history.push('/');
       });
   };
@@ -45,7 +45,7 @@ const SignUp = () => {
           password: '',
           confirmPassword: '',
         }}
-        onSubmit={(values) => registration(values)}
+        onSubmit={values => registration(values)}
         validationSchema={formSchemaSignUp}
       >
         <Form className="auth__form">
