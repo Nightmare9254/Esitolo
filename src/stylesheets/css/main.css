@@ -1,7 +1,23 @@
+/**
+*
+* Testing
+*
+**/
 .main {
   background: #31343a;
   min-height: 100vh;
   padding: 2rem;
+}
+@media (min-width: 1366px) {
+  .main {
+    padding: 5rem;
+  }
+}
+@media (min-width: 1366px) {
+  .main__flow {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 .main__search {
   display: flex;
@@ -10,6 +26,12 @@
   border-radius: 4rem;
   background: #23252f;
   padding: 0.5rem 0 0.5rem 2rem;
+}
+@media (min-width: 1366px) {
+  .main__search {
+    max-width: 40%;
+    margin: 7rem auto 0 auto;
+  }
 }
 .main__search-text {
   font-size: 1.6rem;
@@ -42,6 +64,14 @@
   overflow-x: scroll;
   padding: 1rem 1rem 2rem 0rem;
 }
+@media (min-width: 1366px) {
+  .main__categories {
+    display: block;
+    padding: 0;
+    max-height: 70rem;
+    overflow-y: scroll;
+  }
+}
 .main__categories .category {
   min-width: 9rem;
   margin-right: 2rem;
@@ -61,12 +91,60 @@
 .main__categories::-webkit-scrollbar {
   height: 4px;
 }
+@media (min-width: 1366px) {
+  .main__categories::-webkit-scrollbar {
+    height: 1px;
+    width: 5px;
+  }
+}
 .main__categories::-webkit-scrollbar-track {
   border-radius: 100rem;
 }
 .main__categories::-webkit-scrollbar-thumb {
   background: #fac646;
   border-radius: 100rem;
+}
+@media (min-width: 768px) {
+  .main__restocked {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  .main__restocked .product {
+    height: auto;
+    min-height: 15rem;
+  }
+  .main__restocked .product__btns-container {
+    top: 2rem;
+  }
+  .main__restocked div:last-child {
+    grid-column: 1/3;
+  }
+  .main__restocked .button-restocked {
+    align-self: center;
+    justify-self: center;
+  }
+}
+@media (min-width: 1366px) {
+  .main__restocked {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    margin-left: 2rem;
+  }
+  .main__restocked .button-restocked {
+    align-self: center;
+    justify-self: center;
+    grid-row: 3/4;
+    grid-column: 2/3;
+  }
+}
+@media (min-width: 1366px) {
+  .main .custom__scrollBar {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 2rem;
+  }
 }
 
 .bestsellers {
@@ -76,12 +154,28 @@
   grid-auto-flow: column;
   margin: 0 1rem;
 }
+@media (min-width: 1366px) {
+  .bestsellers {
+    display: block;
+    margin: 1rem 0;
+    width: 80%;
+    width: max-content;
+    position: relative;
+  }
+}
 .bestsellers__add {
   height: 25px;
   background-color: #fac646;
   border: none;
   color: #23252f;
   padding: 0.5rem;
+}
+@media (min-width: 1366px) {
+  .bestsellers__add {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 .bestsellers__link {
   grid-area: 1/1;
@@ -97,6 +191,11 @@
 }
 .bestsellers__data {
   justify-self: start;
+}
+@media (min-width: 1366px) {
+  .bestsellers__data {
+    order: 2;
+  }
 }
 .bestsellers__price {
   margin: 1rem 0;
@@ -210,6 +309,28 @@
   bottom: 0;
   z-index: 5;
 }
+@media (min-width: 1366px) {
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    bottom: auto;
+  }
+}
+.menu__logo {
+  display: none;
+}
+@media (min-width: 1366px) {
+  .menu__logo {
+    display: block;
+    margin-right: auto;
+    font-size: 2.8rem;
+    background: linear-gradient(to right, #fac646, #fa4646);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
 .menu__container {
   display: flex;
   justify-content: space-between;
@@ -217,15 +338,34 @@
   background: #1a1d22;
   padding: 1.5rem 2.5rem;
 }
+@media (min-width: 1366px) {
+  .menu__container {
+    background: #23252f;
+    justify-content: flex-end;
+  }
+}
 .menu__item {
   text-align: center;
   position: relative;
+}
+@media (min-width: 1366px) {
+  .menu__item {
+    margin: 0 1rem;
+  }
 }
 .menu__item .fa-home,
 .menu__item .fa-shopping-basket,
 .menu__item .fa-user,
 .menu__item .fa-sign-in-alt {
   color: #eaeae7;
+}
+@media (min-width: 1366px) {
+  .menu__item .fa-home,
+.menu__item .fa-shopping-basket,
+.menu__item .fa-user,
+.menu__item .fa-sign-in-alt {
+    font-size: 2.1rem;
+  }
 }
 .menu__describe {
   color: #eaeae7;

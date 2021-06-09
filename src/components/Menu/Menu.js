@@ -25,6 +25,9 @@ const Menu = () => {
   return (
     <div className="menu">
       <div className="menu__container">
+        <div className="menu__logo">
+          <Link to="/">Esitolo </Link>
+        </div>
         <div
           className={`menu__item ${pos === 2 ? 'menu__item--active' : null}`}
         >

@@ -36,8 +36,10 @@ const Main = () => {
           <Bestsellers addItem={addItem} />
         </div>
         <h4 className="main__heading-4">Browse by categories</h4>
-        <Categories />
-        <Restocked addItem={addItem} />
+        <div className="main__flow">
+          <Categories />
+          <Restocked addItem={addItem} />
+        </div>
       </section>
       <Footer />
       <Menu />
