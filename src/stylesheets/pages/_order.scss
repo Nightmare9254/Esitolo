@@ -102,7 +102,9 @@
     background: a.$main-yellow;
     color: a.$font-dark-gray;
     padding: 0.5rem 1rem;
-    border-radius: 10rem;
+    margin: 1rem 0;
+    border: none;
+    align-self: flex-end;
   }
   //   FORM USER SHIPPING ADDRESS
   &__shipping-data {
@@ -124,12 +126,15 @@
     border: none;
     padding: 0.5rem;
   }
+
   .fa-user,
   .fa-road,
   .fa-map-marker,
   .fa-envelope,
+  .fa-gavel,
   .fa-phone-alt {
     font-size: a.$fs-300;
+    color: a.$font-clr;
   }
 
   &__table {
@@ -191,5 +196,34 @@
   }
   &__list-wrapper {
     margin-bottom: 1rem;
+  }
+  &__review {
+    margin: 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  &__review-header {
+    margin: 2rem 0;
+  }
+  &__review-area {
+    resize: none;
+  }
+  &__select-wrapper {
+    margin: 2rem 0;
+  }
+  &__select {
+    display: flex;
+    align-items: center;
+  }
+  &__select-desc {
+    color: a.$font-clr;
+    font-size: a.$fs-200;
+    margin: 0.25rem 0 0 1rem;
+  }
+  &__message {
+    color: a.$font-clr;
+    font-size: a.$fs-300;
+    text-align: center;
+    margin: 1rem 0;
   }
 }

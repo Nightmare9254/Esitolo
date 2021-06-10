@@ -1198,7 +1198,9 @@
   background: #fac646;
   color: #23252f;
   padding: 0.5rem 1rem;
-  border-radius: 10rem;
+  margin: 1rem 0;
+  border: none;
+  align-self: flex-end;
 }
 .order__shipping-data {
   text-align: center;
@@ -1223,8 +1225,10 @@
 .order .fa-road,
 .order .fa-map-marker,
 .order .fa-envelope,
+.order .fa-gavel,
 .order .fa-phone-alt {
   font-size: 1.6rem;
+  color: #eaeae7;
 }
 .order__table {
   color: #929292;
@@ -1280,6 +1284,35 @@
 }
 .order__list-wrapper {
   margin-bottom: 1rem;
+}
+.order__review {
+  margin: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.order__review-header {
+  margin: 2rem 0;
+}
+.order__review-area {
+  resize: none;
+}
+.order__select-wrapper {
+  margin: 2rem 0;
+}
+.order__select {
+  display: flex;
+  align-items: center;
+}
+.order__select-desc {
+  color: #eaeae7;
+  font-size: 1.2rem;
+  margin: 0.25rem 0 0 1rem;
+}
+.order__message {
+  color: #eaeae7;
+  font-size: 1.6rem;
+  text-align: center;
+  margin: 1rem 0;
 }
 
 .payment {
@@ -1616,6 +1649,12 @@ h3 {
 
 h4 {
   font-size: 2.1rem;
+  color: #eaeae7;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 1.6rem;
   color: #eaeae7;
   font-weight: 400;
 }

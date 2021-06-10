@@ -5,7 +5,9 @@ import { ScaleButtonClick } from '../../../framer/Transitions';
 import { useLocal } from '../../../hooks/cart';
 import Menu from '../../Menu/Menu';
 import { ScrollToTop } from '../../SingleComponents/ScrollToTop';
+import { useFetch } from '../../../hooks/useFetch';
 import TopProducts from '../../SingleComponents/TopProducts';
+import moment from 'moment';
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -26,6 +28,8 @@ const SingleProduct = () => {
 
     setImagePosition(0);
   }, [id]);
+
+  const { data } = useFetch(`/products/review?id=${id}`);
 
   useEffect(() => {
     if (product.category !== undefined) {
@@ -205,33 +209,19 @@ const SingleProduct = () => {
           </div>
           <div className="single__clients-opinions">
             <h4>Clients opinions</h4>
-            <div className="single__opinion">
-              <div className="single__header-opinion">
-                <p>anszej@gmail.com</p>
-                <p>21.01.2021</p>
-              </div>
-              <div className="single__content-opinion">
-                <p>Yeyeh pretty ok for that price I'd say</p>
-              </div>
-            </div>
-            <div className="single__opinion">
-              <div className="single__header-opinion">
-                <p>anszej@gmail.com</p>
-                <p>21.01.2021</p>
-              </div>
-              <div className="single__content-opinion">
-                <p>Yeyeh pretty ok for that price I'd say</p>
-              </div>
-            </div>
-            <div className="single__opinion">
-              <div className="single__header-opinion">
-                <p>anszej@gmail.com</p>
-                <p>21.01.2021</p>
-              </div>
-              <div className="single__content-opinion">
-                <p>Yeyeh pretty ok for that price I'd say</p>
-              </div>
-            </div>
+            {data.reviews.map(({ author, review, date }, key) => {
+              return (
+                <div key={key} className="single__opinion">
+                  <div className="single__header-opinion">
+                    <p>{author}</p>
+                    <p>{moment(date).fromNow()}</p>
+                  </div>
+                  <div className="single__content-opinion">
+                    <p>{review}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <Menu />
         </div>

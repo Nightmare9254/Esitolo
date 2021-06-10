@@ -9,6 +9,8 @@ import { formatDate } from '../../../functions/formatDate';
 import { useCookies } from 'react-cookie';
 import { cancelOrder } from '../../../functions/stripeCard';
 import { useHistory, withRouter } from 'react-router-dom';
+import { useState } from 'react';
+import { fetchFrom } from '../../../hooks/fetchFrom';
 
 const OrderTracking = () => {
   const { id } = useParams();
@@ -18,6 +20,19 @@ const OrderTracking = () => {
   const [cookies] = useCookies();
   const { user } = cookies;
 
+  const [review, setReview] = useState('');
+  const [itemsId, setItemsId] = useState([]);
+  const [message, setMessage] = useState('');
+
+  const addReview = async () => {
+    const body = {
+      review,
+      itemsId,
+      userName: user ? user.name : 'Anonymous',
+    };
+    const { resMessage } = await fetchFrom('orders/create-review', { body });
+    setMessage(resMessage);
+  };
   return (
     <>
       <div className="order">
@@ -133,6 +148,51 @@ const OrderTracking = () => {
               </tfoot>
             </table>
 
+            <section className="order__review">
+              <h4 className="order__review-header">Leave a review</h4>
+              <div>
+                <h5>Choose products</h5>
+                {data.items.map(({ name, id }) => {
+                  return (
+                    <div key={id} className="order__select-wrapper">
+                      <label className="order__select">
+                        <input
+                          onClick={e => {
+                            if (e.target.checked) {
+                              setItemsId([...itemsId, id]);
+                            } else {
+                              const index = itemsId.find(i => i === id);
+                              const newItems = [...itemsId];
+                              newItems.splice(index, 1);
+                              setItemsId(newItems);
+                            }
+                          }}
+                          type="checkbox"
+                          className="order__select-item"
+                        />
+                        <p className="order__select-desc">{name}</p>
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+              <label className="label">
+                <i className="fas fa-gavel"></i>
+                <textarea
+                  type="text"
+                  placeholder="Quality product, fast shipping"
+                  className="label__input order__review-area"
+                  wrap="off"
+                  rows="1"
+                  value={review}
+                  onChange={e => setReview(e.target.value)}
+                />
+              </label>
+              <button type="button" className="order__btn" onClick={addReview}>
+                Add
+              </button>
+              {message && <p className="order__message">{message}</p>}
+            </section>
             <section>
               <h3 className="order__rate">Rate us</h3>
               <div>

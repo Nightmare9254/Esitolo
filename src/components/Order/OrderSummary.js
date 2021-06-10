@@ -32,7 +32,7 @@ const OrderSummary = () => {
   total = subTotal - discount;
 
   const checkUserAddress = () => {
-    if (anonymous) {
+    if (anonymous && !user) {
       return true;
     }
     if (user && user.shippingAddress.city.length > 2) {
@@ -225,7 +225,7 @@ const OrderSummary = () => {
         </div>
         <div className="order__bar">
           <p>USD: {total.toFixed(2)}$</p>
-          {isAddress && (
+          {isAddress.address && (
             <>
               {user && (
                 <ScaleButtonClick>
