@@ -19,13 +19,31 @@ const Product = ({
 }) => {
   return (
     <div
-      style={{ position: 'relative' }}
+      style={{
+        position: 'relative',
+        background: '#1a1d22',
+        overflow: 'hidden',
+      }}
       ref={refItem}
-      className={`${isBottom ? 'isBottom' : ''}`}
+      // className={`${isBottom ? 'isBottom' : ''}`}
+      className={`product ${view ? 'product--searched' : ''}`}
     >
       <Link to={`/product/${id}`}>
-        <div className={`product ${view ? 'product--searched' : ''}`}>
-          <div className="product__container-img">
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'center',
+          }}
+        >
+          <div
+            style={{
+              maxWidth: '12rem',
+              minWidth: '12rem',
+              padding: '1rem',
+            }}
+            className="product__container-img"
+          >
             <img src={image[0]} className="product__img" alt="product" />
           </div>
           <div className="product__data">

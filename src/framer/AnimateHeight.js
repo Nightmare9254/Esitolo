@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { animateHeight } from './Variants';
+import { animateHeight, animateWidth } from './Variants';
 
 const AnimateHeight = ({
   isVisible,
@@ -7,10 +7,11 @@ const AnimateHeight = ({
   className,
   init = 'open',
   animate = 'closed',
+  from,
 }) => {
   return (
     <motion.div
-      variants={animateHeight}
+      variants={from ? animateWidth : animateHeight}
       initial={isVisible ? init : animate}
       animate={isVisible ? init : animate}
       inherit={false}

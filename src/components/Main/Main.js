@@ -20,17 +20,19 @@ const Main = () => {
   return (
     <>
       <section className="main">
-        <Link to="/products">
-          <div
-            onClick={() => actions.openSearch(true)}
-            className="main__search"
-          >
-            <p className="main__search-text">Search something amazing</p>
-            <div className="main__icon">
-              <i className="fas fa-search"></i>
+        <div>
+          <Link to="/products">
+            <div
+              onClick={() => actions.openSearch(true)}
+              className="main__search main__search--mobile"
+            >
+              <p className="main__search-text">Search something amazing</p>
+              <div className="main__icon">
+                <i className="fas fa-search"></i>
+              </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+        </div>
         <h3 className="main__heading-3">Bestsellers</h3>
         <div className="custom__scrollBar">
           <Bestsellers addItem={addItem} />
@@ -39,6 +41,25 @@ const Main = () => {
         <div className="main__flow">
           <Categories />
           <Restocked addItem={addItem} />
+          <div
+            style={{
+              background: '#000',
+              width: '300px',
+              paddingTop: '2rem',
+              color: '#fff',
+            }}
+          >
+            <p style={{ fontSize: '30px', textAlign: 'center' }}>End in</p>
+            <img
+              style={{ width: '300px' }}
+              src="https://animush.pl/wp-content/uploads/2019/11/animush-kubek-serio-3.jpg"
+            />
+            <div style={{ textAlign: 'center', fontSize: '20px' }}>
+              <p>Kubek z fiuta</p>
+              <p>56.78</p>
+              <p>Go to product</p>
+            </div>
+          </div>
         </div>
       </section>
       <Footer />

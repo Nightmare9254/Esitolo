@@ -13,6 +13,9 @@ html {
   font-size: 10px;
   font-family: 'Hind', sans-serif;
   scroll-behavior: smooth;
+  @include a.media('>=desktop') {
+    font-size: 11px;
+  }
 }
 
 h3 {

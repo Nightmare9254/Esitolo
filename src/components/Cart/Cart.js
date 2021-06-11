@@ -61,7 +61,7 @@ const Cart = () => {
           </ScaleButtonClick>
         )}
       </div>
-      <Menu />
+      {/* <Menu /> */}
     </>
   );
 };

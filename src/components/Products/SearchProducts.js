@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { PulsingAnimation, ShowInput } from '../../framer/Transitions';
 import { useLocal } from '../../hooks/cart';
+import { useCounter } from '../../store/sub';
 import Product from '../Product/Product';
 
 const SpeechRecognition =
@@ -122,7 +123,7 @@ const SearchProducts = ({ toggleState }) => {
             placeholder="Search for favorite's things"
             onChange={e => setSearch(e.target.value)}
             onKeyDown={e => {
-              if (e.keyCode === 13) {
+              if (e.key === 'Enter') {
                 dispatch({ type: 'ADD' });
                 searchItems(search);
               }

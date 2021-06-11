@@ -16,6 +16,24 @@ const animateHeight = {
     },
   },
 };
+const animateWidth = {
+  open: {
+    width: '20vw',
+    transition: {
+      type: 'tween',
+      ease: 'easeOut',
+      duration: 0.5,
+    },
+  },
+  closed: {
+    width: '80vw',
+    transition: {
+      type: 'tween',
+      ease: 'easeOut',
+      duration: 0.5,
+    },
+  },
+};
 
 const animateSlideTop = {
   hidden: { opacity: 0 },
@@ -99,4 +117,5 @@ export {
   staggerChildren,
   rotateVariants,
   animateOpacity,
+  animateWidth,
 };

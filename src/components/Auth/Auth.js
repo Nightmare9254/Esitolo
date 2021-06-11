@@ -1,23 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import AnimateHeight from '../../framer/AnimateHeight';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import React from 'react';
+import { useDimensions } from '../../hooks/useDimensions';
 
 const Auth = () => {
   const [signIn, setSignIn] = useState(true);
-
+  const [windowRef, windowSize] = useDimensions({});
+  const [animateFromSide, setAnimateFromSide] = useState(false);
   const togglePage = () => {
     setSignIn(current => !current);
   };
+  useEffect(() => {
+    if (windowSize.width >= 1366) {
+      setAnimateFromSide(true);
+    }
+  }, [windowSize]);
 
   return (
-    <div className="auth">
+    <div className="auth" ref={windowRef}>
       <div className="auth__signIn">
         <AnimatePresence>
           {signIn && (
-            <AnimateHeight isVisible={signIn} className="auth__toggle-box">
+            <AnimateHeight
+              from={animateFromSide}
+              isVisible={signIn}
+              className="auth__toggle-box"
+            >
               <p className="auth__toggle-txt">Create brand new account</p>
               <button
                 onClick={togglePage}
@@ -28,7 +39,11 @@ const Auth = () => {
             </AnimateHeight>
           )}
           {!signIn && (
-            <AnimateHeight className="auth__login" isVisible={signIn}>
+            <AnimateHeight
+              from={animateFromSide}
+              className="auth__login"
+              isVisible={signIn}
+            >
               <SignUp />
             </AnimateHeight>
           )}
@@ -38,6 +53,7 @@ const Auth = () => {
         <AnimatePresence>
           {signIn && (
             <AnimateHeight
+              from={animateFromSide}
               isVisible={signIn}
               init="closed"
               animate="open"
@@ -48,6 +64,7 @@ const Auth = () => {
           )}
           {!signIn && (
             <AnimateHeight
+              from={animateFromSide}
               isVisible={signIn}
               init="closed"
               animate="open"

@@ -1,6 +1,11 @@
 @use '../abstracts' as a;
 
 .auth {
+  @include a.media('>=desktop') {
+    display: flex;
+
+    min-height: 100vh;
+  }
   &__login {
     display: grid;
     place-content: center;
@@ -8,10 +13,20 @@
   &__signIn {
     background-color: a.$main-yellow;
     color: a.$font-dark-gray;
+    display: grid;
+    place-content: center;
+    @include a.media('>=desktop') {
+      display: flex;
+      align-items: center;
+    }
   }
   &__signUp {
     background-color: a.$main-complementary;
     color: a.$font-clr;
+    @include a.media('>=desktop') {
+      display: flex;
+      align-items: center;
+    }
   }
   &__method-main {
     min-width: a.$auth-form;

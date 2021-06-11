@@ -6,13 +6,14 @@
   min-height: 100vh;
   padding: 2rem;
   @include a.media('>=desktop') {
-    padding: 5rem;
+    padding: 2rem;
   }
 
   &__flow {
     @include a.media('>=desktop') {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
+      align-items: flex-start;
     }
   }
   &__search {
@@ -25,6 +26,11 @@
     @include a.media('>=desktop') {
       max-width: 40%;
       margin: 7rem auto 0 auto;
+    }
+  }
+  &__search--mobile {
+    @include a.media('>=desktop') {
+      display: none;
     }
   }
   &__search-text {
@@ -118,14 +124,16 @@
       }
     }
     @include a.media('>=desktop') {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 0.5fr);
       margin-left: 2rem;
+      gap: 2rem;
+      margin-top: -2rem;
+      padding-top: 0;
 
       .button-restocked {
         align-self: center;
-        justify-self: center;
-        grid-row: 3/4;
+        justify-self: flex-end;
+        // grid-row: 3/4;
         grid-column: 2/3;
       }
     }
@@ -268,8 +276,8 @@
   }
 }
 .product--searched {
-  min-height: 6.2rem;
-  max-height: 8rem;
+  min-height: 10rem;
+  max-height: 10rem;
 
   .product__price {
     margin-top: 1rem;
@@ -286,8 +294,8 @@
   }
   .product__img {
     border-radius: 4px;
-    min-height: 6.2rem;
-    max-height: 6.2rem;
+    min-height: 8rem;
+    max-height: 8rem;
     width: 100%;
   }
 }
@@ -295,35 +303,64 @@
 .menu {
   position: sticky;
   width: 100%;
-  bottom: 0;
+  // bottom: 0;
   z-index: 5;
+
   @include a.media('>=desktop') {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
-    bottom: auto;
   }
   &__logo {
     display: none;
     @include a.media('>=desktop') {
       display: block;
-      margin-right: auto;
+      // margin-right: auto;
       font-size: a.$fs-500;
       background: linear-gradient(to right, a.$main-yellow, a.$bright-red);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
   }
+  .main__search--desktop {
+    display: none;
+  }
   &__container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background: a.$dark-gray;
     padding: 1.5rem 2.5rem;
+
     @include a.media('>=desktop') {
-      background: a.$medium-gray;
-      justify-content: flex-end;
+      // background: a.$dark-gray;
+      justify-content: space-between;
+      .main__search--desktop {
+        width: 100%;
+
+        margin: 0;
+
+        display: flex;
+      }
+      .menu__input--flow {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+
+  &__flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    @include a.media('>=desktop') {
+      // background: a.$dark-gray;
+      justify-content: center;
+      width: 15%;
     }
   }
   &__item {
@@ -442,9 +479,24 @@
 .all-products {
   padding: 2rem;
   background: a.$main-complementary;
-  height: 100vh;
+  height: auto;
   overflow-x: hidden;
   overflow: auto;
+
+  &__select-actions {
+    @include a.media('>=desktop') {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+  }
+  &__wrapper-products {
+    @include a.media('>=desktop') {
+      display: grid;
+      grid-template-columns: repeat(2, 30vw);
+      justify-content: center;
+      gap: 3rem 7rem;
+    }
+  }
 
   &__container-search {
     border-radius: 100rem;
@@ -463,6 +515,10 @@
       color: #000;
     }
   }
+  &__actions--desktop {
+    @include a.media('>=desktop') {
+    }
+  }
   &__container-input {
     display: flex;
     justify-content: center;
@@ -470,6 +526,10 @@
 
     border-bottom: 2px solid a.$light-gray;
     padding-bottom: 1rem;
+    @include a.media('>=desktop') {
+      width: 50%;
+      margin: 0 auto;
+    }
   }
   &__container-icon {
     padding: 1rem;
@@ -482,6 +542,10 @@
     background-color: a.$medium-gray;
     color: a.$font-clr;
     font-size: a.$fs-300;
+
+    @include a.media('>=desktop') {
+      width: 100%;
+    }
   }
   &__input:focus {
     outline: none;
@@ -526,6 +590,12 @@
     overflow-y: scroll;
     max-height: 90vh;
     padding-bottom: 15rem;
+    @include a.media('>=desktop') {
+      display: grid;
+      grid-template-columns: repeat(2, 30vw);
+      justify-content: center;
+      gap: 3rem;
+    }
   }
 
   &__results::-webkit-scrollbar {
@@ -552,6 +622,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @include a.media('>=desktop') {
+      justify-content: space-around;
+      margin-top: 3rem;
+    }
   }
   &__recent-container {
     margin-top: 1rem;

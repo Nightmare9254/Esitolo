@@ -29,12 +29,12 @@ const Products = () => {
   };
 
   const observer = useRef();
-  const lastProduct = useCallback((item) => {
+  const lastProduct = useCallback(item => {
     if (observer.current) observer.current.disconnect();
 
-    observer.current = new IntersectionObserver((entries) => {
+    observer.current = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
-        setPage((prev) => prev + 1);
+        setPage(prev => prev + 1);
       }
     });
     if (item) observer.current.observe(item);
@@ -57,9 +57,9 @@ const Products = () => {
       fetch(
         `https://esitolo-backend.herokuapp.com/products/all-products?${params.toString()}`
       )
-        .then((res) => res.json())
-        .then((json) => {
-          setProducts((prev) => [...prev, ...json.items]);
+        .then(res => res.json())
+        .then(json => {
+          setProducts(prev => [...prev, ...json.items]);
           setHasMore(json.hasMore);
           setLoading(false);
         });
@@ -71,29 +71,37 @@ const Products = () => {
     actions.openSearch(false);
   };
 
+  useEffect(() => {
+    console.log(state.isSearch);
+    console.log(toggle);
+  }, [state.isSearch]);
+
   const [addItem] = useLocal();
 
   return (
     <>
       <div className="all-products">
-        <div className="all-products__actions">
+        <div className="all-products__actions all-products__actions--desktop">
           <Link to="/">
             <i className="fas fa-arrow-left fa-2x" />
           </Link>
-          <div className="all-products__container-search" onClick={toggleState}>
+          <div
+            className="all-products__container-search"
+            onClick={() => actions.openSearch(true)}
+          >
             <i className="fas fa-search fa-2x" />
           </div>
         </div>
 
         <AnimatePresence>
-          {toggle && <SearchProducts toggleState={toggleState} />}
+          {state.isSearch && <SearchProducts toggleState={toggleState} />}
         </AnimatePresence>
 
         {search.length === 0 && (
-          <>
+          <div className="all-products__select-actions">
             <select
               defaultValue={state.category}
-              onChange={(e) => actions.updateCategory(e.target.value)}
+              onChange={e => actions.updateCategory(e.target.value)}
               className="all-products__select"
             >
               {categoryList.map((name, index) => (
@@ -104,48 +112,50 @@ const Products = () => {
             </select>
             <select
               className="all-products__select all-products__select--left"
-              onChange={(e) => setSortBy(e.target.value)}
+              onChange={e => setSortBy(e.target.value)}
               onKeyDown={sortProducts}
             >
               <option value="0">Default</option>
               <option value="1">Sort by price (Low to High)</option>
               <option value="2">Sort by price (High to Low)</option>
             </select>
-          </>
+          </div>
         )}
-        {products
-          .sort(sortProducts)
-          .map(({ image, _id, productName, price, description }, index) => {
-            if (products.length === index + 1) {
-              return (
-                <Product
-                  refItem={lastProduct}
-                  isBottom={true}
-                  key={index}
-                  id={_id}
-                  description={description}
-                  productName={productName}
-                  image={image}
-                  price={price}
-                  blur={search.length > 0 ? true : false}
-                  addItem={addItem}
-                />
-              );
-            } else {
-              return (
-                <Product
-                  key={index}
-                  id={_id}
-                  description={description}
-                  productName={productName}
-                  image={image}
-                  price={price}
-                  addItem={addItem}
-                  blur={search.length > 0 ? true : false}
-                />
-              );
-            }
-          })}
+        <div className="all-products__wrapper-products">
+          {products
+            .sort(sortProducts)
+            .map(({ image, _id, productName, price, description }, index) => {
+              if (products.length === index + 1) {
+                return (
+                  <Product
+                    refItem={lastProduct}
+                    isBottom={true}
+                    key={index}
+                    id={_id}
+                    description={description}
+                    productName={productName}
+                    image={image}
+                    price={price}
+                    blur={search.length > 0 ? true : false}
+                    addItem={addItem}
+                  />
+                );
+              } else {
+                return (
+                  <Product
+                    key={index}
+                    id={_id}
+                    description={description}
+                    productName={productName}
+                    image={image}
+                    price={price}
+                    addItem={addItem}
+                    blur={search.length > 0 ? true : false}
+                  />
+                );
+              }
+            })}
+        </div>
         {loading && <PulsingAnimation />}
         {!hasMore && (
           <div className="all-products__container-information">
@@ -165,7 +175,7 @@ const Products = () => {
           </div>
         )}
       </div>
-      <Menu />
+      {/* <Menu /> */}
     </>
   );
 };

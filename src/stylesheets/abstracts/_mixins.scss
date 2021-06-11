@@ -10,3 +10,8 @@
   margin-top: 3rem;
   font-size: fs.$fs-300;
 }
+
+@mixin displayGrid() {
+  display: grid;
+  place-content: center;
+}
