@@ -25,13 +25,18 @@ const OrderTracking = () => {
   const [message, setMessage] = useState('');
 
   const addReview = async () => {
-    const body = {
-      review,
-      itemsId,
-      userName: user ? user.name : 'Anonymous',
-    };
-    const { resMessage } = await fetchFrom('orders/create-review', { body });
-    setMessage(resMessage);
+    if (itemsId.length >= 1) {
+      const body = {
+        review,
+        itemsId,
+        userName: user ? user.name : 'Anonymous',
+      };
+      const { resMessage } = await fetchFrom('orders/create-review', { body });
+      setMessage(resMessage);
+      return;
+    }
+
+    setMessage('Please select at least on product to review');
   };
   return (
     <>

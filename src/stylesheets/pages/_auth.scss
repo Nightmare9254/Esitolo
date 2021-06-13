@@ -3,13 +3,13 @@
 .auth {
   @include a.media('>=desktop') {
     display: flex;
-
     min-height: 100vh;
   }
   &__login {
     display: grid;
     place-content: center;
   }
+
   &__signIn {
     background-color: a.$main-yellow;
     color: a.$font-dark-gray;

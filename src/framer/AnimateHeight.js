@@ -14,9 +14,9 @@ const AnimateHeight = ({
       variants={from ? animateWidth : animateHeight}
       initial={isVisible ? init : animate}
       animate={isVisible ? init : animate}
+      exit="exit"
       inherit={false}
       className={className}
-      layout
     >
       {children}
     </motion.div>

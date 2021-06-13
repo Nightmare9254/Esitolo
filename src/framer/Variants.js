@@ -15,6 +15,7 @@ const animateHeight = {
       duration: 0.5,
     },
   },
+  exit: { opacity: 0 },
 };
 const animateWidth = {
   open: {
@@ -27,12 +28,14 @@ const animateWidth = {
   },
   closed: {
     width: '80vw',
+    padding: '2rem',
     transition: {
       type: 'tween',
       ease: 'easeOut',
       duration: 0.5,
     },
   },
+  exit: { opacity: 0 },
 };
 
 const animateSlideTop = {
@@ -56,7 +59,6 @@ const animateSlideTop = {
 };
 
 const staggerChildren = {
-  hidden: {},
   visible: {
     transition: {
       staggerChildren: 0.3,

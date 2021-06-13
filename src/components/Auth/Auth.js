@@ -8,24 +8,24 @@ import { useDimensions } from '../../hooks/useDimensions';
 
 const Auth = () => {
   const [signIn, setSignIn] = useState(true);
-  const [windowRef, windowSize] = useDimensions({});
-  const [animateFromSide, setAnimateFromSide] = useState(false);
+  const { height, width } = useDimensions();
+  const [animateFrom, setAnimateFrom] = useState(false);
   const togglePage = () => {
     setSignIn(current => !current);
   };
   useEffect(() => {
-    if (windowSize.width >= 1366) {
-      setAnimateFromSide(true);
+    if (width >= 1366) {
+      setAnimateFrom(true);
     }
-  }, [windowSize]);
-
+  }, []);
+  console.log(width);
   return (
-    <div className="auth" ref={windowRef}>
+    <div className="auth">
       <div className="auth__signIn">
         <AnimatePresence>
           {signIn && (
             <AnimateHeight
-              from={animateFromSide}
+              from={animateFrom}
               isVisible={signIn}
               className="auth__toggle-box"
             >
@@ -40,7 +40,7 @@ const Auth = () => {
           )}
           {!signIn && (
             <AnimateHeight
-              from={animateFromSide}
+              from={animateFrom}
               className="auth__login"
               isVisible={signIn}
             >
@@ -53,7 +53,7 @@ const Auth = () => {
         <AnimatePresence>
           {signIn && (
             <AnimateHeight
-              from={animateFromSide}
+              from={animateFrom}
               isVisible={signIn}
               init="closed"
               animate="open"
@@ -64,7 +64,7 @@ const Auth = () => {
           )}
           {!signIn && (
             <AnimateHeight
-              from={animateFromSide}
+              from={animateFrom}
               isVisible={signIn}
               init="closed"
               animate="open"
