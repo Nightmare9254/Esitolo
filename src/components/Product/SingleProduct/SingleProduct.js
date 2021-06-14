@@ -64,6 +64,7 @@ const SingleProduct = () => {
   };
   ScrollToTop();
 
+  console.log(data);
   const [addItem] = useLocal();
   return (
     <>
@@ -209,19 +210,21 @@ const SingleProduct = () => {
           </div>
           <div className="single__clients-opinions">
             <h4>Clients opinions</h4>
-            {data.reviews.map(({ author, review, date }, key) => {
-              return (
-                <div key={key} className="single__opinion">
-                  <div className="single__header-opinion">
-                    <p>{author}</p>
-                    <p>{moment(date).fromNow()}</p>
+            {data.length === 0 && <p>No reviews yet</p>}
+            {data.length >= 1 &&
+              data.reviews.map(({ author, review, date }, key) => {
+                return (
+                  <div key={key} className="single__opinion">
+                    <div className="single__header-opinion">
+                      <p>{author}</p>
+                      <p>{moment(date).fromNow()}</p>
+                    </div>
+                    <div className="single__content-opinion">
+                      <p>{review}</p>
+                    </div>
                   </div>
-                  <div className="single__content-opinion">
-                    <p>{review}</p>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
           <Menu />
         </div>

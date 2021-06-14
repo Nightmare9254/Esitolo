@@ -5,6 +5,11 @@
   min-height: 100vh;
   max-height: auto;
   // padding: 10rem;
+  @include a.media('>=desktop') {
+    // max-width: 1000px;
+    display: grid;
+    grid-template-columns: 350px 1fr 1fr 350px;
+  }
   &__header {
     display: flex;
     align-items: center;
@@ -18,7 +23,8 @@
       // display: grid;
       // grid-template-columns: repeat(2, 1fr);
       // gap: 3rem;
-      width: 40%;
+      grid-column: 2 / 3;
+      width: 100%;
       margin: 0 auto;
     }
   }
@@ -44,6 +50,13 @@
     bottom: 0;
     bottom: 7.7rem;
     width: 100%;
+    @include a.media('>=desktop') {
+      grid-column: 3 / 4;
+      align-self: start;
+      justify-self: center;
+      flex-flow: column;
+      width: 50%;
+    }
   }
   &__btn {
     background: a.$main-yellow;
