@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ScaleButtonClick } from '../../framer/Transitions';
+import { useDimensions } from '../../hooks/useDimensions';
 
 const Product = ({
   id,
@@ -17,54 +18,34 @@ const Product = ({
   addQuantity,
   isInOrder,
 }) => {
+  const { width } = useDimensions();
+
   return (
     <div
-      style={{
-        position: 'relative',
-        background: '#1a1d22',
-        overflow: 'hidden',
-      }}
       ref={refItem}
       // className={`${isBottom ? 'isBottom' : ''}`}
       className={`product ${view ? 'product--searched' : ''}`}
     >
       <Link to={`/product/${id}`}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-          }}
-        >
-          <div
-            style={{
-              maxWidth: '12rem',
-              minWidth: '12rem',
-              padding: '1rem',
-            }}
-            className="product__container-img"
-          >
+        <div>
+          <div className="product__container-img">
             <img src={image[0]} className="product__img" alt="product" />
           </div>
           <div className="product__data">
-            <p className="product__price">{price} $</p>
             <p className="product__name">{productName}</p>
-            <p className="product__description">{description}</p>
+            {/* {width < 1366 && (
+              <p className="product__description">{description}</p>
+            )} */}
             {isInOrder && (
               <p className="product__quantity">Quantity: {quantity}</p>
             )}
           </div>
         </div>
       </Link>
-      <div
-        className={` ${
-          isInCart
-            ? 'product__btns-container--left '
-            : 'product__btns-container'
-        }`}
-      >
-        {!isInCart && !isInOrder && (
-          <ScaleButtonClick>
+      <div className="product__btns-container">
+        <div className="product__action">
+          <p className="product__price">{price} $</p>
+          {!isInCart && !isInOrder && (
             <button
               className="product__add"
               onClick={() =>
@@ -73,8 +54,8 @@ const Product = ({
             >
               <i className="fas fa-plus"></i>
             </button>
-          </ScaleButtonClick>
-        )}
+          )}
+        </div>
         {isInCart && (
           <div className="single__counter">
             <button

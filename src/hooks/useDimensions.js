@@ -1,15 +1,5 @@
-import { useRef, useLayoutEffect, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-// export const useDimensions = () => {
-//   const ref = useRef();
-//   const [dimension, setDimension] = useState({});
-
-//   useLayoutEffect(() => {
-//     setDimension(ref.current.getBoundingClientRect().toJSON());
-//   }, [ref]);
-
-//   return [ref, dimension];
-// };
 export const useDimensions = () => {
   const getWindowDimension = () => {
     const width = window.innerWidth;

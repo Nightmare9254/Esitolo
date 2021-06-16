@@ -7,9 +7,10 @@ import Footer from '../Footer/Footer';
 import { useEffect } from 'react';
 import { useCounter } from '../../store/sub';
 import { useLocal } from '../../hooks/cart';
-
+import HeaderTitle from '../SingleComponents/HeaderTitle';
+import SearchBar from '../Menu/SearchBar';
 const Main = () => {
-  const [state, actions] = useCounter();
+  const [, actions] = useCounter();
 
   useEffect(() => {
     actions.updateCategory('all');
@@ -19,48 +20,23 @@ const Main = () => {
 
   return (
     <>
+      <HeaderTitle title="Esitolo" />
       <section className="main">
-        <div>
-          <Link to="/products">
-            <div
-              onClick={() => actions.openSearch(true)}
-              className="main__search main__search--mobile"
-            >
-              <p className="main__search-text">Search something amazing</p>
-              <div className="main__icon">
-                <i className="fas fa-search"></i>
-              </div>
-            </div>
-          </Link>
-        </div>
-        <h3 className="main__heading-3">Bestsellers</h3>
-        <div className="custom__scrollBar">
-          <Bestsellers addItem={addItem} />
-        </div>
-        <h4 className="main__heading-4">Browse by categories</h4>
+        <SearchBar />
         <div className="main__flow">
-          <Categories />
-          <Restocked addItem={addItem} />
-          <div
-            style={{
-              background: '#000',
-              width: '300px',
-              paddingTop: '2rem',
-              color: '#fff',
-            }}
-          >
-            <p style={{ fontSize: '30px', textAlign: 'center' }}>End in</p>
-            <img
-              style={{ width: '300px' }}
-              src="https://animush.pl/wp-content/uploads/2019/11/animush-kubek-serio-3.jpg"
-            />
-            <div style={{ textAlign: 'center', fontSize: '20px' }}>
-              <p>Kubek z fiuta</p>
-              <p>56.78</p>
-              <p>Go to product</p>
-            </div>
+          <div className="main__flow-first-child main__categories-wrapper">
+            <h3 className="main__heading-3">Bestsellers</h3>
+            <Bestsellers addItem={addItem} />
+          </div>
+          <div className="main__categories-wrapper">
+            <h4 className="main__heading-4">Browse by categories</h4>
+            <Categories />
           </div>
         </div>
+        <Restocked addItem={addItem} />
+        <Link to="/products">
+          <div className=" button-restocked">See more</div>
+        </Link>
       </section>
       <Footer />
       <Menu />

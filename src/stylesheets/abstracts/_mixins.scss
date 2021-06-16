@@ -15,3 +15,30 @@
   display: grid;
   place-content: center;
 }
+
+@mixin shortLine() {
+  content: '';
+  position: absolute;
+  right: -1rem;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background-color: c.$light-gray;
+}
+
+@mixin btnFull($ft-size: fs.$fs-300) {
+  color: fs.$font-dark-gray;
+  background: c.$main-yellow;
+  font-size: $ft-size;
+  border-radius: 2px;
+  padding: 1rem;
+  text-align: center;
+}
+@mixin btnEmpty($ft-size: fs.$fs-300) {
+  color: fs.$font-clr;
+  font-size: $ft-size;
+  border-radius: 2px;
+  border: 2px solid c.$main-yellow;
+  padding: 1rem;
+  text-align: center;
+}

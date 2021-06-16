@@ -21,9 +21,6 @@ const Restocked = ({ addItem }) => {
               addItem={addItem}
             />
           ))}
-          <button className="button button-restocked">
-            <Link to="/products">See more</Link>
-          </button>
         </div>
       )}
       {loading && <PulsingAnimation />}

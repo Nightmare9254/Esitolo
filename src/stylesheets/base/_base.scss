@@ -18,6 +18,10 @@ html {
   }
 }
 
+body {
+  background: a.$main-complementary;
+}
+
 h3 {
   font-size: a.$fs-500;
   color: a.$main-yellow;

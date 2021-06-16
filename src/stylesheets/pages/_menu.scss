@@ -1,0 +1,23 @@
+@use '../abstracts' as a;
+
+.search {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    background: a.$medium-gray;
+    padding: 1.5rem;
+    margin: 4rem 2rem;
+  }
+  &__icon {
+    margin-right: 1rem;
+  }
+  &-text {
+    font-size: a.$fs-300;
+    color: a.$font-gray-clr;
+    padding-top: 0.25rem;
+  }
+  .fa-search {
+    color: a.$font-gray-clr;
+    font-size: a.$fs-300;
+  }
+}

@@ -6,7 +6,7 @@ const Bestsellers = ({ addItem }) => {
   const { data, loading } = useFetch('/products/bestsellers');
 
   return (
-    <>
+    <div className="custom__scrollBar">
       {!loading &&
         data.map(({ _id, image, price, productName, description }) => (
           <TopProducts
@@ -20,7 +20,7 @@ const Bestsellers = ({ addItem }) => {
           />
         ))}
       {loading && <PulsingAnimation />}
-    </>
+    </div>
   );
 };
 

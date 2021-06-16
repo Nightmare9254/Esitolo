@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useLocal } from '../../hooks/cart';
 import { ScaleButtonClick } from '../../framer/Transitions';
-import { useCounter } from '../../store/sub';
 
 const Menu = () => {
   const [cookies] = useCookies();
@@ -23,28 +22,12 @@ const Menu = () => {
     }
   }, [location]);
 
-  const [state, actions] = useCounter();
-
-  // console.log(state.isSearch);
   return (
     <div className="menu">
       <div className="menu__container">
         <div className="menu__logo">
           <Link to="/">Esitolo </Link>
         </div>
-
-        <Link
-          onClick={() => actions.openSearch(true)}
-          to="/products"
-          className="menu__input--flow"
-        >
-          <div className="main__search main__search--desktop">
-            <p className="main__search-text">Search something amazing</p>
-            <div className="main__icon">
-              <i className="fas fa-search"></i>
-            </div>
-          </div>
-        </Link>
 
         <div className="menu__flow">
           <div

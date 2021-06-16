@@ -1,11 +1,35 @@
 @use '../abstracts' as a;
 
-.page__title {
-  background-color: a.$medium-gray;
+.header {
+  background-color: a.$dark-gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  &__logo {
+    font-size: a.$fs-400;
+    font-weight: 500;
+    color: a.$main-yellow;
+  }
+
+  &__menu-items {
+    margin: 0 1rem;
+    position: relative;
+    color: a.$font-clr;
+
+    .fa-shopping-basket,
+    .fa-user {
+      font-size: a.$fs-300;
+      margin-right: 1rem;
+    }
+  }
+  &__menu-child::after {
+    @include a.shortLine;
+  }
 }
+
 .page__title-h2 {
-  font-size: a.$fs-500;
-  font-weight: 300;
-  padding: 1rem;
+  font-size: a.$fs-400;
   color: a.$font-clr;
+  font-weight: 200;
 }
