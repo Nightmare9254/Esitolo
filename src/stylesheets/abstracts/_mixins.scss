@@ -26,12 +26,12 @@
   background-color: c.$light-gray;
 }
 
-@mixin btnFull($ft-size: fs.$fs-300) {
+@mixin btnFull($ft-size: fs.$fs-300, $paddingD: 1rem) {
   color: fs.$font-dark-gray;
   background: c.$main-yellow;
   font-size: $ft-size;
   border-radius: 2px;
-  padding: 1rem;
+  padding: $paddingD;
   text-align: center;
 }
 @mixin btnEmpty($ft-size: fs.$fs-300) {

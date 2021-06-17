@@ -64,7 +64,7 @@ const SingleProduct = () => {
   };
   ScrollToTop();
 
-  console.log(data);
+  console.log(id);
   const [addItem] = useLocal();
   return (
     <>
@@ -211,8 +211,9 @@ const SingleProduct = () => {
           <div className="single__clients-opinions">
             <h4>Clients opinions</h4>
             {data.length === 0 && <p>No reviews yet</p>}
-            {data.length >= 1 &&
+            {data.reviews &&
               data.reviews.map(({ author, review, date }, key) => {
+                console.log(review);
                 return (
                   <div key={key} className="single__opinion">
                     <div className="single__header-opinion">

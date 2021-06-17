@@ -13,10 +13,13 @@
     gap: 3rem 2rem;
     width: 70%;
     margin: 3rem auto;
-    @include a.media('<=phone') {
+    @include a.media('>=phone', '<=tablet') {
       width: 100%;
-      gap: 1.5rem;
+      gap: 1rem;
       grid-template-columns: repeat(2, 1fr);
+    }
+    @include a.media('>=tablet', '<=desktop') {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
   &__icon {
@@ -54,7 +57,7 @@
     display: flex;
     overflow-x: scroll;
     padding: 1rem 1rem 2rem 0rem;
-    @include a.media('>=phone') {
+    @include a.media('>=desktop') {
       display: grid;
       max-width: 1000px;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -105,7 +108,7 @@
     border-radius: 100rem;
   }
   .button-restocked {
-    @include a.btnFull(a.$fs-400);
+    @include a.btnFull(a.$fs-300, 0.5rem);
     max-width: 250px;
     margin: 3rem auto;
   }
@@ -172,16 +175,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    @include a.media('>=desktop') {
-      width: 100%;
-      min-height: 20rem;
-      max-height: 20rem;
-    }
   }
   &__img {
-    min-height: 20rem;
-    max-height: 20rem;
+    aspect-ratio: 1/1;
     width: 100%;
     border-radius: 5px 0 0 5px;
   }

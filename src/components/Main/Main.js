@@ -35,7 +35,7 @@ const Main = () => {
         </div>
         <Restocked addItem={addItem} />
         <Link to="/products">
-          <div className=" button-restocked">See more</div>
+          <div className="button-restocked">See more</div>
         </Link>
       </section>
       <Footer />
