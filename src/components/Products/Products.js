@@ -1,5 +1,4 @@
 import Product from '../Product/Product';
-import Menu from '../Menu/Menu';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useCounter } from '../../store/sub';
 import { Link } from 'react-router-dom';
@@ -8,6 +7,8 @@ import { AnimatePresence } from 'framer-motion';
 import SearchProducts from './SearchProducts';
 import { PulsingAnimation } from '../../framer/Transitions';
 import { useLocal } from '../../hooks/cart';
+import SearchBar from '../Menu/SearchBar';
+import HeaderTitle from '../SingleComponents/HeaderTitle';
 
 const Products = () => {
   const [page, setPage] = useState(1);
@@ -81,24 +82,37 @@ const Products = () => {
   return (
     <>
       <div className="all-products">
-        <div className="all-products__actions all-products__actions--desktop">
-          <Link to="/">
-            <i className="fas fa-arrow-left fa-2x" />
-          </Link>
-          <div
-            className="all-products__container-search"
-            onClick={() => actions.openSearch(true)}
-          >
-            <i className="fas fa-search fa-2x" />
-          </div>
-        </div>
+        <HeaderTitle
+          title="Products"
+          filter={
+            <div className="all-products__select-actions">
+              <select
+                defaultValue={state.category}
+                onChange={e => actions.updateCategory(e.target.value)}
+                className="all-products__select"
+              >
+                {categoryList.map((name, index) => (
+                  <option value={name} key={index}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="all-products__select all-products__select--left"
+                onChange={e => setSortBy(e.target.value)}
+                onKeyDown={sortProducts}
+              >
+                <option value="0">Default</option>
+                <option value="1">Sort by price (Low to High)</option>
+                <option value="2">Sort by price (High to Low)</option>
+              </select>
+            </div>
+          }
+        />
 
-        <AnimatePresence>
-          {state.isSearch && <SearchProducts toggleState={toggleState} />}
-        </AnimatePresence>
-
+        <SearchBar />
         {search.length === 0 && (
-          <div className="all-products__select-actions">
+          <div className="all-products__select-actions all-products__select-actions--desktop">
             <select
               defaultValue={state.category}
               onChange={e => actions.updateCategory(e.target.value)}
@@ -121,6 +135,11 @@ const Products = () => {
             </select>
           </div>
         )}
+
+        <AnimatePresence>
+          {state.isSearch && <SearchProducts toggleState={toggleState} />}
+        </AnimatePresence>
+
         <div className="all-products__wrapper-products">
           {products
             .sort(sortProducts)
@@ -138,6 +157,7 @@ const Products = () => {
                     price={price}
                     blur={search.length > 0 ? true : false}
                     addItem={addItem}
+                    showDescription={true}
                   />
                 );
               } else {
@@ -150,6 +170,7 @@ const Products = () => {
                     image={image}
                     price={price}
                     addItem={addItem}
+                    showDescription={true}
                     blur={search.length > 0 ? true : false}
                   />
                 );
@@ -175,7 +196,6 @@ const Products = () => {
           </div>
         )}
       </div>
-      {/* <Menu /> */}
     </>
   );
 };
