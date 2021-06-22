@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useDimensions } from '../../hooks/useDimensions';
 
-const HeaderTitle = ({ title }) => {
+const HeaderTitle = ({ title, filter = null }) => {
   const { width } = useDimensions();
 
   return (
@@ -16,6 +16,7 @@ const HeaderTitle = ({ title }) => {
           <h2 className="header__logo">
             <Link to="/">Esitolo</Link>
           </h2>
+          <div>{filter}</div>
           <div className="header__menu">
             <Link to="/account" className="header__menu-items">
               <i className="fas fa-user"></i>

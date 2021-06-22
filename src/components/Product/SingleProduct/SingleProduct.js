@@ -8,10 +8,13 @@ import { ScrollToTop } from '../../SingleComponents/ScrollToTop';
 import { useFetch } from '../../../hooks/useFetch';
 import TopProducts from '../../SingleComponents/TopProducts';
 import moment from 'moment';
+import HeaderTitle from '../../SingleComponents/HeaderTitle';
+import { useDimensions } from '../../../hooks/useDimensions';
 
 const SingleProduct = () => {
   const { id } = useParams();
 
+  const { width } = useDimensions();
   const [product, setProduct] = useState({});
   const [similar, setSimilar] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -64,21 +67,12 @@ const SingleProduct = () => {
   };
   ScrollToTop();
 
-  console.log(id);
   const [addItem] = useLocal();
   return (
     <>
+      <HeaderTitle title="Esitolo" />
       {!loading && (
         <div className="single">
-          <div className="single__header">
-            <Link to="/">
-              <i className="fas fa-arrow-left fa-2x" />
-            </Link>
-
-            <Link to="/products">
-              <i className="fas fa-search fa-2x" />
-            </Link>
-          </div>
           <div className="single__product-container-img">
             {product.image.length > 1 && (
               <button
@@ -95,20 +89,21 @@ const SingleProduct = () => {
                 src={product.image[imagePosition]}
                 alt="products"
                 className="single__image"
-                drag="x"
+                drag={`${width >= 1366 ? 'noDrag' : 'x'}`}
                 dragElastic={1}
                 dragConstraints={{ left: 1, right: 1 }}
                 onDragEnd={(e, { offset, velocity }) => {
                   const swipe = Math.abs(offset.x) * velocity.x;
 
-                  if (swipe < -10000) {
+                  if (swipe < -100) {
                     nextImg();
-                  } else if (swipe > 10000) {
+                  } else if (swipe > 100) {
                     preImg();
                   }
                 }}
               />
             </AnimatePresence>
+
             {product.image.length > 1 && (
               <button
                 onClick={() => nextImg()}
@@ -155,6 +150,7 @@ const SingleProduct = () => {
               </div>
               <div className="single__amount">{product.amount} available</div>
             </div>
+
             <div className="single__container-btn">
               <ScaleButtonClick>
                 <button
@@ -174,6 +170,7 @@ const SingleProduct = () => {
               </ScaleButtonClick>
             </div>
           </div>
+
           <div className="single__description">
             <h4>Product information</h4>
             <p className="single__element">
@@ -208,6 +205,7 @@ const SingleProduct = () => {
               )}
             </div>
           </div>
+
           <div className="single__clients-opinions">
             <h4>Clients opinions</h4>
             {data.length === 0 && <p>No reviews yet</p>}

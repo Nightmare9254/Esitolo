@@ -9,23 +9,18 @@ const Product = ({
   image,
   price,
   refItem,
-  isBottom,
-  view,
   addItem,
   removeItem,
   isInCart,
   quantity,
   addQuantity,
   isInOrder,
+  showDescription = false,
 }) => {
   const { width } = useDimensions();
 
   return (
-    <div
-      ref={refItem}
-      // className={`${isBottom ? 'isBottom' : ''}`}
-      className={`product ${view ? 'product--searched' : ''}`}
-    >
+    <div ref={refItem} className="product">
       <Link to={`/product/${id}`}>
         <div>
           <div className="product__container-img">
@@ -33,9 +28,11 @@ const Product = ({
           </div>
           <div className="product__data">
             <p className="product__name">{productName}</p>
-            {/* {width < 1366 && (
-              <p className="product__description">{description}</p>
-            )} */}
+            {showDescription && (
+              <p className="product__description">
+                {description.substring(0, 50)}. . .
+              </p>
+            )}
             {isInOrder && (
               <p className="product__quantity">Quantity: {quantity}</p>
             )}
