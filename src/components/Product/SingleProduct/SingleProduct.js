@@ -167,7 +167,7 @@ const SingleProduct = () => {
                       quantity: quantity,
                     })
                   }
-                  className="button single__button"
+                  className="single__button"
                 >
                   Add to basket
                 </button>

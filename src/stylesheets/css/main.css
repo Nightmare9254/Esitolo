@@ -119,9 +119,10 @@
   color: #23252f;
   background: #fac646;
   font-size: 1.6rem;
-  border-radius: 2px;
+  border-radius: 0;
   padding: 0.5rem;
   text-align: center;
+  border: none;
   max-width: 250px;
   margin: 3rem auto;
 }
@@ -139,11 +140,13 @@
   }
 }
 .bestsellers__add {
-  height: 25px;
-  background-color: #fac646;
-  border: none;
   color: #23252f;
+  background: #fac646;
+  font-size: 1.2rem;
+  border-radius: 0;
   padding: 0.5rem;
+  text-align: center;
+  border: none;
 }
 .bestsellers__link {
   grid-area: 1/1;
@@ -903,7 +906,7 @@
 }
 .single__container-configuration {
   display: flex;
-  margin-top: 2rem;
+  margin: 2rem 0;
   align-items: center;
 }
 .single__content, .single__description, .single__clients-opinions, .single__similiar-container {
@@ -951,6 +954,15 @@
   margin-top: 2rem;
   padding: 1rem;
   background: #23252f;
+}
+.single__button {
+  color: #23252f;
+  background: #fac646;
+  font-size: 1.6rem;
+  border-radius: 0;
+  padding: 1rem;
+  text-align: center;
+  border: none;
 }
 
 .single__counter {

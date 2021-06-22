@@ -124,13 +124,8 @@
   @include a.media('>=desktop') {
     margin: 0 3rem;
   }
-
   &__add {
-    height: 25px;
-    background-color: a.$main-yellow;
-    border: none;
-    color: a.$font-dark-gray;
-    padding: 0.5rem;
+    @include a.btnFull($ft-size: a.$fs-200, $paddingD: 0.5rem);
   }
   &__link {
     grid-area: 1/1;
