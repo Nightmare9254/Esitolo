@@ -10,6 +10,7 @@ import TopProducts from '../../SingleComponents/TopProducts';
 import moment from 'moment';
 import HeaderTitle from '../../SingleComponents/HeaderTitle';
 import { useDimensions } from '../../../hooks/useDimensions';
+import Footer from '../../Footer/Footer';
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const SingleProduct = () => {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [imagePosition, setImagePosition] = useState(0);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     fetch(`https://esitolo-backend.herokuapp.com/products?id=${id}`)
@@ -32,9 +34,8 @@ const SingleProduct = () => {
     setImagePosition(0);
   }, [id]);
 
-  const { data } = useFetch(`/products/review?id=${id}`);
-
   useEffect(() => {
+    setReviews([]);
     if (product.category !== undefined) {
       const params = new URLSearchParams({
         category: product.category,
@@ -48,6 +49,10 @@ const SingleProduct = () => {
         .then(json => {
           setSimilar(json);
         });
+
+      fetch(`https://esitolo-backend.herokuapp.com/products/review?id=${id}`)
+        .then(res => res.json())
+        .then(json => setReviews(json.reviews));
     }
   }, [id, loading]);
 
@@ -66,7 +71,7 @@ const SingleProduct = () => {
     setImagePosition(imagePosition - 1);
   };
   ScrollToTop();
-
+  console.log(reviews);
   const [addItem] = useLocal();
   return (
     <>
@@ -207,11 +212,10 @@ const SingleProduct = () => {
           </div>
 
           <div className="single__clients-opinions">
-            <h4>Clients opinions</h4>
-            {data.length === 0 && <p>No reviews yet</p>}
-            {data.reviews &&
-              data.reviews.map(({ author, review, date }, key) => {
-                console.log(review);
+            <h4>Clients Reviews</h4>
+            {reviews.length === 0 && <p>No reviews yet</p>}
+            {reviews &&
+              reviews.map(({ author, review, date }, key) => {
                 return (
                   <div key={key} className="single__opinion">
                     <div className="single__header-opinion">
@@ -228,6 +232,7 @@ const SingleProduct = () => {
           <Menu />
         </div>
       )}
+      <Footer />
     </>
   );
 };

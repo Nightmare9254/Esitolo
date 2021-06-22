@@ -27,6 +27,14 @@
   &__menu-child::after {
     @include a.shortLine;
   }
+  &__floater-btn {
+    text-decoration: underline;
+    border: none;
+    background: transparent;
+    color: a.$main-yellow;
+    font-size: a.$fs-300;
+    padding-top: 1.5rem;
+  }
 }
 
 .page__title-h2 {

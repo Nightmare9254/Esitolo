@@ -4,14 +4,14 @@ import { useLocal } from '../../hooks/cart';
 import { useCounter } from '../../store/sub';
 import Product from '../Product/Product';
 
-const SpeechRecognition =
-  window.SpeechRecognition || window.webkitSpeechRecognition;
+// const SpeechRecognition =
+//   window.SpeechRecognition || window.webkitSpeechRecognition;
 
-const mic = new SpeechRecognition();
+// // const mic = new SpeechRecognition();
 
-mic.continuous = true;
-mic.interimResults = true;
-mic.lang = 'pl';
+// mic.continuous = true;
+// mic.interimResults = true;
+// mic.lang = 'pl';
 
 const SearchProducts = ({ toggleState }) => {
   const [filterLoading, setFilterLoading] = useState(true);
@@ -20,39 +20,39 @@ const SearchProducts = ({ toggleState }) => {
   const [key, setKey] = useState('');
   const [isListening, setIsListening] = useState(false);
 
-  const handleListen = () => {
-    if (isListening) {
-      mic.start();
-    } else {
-      mic.stop();
-    }
+  // const handleListen = () => {
+  //   if (isListening) {
+  //     mic.start();
+  //   } else {
+  //     mic.stop();
+  //   }
 
-    mic.onresult = e => {
-      const transcript = Array.from(e.results)
-        .map(result => result[0])
-        .map(result => result.transcript)
-        .join('');
+  //   mic.onresult = e => {
+  //     const transcript = Array.from(e.results)
+  //       .map(result => result[0])
+  //       .map(result => result.transcript)
+  //       .join('');
 
-      if (transcript.length > 1) {
-        setSearch(transcript);
-        mic.stop();
-        setIsListening(false);
-      }
+  //     if (transcript.length > 1) {
+  //       setSearch(transcript);
+  //       mic.stop();
+  //       setIsListening(false);
+  //     }
 
-      setTimeout(() => {
-        searchItems(transcript);
-      }, 500);
-      console.log(transcript);
+  //     setTimeout(() => {
+  //       searchItems(transcript);
+  //     }, 500);
+  //     console.log(transcript);
 
-      mic.onerror = e => {
-        console.log(e.error);
-      };
-    };
-  };
+  //     mic.onerror = e => {
+  //       console.log(e.error);
+  //     };
+  //   };
+  // };
 
-  useEffect(() => {
-    handleListen();
-  }, [isListening]);
+  // useEffect(() => {
+  //   handleListen();
+  // }, [isListening]);
 
   const searchItems = query => {
     setFiltered([]);
@@ -225,17 +225,20 @@ const SearchProducts = ({ toggleState }) => {
           )}
 
           <div className="all-products__results">
-            {filtered.map(({ image, _id, productName, price }, index) => (
-              <Product
-                view={true}
-                key={index}
-                id={_id}
-                productName={productName}
-                image={image}
-                price={price}
-                addItem={addItem}
-              />
-            ))}
+            {filtered.map(
+              ({ image, _id, productName, price, category }, index) => (
+                <Product
+                  view={true}
+                  key={index}
+                  id={_id}
+                  productName={productName}
+                  image={image}
+                  price={price}
+                  addItem={addItem}
+                  category={category}
+                />
+              )
+            )}
           </div>
         </div>
       </div>

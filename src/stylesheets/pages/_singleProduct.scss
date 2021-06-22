@@ -8,7 +8,7 @@
 
   @include a.media('>=desktop') {
     display: grid;
-    gap: 2rem 4rem;
+    gap: 4rem;
     grid-template-columns: repeat(6, 1fr);
     max-width: 1700px;
     margin: 0 auto;
@@ -20,16 +20,17 @@
     justify-self: end;
 
     @include a.media('>=desktop') {
-      height: 40rem;
-      width: 40rem;
-      grid-column: 1/5;
+      grid-column: 2/4;
+      height: 100%;
+      width: 100%;
     }
   }
   &__content {
     @include a.media('>=desktop') {
-      @include a.media('>=desktop') {
-        grid-column: 5/7;
-      }
+      grid-column: 4/6;
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: space-between;
     }
   }
 
@@ -104,25 +105,27 @@
     padding: 2rem 1rem;
   }
   &__clients-opinions {
+    margin-bottom: 2rem;
     @include a.media('>=desktop') {
-      grid-row: 3/4;
-      grid-column: 1/5;
+      grid-row: 4/5;
+      grid-column: 2/6;
     }
   }
   &__description {
     margin: 2rem 0;
     @include a.media('>=desktop') {
-      align-self: start;
-      grid-column: 5/7;
+      align-self: center;
+      grid-column: 2/6;
       grid-row: 2/3;
-      margin-top: 0;
+      margin: 0;
     }
   }
   &__similar-container {
     @include a.media('>=desktop') {
-      grid-column: 1/5;
-      grid-row: 2/3;
+      grid-column: 2/6;
+      grid-row: 3/4;
       align-self: start;
+      overflow-x: hidden;
     }
   }
   &__container-btn {
@@ -140,6 +143,9 @@
   }
   &__clients-opinions {
     margin-top: 2rem;
+    @include a.media('>=desktop') {
+      margin: 0;
+    }
   }
   &__opinion {
     padding: 1rem;
@@ -160,7 +166,6 @@
     margin-top: 2rem;
   }
   &__similar-header {
-    margin-top: 2rem;
     padding: 1rem;
     background: a.$font-dark-gray;
   }

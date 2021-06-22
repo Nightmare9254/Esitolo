@@ -1,9 +1,14 @@
 import { useCallback, useEffect, useReducer } from 'react';
 import { ACTIONS } from '../assets/Consts/Actions';
+import { useCounter } from '../store/sub';
 
 export const useLocal = () => {
-  const newItem = ({ id, productName, price, image, quantity }, arr) => {
-    const index = arr.findIndex((item) => item.id === id);
+  const [state, actions] = useCounter();
+  const newItem = (
+    { id, productName, price, image, quantity, category },
+    arr
+  ) => {
+    const index = arr.findIndex(item => item.id === id);
     if (index !== -1) {
       arr[index].quantity += quantity;
       return false;
@@ -15,6 +20,7 @@ export const useLocal = () => {
       price,
       image,
       quantity,
+      category,
     };
   };
 
@@ -27,7 +33,7 @@ export const useLocal = () => {
         return [...cartItems, newItem(action.payload.values, cartItems)];
 
       case ACTIONS.REMOVE:
-        const index = cartItems.findIndex((i) => i.id === action.payload.id);
+        const index = cartItems.findIndex(i => i.id === action.payload.id);
 
         if (index !== -1) {
           cartItems[index].quantity--;
@@ -42,7 +48,7 @@ export const useLocal = () => {
         return [...cartItems];
 
       case ACTIONS.QUANTITY: {
-        const id = cartItems.findIndex((i) => i.id === action.payload.id);
+        const id = cartItems.findIndex(i => i.id === action.payload.id);
 
         cartItems[id].quantity++;
 
@@ -60,16 +66,17 @@ export const useLocal = () => {
 
   useEffect(() => {
     window.localStorage.setItem('cart-items', JSON.stringify(cartItems));
+    actions.savePreview(cartItems);
   }, [cartItems]);
 
-  const addItem = (values) => {
+  const addItem = values => {
     dispatch({ type: ACTIONS.ADD, payload: { values } });
   };
 
   const calculate = () => {
     let total = 0;
     if (cartItems) {
-      cartItems.forEach((element) => {
+      cartItems.forEach(element => {
         total += element.price * element.quantity;
       });
     }
@@ -80,11 +87,11 @@ export const useLocal = () => {
     dispatch({ type: ACTIONS.DELETE });
   };
 
-  const removeItem = (id) => {
+  const removeItem = id => {
     dispatch({ type: ACTIONS.REMOVE, payload: { id: id } });
   };
 
-  const addQuantity = (id) => {
+  const addQuantity = id => {
     dispatch({ type: ACTIONS.QUANTITY, payload: { id: id } });
   };
 

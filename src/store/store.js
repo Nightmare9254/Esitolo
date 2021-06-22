@@ -9,6 +9,7 @@ const initialState = {
   wallet: [],
   toggleDD: false,
   cardId: 0,
+  helpPreview: [],
 };
 
 const actions = {
@@ -65,6 +66,12 @@ const actions = {
     ({ getState, setState }) => {
       const { cardId } = getState();
       setState({ cardId: arg });
+    },
+  savePreview:
+    arg =>
+    ({ getState, setState }) => {
+      const { helpPreview } = getState();
+      setState({ helpPreview: arg });
     },
 };
 

@@ -78,7 +78,7 @@ const Products = () => {
   }, [state.isSearch]);
 
   const [addItem] = useLocal();
-
+  console.log(products);
   return (
     <>
       <div className="all-products">
@@ -143,39 +143,46 @@ const Products = () => {
         <div className="all-products__wrapper-products">
           {products
             .sort(sortProducts)
-            .map(({ image, _id, productName, price, description }, index) => {
-              if (products.length === index + 1) {
-                return (
-                  <Product
-                    refItem={lastProduct}
-                    isBottom={true}
-                    key={index}
-                    id={_id}
-                    description={description}
-                    productName={productName}
-                    image={image}
-                    price={price}
-                    blur={search.length > 0 ? true : false}
-                    addItem={addItem}
-                    showDescription={true}
-                  />
-                );
-              } else {
-                return (
-                  <Product
-                    key={index}
-                    id={_id}
-                    description={description}
-                    productName={productName}
-                    image={image}
-                    price={price}
-                    addItem={addItem}
-                    showDescription={true}
-                    blur={search.length > 0 ? true : false}
-                  />
-                );
+            .map(
+              (
+                { image, _id, productName, price, description, category },
+                index
+              ) => {
+                if (products.length === index + 1) {
+                  return (
+                    <Product
+                      refItem={lastProduct}
+                      isBottom={true}
+                      key={index}
+                      id={_id}
+                      description={description}
+                      productName={productName}
+                      image={image}
+                      price={price}
+                      blur={search.length > 0 ? true : false}
+                      addItem={addItem}
+                      showDescription={true}
+                      category={category}
+                    />
+                  );
+                } else {
+                  return (
+                    <Product
+                      key={index}
+                      id={_id}
+                      description={description}
+                      productName={productName}
+                      image={image}
+                      price={price}
+                      category={category}
+                      addItem={addItem}
+                      showDescription={true}
+                      blur={search.length > 0 ? true : false}
+                    />
+                  );
+                }
               }
-            })}
+            )}
         </div>
         {loading && <PulsingAnimation />}
         {!hasMore && (

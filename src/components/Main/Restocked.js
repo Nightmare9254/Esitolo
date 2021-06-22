@@ -10,17 +10,20 @@ const Restocked = ({ addItem }) => {
     <>
       {!loading && (
         <div className="main__restocked">
-          {data.map(({ image, _id, productName, price, description }) => (
-            <Product
-              key={_id}
-              id={_id}
-              productName={productName}
-              price={price}
-              image={image}
-              description={description}
-              addItem={addItem}
-            />
-          ))}
+          {data.map(
+            ({ image, _id, productName, price, description, category }) => (
+              <Product
+                key={_id}
+                id={_id}
+                productName={productName}
+                price={price}
+                image={image}
+                description={description}
+                addItem={addItem}
+                category={category}
+              />
+            )
+          )}
         </div>
       )}
       {loading && <PulsingAnimation />}

@@ -11,14 +11,13 @@ const Product = ({
   refItem,
   addItem,
   removeItem,
-  isInCart,
+
   quantity,
   addQuantity,
   isInOrder,
+  category,
   showDescription = false,
 }) => {
-  const { width } = useDimensions();
-
   return (
     <div ref={refItem} className="product">
       <Link to={`/product/${id}`}>
@@ -42,34 +41,23 @@ const Product = ({
       <div className="product__btns-container">
         <div className="product__action">
           <p className="product__price">{price} $</p>
-          {!isInCart && !isInOrder && (
-            <button
-              className="product__add"
-              onClick={() =>
-                addItem({ id, productName, price, image, quantity: 1 })
-              }
-            >
-              <i className="fas fa-plus"></i>
-            </button>
-          )}
+
+          <button
+            className="product__add"
+            onClick={() =>
+              addItem({
+                id,
+                productName,
+                price,
+                image,
+                quantity: 1,
+                category,
+              })
+            }
+          >
+            <i className="fas fa-plus"></i>
+          </button>
         </div>
-        {isInCart && (
-          <div className="single__counter">
-            <button
-              onClick={() => removeItem(id)}
-              className="single__action single__action-minus"
-            >
-              -
-            </button>
-            <p className="single__choose-amount">{quantity}</p>
-            <button
-              onClick={() => addQuantity(id)}
-              className="single__action single__action-plus"
-            >
-              +
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

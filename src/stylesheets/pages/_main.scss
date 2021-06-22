@@ -108,7 +108,7 @@
     border-radius: 100rem;
   }
   .button-restocked {
-    @include a.btnFull(a.$fs-300, 0.5rem);
+    @include a.btnFull(a.$fs-300, 0.5rem, 2px);
     max-width: 250px;
     margin: 3rem auto;
   }
@@ -454,7 +454,7 @@
     top: 0;
     left: 0;
     z-index: 5;
-    background-color: a.$medium-gray;
+    background-color: a.$main-complementary;
     width: 100%;
     height: 100vh;
     padding: 2rem;
@@ -510,11 +510,11 @@
     justify-content: space-between;
   }
   &__recent-item {
-    background-color: a.$main-complementary;
-    border-radius: 100rem;
+    background-color: a.$dark-gray;
+    border-radius: 2px;
     font-size: a.$fs-300;
     color: a.$font-clr;
-    padding: 0.9rem;
+    padding: 0.5rem 0.9rem;
     margin: 0.8rem;
     display: flex;
     justify-content: space-around;
