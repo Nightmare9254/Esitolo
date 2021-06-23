@@ -11,7 +11,7 @@ import { cancelOrder } from '../../../functions/stripeCard';
 import { useHistory, withRouter } from 'react-router-dom';
 import { useState } from 'react';
 import { fetchFrom } from '../../../hooks/fetchFrom';
-
+import Footer from '../../Footer/Footer';
 const OrderTracking = () => {
   const { id } = useParams();
   const history = useHistory();
@@ -40,9 +40,8 @@ const OrderTracking = () => {
   };
   return (
     <>
+      <HeaderTitle title="Order details" />
       <div className="order">
-        <HeaderTitle title="Order details" />
-
         {!loading && (
           <>
             <table className="order__table">
@@ -194,11 +193,11 @@ const OrderTracking = () => {
                 />
               </label>
               <button type="button" className="order__btn" onClick={addReview}>
-                Add
+                Leave a review
               </button>
               {message && <p className="order__message">{message}</p>}
             </section>
-            <section>
+            <section className="order__rating">
               <h3 className="order__rate">Rate us</h3>
               <div>
                 <StarRating orderId={id} orderRating={data.rating} />
@@ -208,6 +207,7 @@ const OrderTracking = () => {
         )}
         {loading && <PulsingAnimation />}
       </div>
+      <Footer />
       <Menu />
     </>
   );

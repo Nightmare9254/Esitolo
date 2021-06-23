@@ -80,8 +80,8 @@ const Cart = () => {
         </>
       )}
       {cartItems.length === 0 && <EmptyCart />}
-      <Menu />
       <Footer />
+      <Menu />
     </>
   );
 };

@@ -4,9 +4,8 @@
   background: a.$main-complementary;
   min-height: 100vh;
   max-height: auto;
-  // padding: 10rem;
+
   @include a.media('>=desktop') {
-    // max-width: 1000px;
     display: grid;
     grid-template-columns: 200px 1fr 1fr 200px;
     gap: 2rem;
@@ -61,7 +60,7 @@
   }
   &__total-desc {
     color: a.$font-clr;
-    font-size: a.$fs-500;
+    font-size: a.$fs-400;
   }
   &__total-row {
     display: flex;
@@ -72,7 +71,7 @@
   &__total-price {
     color: a.$main-yellow;
     font-weight: 500;
-    font-size: a.$fs-500;
+    font-size: a.$fs-400;
   }
 
   &__items-wrapper {

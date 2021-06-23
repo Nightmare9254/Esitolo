@@ -9,6 +9,7 @@ const CartProduct = ({
   category,
   quantity,
   id,
+  isInOrder = false,
 }) => {
   const [, actions] = useCounter();
   return (
@@ -19,28 +20,38 @@ const CartProduct = ({
 
       <div className="product-cart__content">
         <p className="product-cart__title">{productName}</p>
-        <p className="product-cart__category">
-          Category:
-          <Link onClick={() => actions.updateCategory(category)} to="/products">
-            <span className="product-cart__category--link">{category}</span>
-          </Link>
-        </p>
+        {!isInOrder && (
+          <p className="product-cart__category">
+            Category:
+            <Link
+              onClick={() => actions.updateCategory(category)}
+              to="/products"
+            >
+              <span className="product-cart__category--link">{category}</span>
+            </Link>
+          </p>
+        )}
+        {isInOrder && (
+          <p className="product-cart__category">Quantity: {quantity}</p>
+        )}
         <div className="product-cart__counter">
-          <div className="single__counter">
-            <button
-              onClick={() => removeItem(id)}
-              className="single__action single__action-minus"
-            >
-              -
-            </button>
-            <p className="single__choose-amount">{quantity}</p>
-            <button
-              onClick={() => addQuantity(id)}
-              className="single__action single__action-plus"
-            >
-              +
-            </button>
-          </div>
+          {!isInOrder && (
+            <div className="single__counter">
+              <button
+                onClick={() => removeItem(id)}
+                className="single__action single__action-minus"
+              >
+                -
+              </button>
+              <p className="single__choose-amount">{quantity}</p>
+              <button
+                onClick={() => addQuantity(id)}
+                className="single__action single__action-plus"
+              >
+                +
+              </button>
+            </div>
+          )}
           <p className="product-cart__price">{price}$</p>
         </div>
       </div>

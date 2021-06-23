@@ -3,12 +3,23 @@
 .order {
   min-height: 100vh;
   background: a.$main-complementary;
-
+  @include a.media('>=desktop') {
+    display: grid;
+    grid-template-columns: 200px repeat(6, 1fr) 200px;
+    gap: 2rem;
+    padding: 3rem;
+  }
   &__shipping-container {
-    background: a.$dark-gray;
+    background: a.$medium-gray;
     margin-top: 2rem;
     color: a.$font-clr;
     padding: 1rem;
+
+    @include a.media('>=desktop') {
+      grid-column: 6/8;
+      align-self: start;
+      grid-row: 1/2;
+    }
   }
   &__shipping {
     font-size: a.$fs-400;
@@ -25,7 +36,6 @@
     font-size: a.$fs-300;
     color: a.$font-gray-clr;
   }
-
   &__payment-container {
     margin-top: 2rem;
   }
@@ -57,17 +67,26 @@
   }
 
   &__items {
-    background: a.$dark-gray;
+    background: a.$medium-gray;
     margin-top: 6rem;
     padding: 1rem;
     color: a.$font-clr;
+    @include a.media('>=desktop') {
+      grid-column: 2/6;
+      grid-row: 1/2;
+      margin-top: 2rem;
+    }
   }
 
   &__summary {
-    background: a.$dark-gray;
+    background: a.$medium-gray;
     margin-top: 2rem;
     color: a.$font-clr;
     padding: 1rem;
+    @include a.media('>=desktop') {
+      grid-column: 2/6;
+      grid-row: 2/3;
+    }
   }
   &__title {
     font-size: a.$fs-400;
@@ -97,16 +116,18 @@
     align-items: center;
     color: a.$font-clr;
     font-size: a.$fs-300;
+    @include a.media('>=desktop') {
+      grid-column: 6/8;
+      grid-row: 1/2;
+      align-self: center;
+      margin-top: 0;
+    }
   }
   &__btn {
-    background: a.$main-yellow;
-    color: a.$font-dark-gray;
-    padding: 0.5rem 1rem;
-    margin: 1rem 0;
-    border: none;
-    align-self: flex-end;
+    @include a.btnEmpty();
+    margin-top: 2rem;
   }
-  //   FORM USER SHIPPING ADDRESS
+
   &__shipping-data {
     text-align: center;
   }
@@ -126,6 +147,11 @@
     border: none;
     padding: 0.5rem;
   }
+  &__save-btn {
+    @include a.btnFull();
+    width: 100%;
+    margin-top: 2rem;
+  }
 
   .fa-user,
   .fa-road,
@@ -139,12 +165,16 @@
 
   &__table {
     color: a.$font-gray-clr;
-    background-color: a.$dark-gray;
+    background-color: a.$medium-gray;
     border-radius: 3px;
     font-size: a.$fs-300;
     text-align: left;
     margin: 4rem 0.5rem;
     border-collapse: collapse;
+    @include a.media('>=desktop') {
+      grid-column: 2/6;
+      margin: 0;
+    }
 
     &-id {
       color: a.$main-yellow;
@@ -155,7 +185,9 @@
       border: 1px solid a.$font-gray-clr;
       padding: 1rem;
     }
+
     td {
+      padding-right: 2rem;
       width: 100%;
       color: a.$font-clr;
       border-right: none;
@@ -183,9 +215,15 @@
       }
     }
   }
+  &__rating {
+    @include a.media('>=desktop') {
+      grid-row: 2/3;
+      grid-column: 1/-1;
+      margin: 2rem 0;
+    }
+  }
   &__rate {
     color: a.$font-gray-clr;
-
     text-align: center;
   }
   &__rate::first-letter {
@@ -198,12 +236,17 @@
     margin-bottom: 1rem;
   }
   &__review {
-    margin: 1rem;
+    padding: 2rem;
     display: flex;
     flex-flow: column nowrap;
+    background: a.$medium-gray;
+    @include a.media('>=desktop') {
+      grid-column: 6/8;
+      align-self: start;
+    }
   }
   &__review-header {
-    margin: 2rem 0;
+    margin-bottom: 2rem;
   }
   &__review-area {
     resize: none;

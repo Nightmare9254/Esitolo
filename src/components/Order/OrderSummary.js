@@ -11,6 +11,7 @@ import TextField from '../Formik/TextField';
 import { AnimateContainer, ScaleButtonClick } from '../../framer/Transitions';
 import { shippingAddressAnonymous } from '../Formik/YupValidation';
 import Anonymous from '../../functions/Anonymous';
+import CartProduct from '../Product/CartProduct';
 
 const OrderSummary = () => {
   const [cookies] = useCookies();
@@ -49,9 +50,9 @@ const OrderSummary = () => {
 
   return (
     <>
+      <HeaderTitle title="Order confirmation" />
       <div className="order">
         <ScrollToTop />
-        <HeaderTitle title="Order confirmation" />
         <div className="order__shipping-container">
           {user && (
             <div>
@@ -170,24 +171,24 @@ const OrderSummary = () => {
                       type="tel"
                     />
                   </AnimateContainer>
+                  {isAddress.message.length > 1 && (
+                    <p className="order__message--saved">{isAddress.message}</p>
+                  )}
                   <ScaleButtonClick>
-                    <button type="submit" className="button">
+                    <button type="submit" className="order__save-btn">
                       Save
                     </button>
                   </ScaleButtonClick>
                 </Form>
               </Formik>
-              {isAddress.message.length > 1 && (
-                <p className="order__message--saved">{isAddress.message}</p>
-              )}
             </div>
           )}
         </div>
         <div className="order__items">
-          <p className="order__title">The items you buy</p>
+          <p className="order__title">Products you will buy</p>
           {cartItems.map(({ id, price, productName, quantity, image }) => {
             return (
-              <Product
+              <CartProduct
                 id={id}
                 key={id}
                 price={price}
@@ -229,9 +230,9 @@ const OrderSummary = () => {
             <>
               {user && (
                 <ScaleButtonClick>
-                  <Link className="order__btn" to="/basket/pay-now">
-                    Pay now
-                  </Link>
+                  <button className="order__btn">
+                    <Link to="/basket/pay-now">Next</Link>
+                  </button>
                 </ScaleButtonClick>
               )}
               {!user && <Anonymous />}

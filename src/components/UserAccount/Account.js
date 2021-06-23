@@ -12,7 +12,7 @@ import OrderHistory from './OrderHistory';
 import AttackCard from '../Stripe/AttacheCard';
 import UserCardList from '../Stripe/UserCardList';
 import { AnimatePresence } from 'framer-motion';
-
+import Footer from '../Footer/Footer';
 const Account = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [openAddress, setOpenAddress] = useState(false);
@@ -48,24 +48,23 @@ const Account = () => {
 
   return (
     <>
+      <HeaderTitle title="Account Settings" />
       {user && (
         <div className="settings">
-          <HeaderTitle title="Account Settings" />
-
           <main className="settings__main">
-            <section className="settings__section">
+            <section className="settings__section settings__welcome">
               <h4 className="settings__header-small">
                 Good morning <span>{user.name}</span>
               </h4>
               <p className="settings__txt--dimmed">{user.email}</p>
             </section>
-            <section className="settings__section">
+            <section className="settings__section settings__joined">
               <h3 className="settings__header-medium">You have joined:</h3>
               <p className="settings__joined-date">
                 {moment(user.createDate).fromNow()}
               </p>
             </section>
-            <section className="settings__section">
+            <section className="settings__section settings__account-information">
               <h4 className="settings__header-small">Account settings</h4>
               <div>
                 <div className="settings__shipping-address-header">
@@ -188,33 +187,33 @@ const Account = () => {
                   )}
                 </AnimatePresence>
               </div>
-              <section>
-                <div className="settings__options">
-                  <p className="settings__txt--header">Order history</p>
-                  <button
-                    type="button"
-                    className="settings__change-btn"
-                    onClick={() => setShowOrders(!showOrders)}
-                  >
-                    {showOrders ? ' Close' : 'Show'}
-                  </button>
-                </div>
-                {showOrders && <OrderHistory />}
-              </section>
             </section>
-            <section className="settings__payments-methods">
+            <section className="settings__orders-history">
+              <div className="settings__options">
+                <p className="settings__txt--header">Order history</p>
+                <button
+                  type="button"
+                  className="settings__change-btn"
+                  onClick={() => setShowOrders(!showOrders)}
+                >
+                  {showOrders ? ' Close' : 'Show'}
+                </button>
+              </div>
+              {showOrders && <OrderHistory />}
+            </section>
+            <section className="settings__section settings__payments-methods">
               <AttackCard headerTitle="Remove or add credit card" />
               <UserCardList />
             </section>
+            <div className="settings__container-logout">
+              <button onClick={logout} className="settings__button">
+                Logout
+              </button>
+            </div>
           </main>
-          <div style={{ textAlign: 'center' }}>
-            <button onClick={logout} className="button settings__button">
-              Logout
-            </button>
-          </div>
         </div>
       )}
-
+      <Footer />
       <Menu />
     </>
   );

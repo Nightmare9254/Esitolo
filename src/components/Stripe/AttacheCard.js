@@ -62,19 +62,18 @@ const AttachCard = ({ headerTitle }) => {
   return (
     <section className="payment__attach">
       <h2 className="payment__heading">{headerTitle}</h2>
-      <ScaleButtonClick>
-        <button
-          className="payment__button"
-          onClick={() => {
-            actions.attachCardForm(true);
-            setUpNewCard(user.stripeUserId, setCardSetup);
-            actions.showCard(false);
-            actions.toggleDropDown(false);
-          }}
-        >
-          Attach a new card
-        </button>
-      </ScaleButtonClick>
+
+      <button
+        className="payment__attach"
+        onClick={() => {
+          actions.attachCardForm(true);
+          setUpNewCard(user.stripeUserId, setCardSetup);
+          actions.showCard(false);
+          actions.toggleDropDown(false);
+        }}
+      >
+        Attach a new card
+      </button>
 
       {state.attached && (
         <form
@@ -95,16 +94,13 @@ const AttachCard = ({ headerTitle }) => {
           </div>
           <div className="payment__action">
             <button
-              className="payment__button payment__button--gray"
+              className="payment__button--gray"
               type="button"
               onClick={() => actions.attachCardForm(false)}
             >
               Cancel
             </button>
-            <button
-              className="payment__button payment__button--add"
-              type="submit"
-            >
+            <button className="payment__button--add" type="submit">
               Attach
             </button>
           </div>

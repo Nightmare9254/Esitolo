@@ -95,7 +95,7 @@
 }
 .label {
   border-radius: 5px;
-  background: a.$medium-gray;
+  background: a.$dark-gray;
   display: inline-block;
   width: 100%;
   display: flex;
@@ -111,7 +111,7 @@
     color: #fff;
   }
   &__input {
-    background: a.$medium-gray;
+    background: a.$dark-gray;
     border: none;
     width: 90%;
     padding: 1rem;
@@ -136,6 +136,5 @@
   margin-top: 1.5rem;
 }
 .label--focused {
-  // border: 1px solid a.$main-yellow;
   transform: scale(1.05);
 }

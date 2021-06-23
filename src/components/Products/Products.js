@@ -1,7 +1,6 @@
 import Product from '../Product/Product';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useCounter } from '../../store/sub';
-import { Link } from 'react-router-dom';
 import { categoryList } from '../../assets/Consts/categoryList';
 import { AnimatePresence } from 'framer-motion';
 import SearchProducts from './SearchProducts';
@@ -9,6 +8,7 @@ import { PulsingAnimation } from '../../framer/Transitions';
 import { useLocal } from '../../hooks/cart';
 import SearchBar from '../Menu/SearchBar';
 import HeaderTitle from '../SingleComponents/HeaderTitle';
+import Menu from '../Menu/Menu';
 
 const Products = () => {
   const [page, setPage] = useState(1);
@@ -203,6 +203,7 @@ const Products = () => {
           </div>
         )}
       </div>
+      <Menu />
     </>
   );
 };

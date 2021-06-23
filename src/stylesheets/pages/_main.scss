@@ -226,7 +226,7 @@
 }
 
 .menu {
-  position: fixed;
+  position: sticky;
   width: 100%;
   z-index: 5;
   bottom: 0;
@@ -410,8 +410,8 @@
   &__container-input {
     display: flex;
     justify-content: center;
-    align-items: stretch;
     background-color: a.$dark-gray;
+    padding-right: 1rem;
   }
   &__container-icon {
     padding: 1rem;
@@ -464,9 +464,12 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2rem 4rem;
     overflow-y: scroll;
-    max-height: 90vh;
-    padding-bottom: 15rem;
+    max-height: 70vh;
     padding: 2rem;
+    margin-bottom: 20rem;
+    @include a.media('>=desktop') {
+      max-height: 80vh;
+    }
   }
 
   &__results::-webkit-scrollbar {
