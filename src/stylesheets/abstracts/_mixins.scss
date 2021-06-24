@@ -25,13 +25,21 @@
   text-align: center;
   border: none;
 }
-@mixin btnEmpty($ft-size: fs.$fs-300, $paddingD: 1rem, $border: 0) {
-  color: fs.$font-clr;
+@mixin btnEmpty(
+  $ft-size: fs.$fs-300,
+  $paddingD: 1rem,
+  $border: 0,
+  $font-clr: fs.$font-clr,
+  $borderColor: c.$main-yellow,
+  $borderRadius: 2px,
+  $background: transparent
+) {
+  color: $font-clr;
   font-size: $ft-size;
   border-radius: $border;
-  background: transparent;
-  border: 2px solid c.$main-yellow;
+  background: $background;
+  border: 2px solid $borderColor;
   padding: $paddingD;
   text-align: center;
-  border-radius: 2px;
+  border-radius: $borderRadius;
 }

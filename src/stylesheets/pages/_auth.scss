@@ -42,37 +42,12 @@
     max-width: a.$auth-form-items;
     text-align: center;
   }
-  &__toggle-btn {
-    color: a.$font-clr;
-    background-color: transparent;
-    border: a.$border-width solid a.$font-clr;
-    border-radius: 100rem;
-    padding: 1rem 3rem;
-    margin-top: 3rem;
-    font-size: a.$fs-300;
-  }
   &__header {
     font-size: a.$fs-500;
     color: a.$main-yellow;
   }
   &__header--active {
     color: a.$main-complementary;
-  }
-  &__button {
-    min-width: a.$auth-form-items;
-  }
-  &__button--action {
-    color: a.$main-yellow;
-    background-color: a.$medium-gray;
-    font-size: a.$fs-300;
-    border-radius: 100rem;
-    padding: 1rem 3rem;
-    margin-top: 3rem;
-    border: none;
-  }
-  &__button-signin {
-    background: a.$main-complementary;
-    font-size: a.$fs-600;
   }
   &__option-txt {
     font-size: a.$fs-300;
@@ -91,6 +66,47 @@
     display: flex;
     flex-flow: column nowrap;
     width: 80%;
+  }
+  &__button-empty {
+    @include a.btnEmpty(
+      a.$fs-300,
+      1rem,
+      100rem,
+      a.$font-dark-gray,
+      a.$medium-gray,
+      100rem
+    );
+    margin-top: 2rem;
+  }
+  &__button-empty--bright {
+    @include a.btnEmpty(
+      a.$fs-300,
+      1rem,
+      100rem,
+      a.$font-clr,
+      a.$font-clr,
+      100rem
+    );
+    margin-top: 2rem;
+  }
+  &__button-full {
+    @include a.btnFull();
+    border-radius: 100rem;
+    width: 100%;
+    margin-top: 2rem;
+  }
+  &__button-empty--dark {
+    @include a.btnEmpty(
+      a.$fs-300,
+      1rem,
+      100rem,
+      a.$main-yellow,
+      a.$medium-gray,
+      100rem,
+      a.$medium-gray
+    );
+    margin-top: 2rem;
+    width: 100%;
   }
 }
 .label {

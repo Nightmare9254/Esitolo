@@ -85,27 +85,29 @@ const OrderTracking = () => {
                   <td>
                     <ul className="order__list">
                       {data.items.map(({ name, quantity, price, id }) => (
-                        <div className="order__list-wrapper" key={id}>
-                          <li>
-                            Name:
-                            <span>
-                              <Link
-                                className="order__link"
-                                to={`/product/${id}`}
-                                role="link"
-                                aria-label={`Go to ${name} product page`}
-                              >
-                                {name}
-                              </Link>
-                            </span>
-                          </li>
-                          <li>
-                            Quantity: <span>{quantity}</span>
-                          </li>
-                          <li>
-                            Price: <span>{price}$</span>
-                          </li>
-                        </div>
+                        <li key={id}>
+                          <ul className="order__list-wrapper">
+                            <li>
+                              Name:
+                              <span>
+                                <Link
+                                  className="order__link"
+                                  to={`/product/${id}`}
+                                  role="link"
+                                  aria-label={`Go to ${name} product page`}
+                                >
+                                  {name}
+                                </Link>
+                              </span>
+                            </li>
+                            <li>
+                              Quantity: <span>{quantity}</span>
+                            </li>
+                            <li>
+                              Price: <span>{price}$</span>
+                            </li>
+                          </ul>
+                        </li>
                       ))}
                     </ul>
                   </td>
@@ -155,9 +157,9 @@ const OrderTracking = () => {
             </table>
 
             <section className="order__review">
-              <h5 className="order__review-header">Leave a review</h5>
+              <h3 className="order__review-header">Leave a review</h3>
               <div>
-                <h5>Choose products</h5>
+                <p className="order__review-list-header">Choose products</p>
                 {data.items.map(({ name, id }) => {
                   return (
                     <div key={id} className="order__select-wrapper">
@@ -200,7 +202,7 @@ const OrderTracking = () => {
               {message && <p className="order__message">{message}</p>}
             </section>
             <section className="order__rating">
-              <h5 className="order__rate">Rate us</h5>
+              <p className="order__rate">Rate us</p>
               <div>
                 <StarRating orderId={id} orderRating={data.rating} />
               </div>

@@ -1,14 +1,15 @@
-import {
+import { lazy } from 'react';
+import { useCookies } from 'react-cookie';
+import { useEffect, useState } from 'react';
+import { getCard, setUpNewCard } from '../../functions/stripeCard';
+import { useCounter } from '../../store/sub';
+const {
   useStripe,
   useElements,
   CardNumberElement,
   CardExpiryElement,
   CardCvcElement,
-} from '@stripe/react-stripe-js';
-import { useCookies } from 'react-cookie';
-import { useEffect, useState } from 'react';
-import { getCard, setUpNewCard } from '../../functions/stripeCard';
-import { useCounter } from '../../store/sub';
+} = lazy(() => import('@stripe/react-stripe-js'));
 
 const style = {
   base: {

@@ -1,5 +1,9 @@
 const CACHE = 'V1';
-const urls = ['index.html', 'offline.html'];
+const urls = [
+  'index.html',
+  'offline.html',
+  './src/assets/CategoryImg/Automotive.jpg',
+];
 
 const self = this;
 

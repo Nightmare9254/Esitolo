@@ -35,8 +35,8 @@ const Main = () => {
           </section>
         </div>
         <Restocked addItem={addItem} />
-        <Link to="/products" role="link">
-          <p className="button-restocked">See more</p>
+        <Link to="/products" role="link" aria-label="View more products">
+          <p className="button-restocked">See more products</p>
         </Link>
       </main>
       <Footer />

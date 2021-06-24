@@ -31,8 +31,9 @@ const Auth = () => {
             >
               <p className="auth__toggle-txt">Create brand new account</p>
               <button
+                aria-label="Press button to create new account"
                 onClick={togglePage}
-                className="button--active auth__button"
+                className="auth__button-empty"
               >
                 JOIN US
               </button>
@@ -73,7 +74,11 @@ const Auth = () => {
               <p className="auth__toggle-txt">
                 Welcome back, please login to you account
               </p>
-              <button onClick={togglePage} className=" auth__toggle-btn">
+              <button
+                aria-label="Press button on sign in to your esitolo account"
+                onClick={togglePage}
+                className=" auth__button-empty--bright"
+              >
                 SIGN IN
               </button>
             </AnimateHeight>

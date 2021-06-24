@@ -121,8 +121,11 @@
     @include a.media('>=desktop') {
       grid-column: 6/8;
       grid-row: 1/2;
-      align-self: center;
-      margin-top: 0;
+      align-self: start;
+      margin-top: 20rem;
+
+      position: sticky;
+      top: 5vh;
     }
   }
   &__btn {
@@ -225,6 +228,8 @@
   }
   &__rate {
     color: a.$font-gray-clr;
+    font-size: a.$fs-400;
+    margin-bottom: 1rem;
     text-align: center;
   }
   &__rate::first-letter {
@@ -235,6 +240,7 @@
   }
   &__list-wrapper {
     margin-bottom: 1rem;
+    width: 100%;
   }
   &__review {
     padding: 2rem;
@@ -246,8 +252,13 @@
       align-self: start;
     }
   }
+  &__review-list-header {
+    color: a.$font-clr;
+    font-size: a.$fs-300;
+  }
   &__review-header {
     margin-bottom: 2rem;
+    font-size: a.$fs-400;
   }
   &__review-area {
     resize: none;

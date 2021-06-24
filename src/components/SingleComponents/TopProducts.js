@@ -26,6 +26,7 @@ const TopProducts = ({ id, image, price, productName, addItem, category }) => {
             src={image[0]}
             alt={`Product: ${productName}`}
             className="bestsellers__product-img"
+            loading="lazy"
           />
         </div>
 

@@ -80,8 +80,9 @@ const SignUp = () => {
             />
             <AnimateItem>
               <button
+                aria-label="Create new account"
                 type="submit"
-                className="auth__button auth__button--action"
+                className="auth__button-empty--dark"
               >
                 JOIN NOW
               </button>

@@ -46,7 +46,13 @@ const OrderHistory = () => {
                   <div className="history__info-wrapper">
                     <p className="history__order-details">
                       Order ID:
-                      <span className="history__details-data">{item._id}</span>
+                      <Link
+                        to={`/order/${item._id}`}
+                        className="history__details-data"
+                        role="link"
+                      >
+                        <span className="history__details-id">{item._id}</span>
+                      </Link>
                     </p>
                     <p className="history__order-details">
                       Discount:

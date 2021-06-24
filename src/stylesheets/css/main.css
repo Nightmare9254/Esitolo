@@ -702,37 +702,12 @@
   max-width: 220px;
   text-align: center;
 }
-.auth__toggle-btn {
-  color: #eaeae7;
-  background-color: transparent;
-  border: 2px solid #eaeae7;
-  border-radius: 100rem;
-  padding: 1rem 3rem;
-  margin-top: 3rem;
-  font-size: 1.6rem;
-}
 .auth__header {
   font-size: 2.8rem;
   color: #fac646;
 }
 .auth__header--active {
   color: #31343a;
-}
-.auth__button {
-  min-width: 220px;
-}
-.auth__button--action {
-  color: #fac646;
-  background-color: #23252f;
-  font-size: 1.6rem;
-  border-radius: 100rem;
-  padding: 1rem 3rem;
-  margin-top: 3rem;
-  border: none;
-}
-.auth__button-signin {
-  background: #31343a;
-  font-size: 3.7rem;
 }
 .auth__option-txt {
   font-size: 1.6rem;
@@ -751,6 +726,52 @@
   display: flex;
   flex-flow: column nowrap;
   width: 80%;
+}
+.auth__button-empty {
+  color: #23252f;
+  font-size: 1.6rem;
+  border-radius: 100rem;
+  background: transparent;
+  border: 2px solid #23252f;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 100rem;
+  margin-top: 2rem;
+}
+.auth__button-empty--bright {
+  color: #eaeae7;
+  font-size: 1.6rem;
+  border-radius: 100rem;
+  background: transparent;
+  border: 2px solid #eaeae7;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 100rem;
+  margin-top: 2rem;
+}
+.auth__button-full {
+  color: #23252f;
+  background: #fac646;
+  font-size: 1.6rem;
+  border-radius: 0;
+  padding: 1rem;
+  text-align: center;
+  border: none;
+  border-radius: 100rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+.auth__button-empty--dark {
+  color: #fac646;
+  font-size: 1.6rem;
+  border-radius: 100rem;
+  background: #23252f;
+  border: 2px solid #23252f;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 100rem;
+  margin-top: 2rem;
+  width: 100%;
 }
 
 .label {
@@ -1467,8 +1488,10 @@
   .order__bar {
     grid-column: 6/8;
     grid-row: 1/2;
-    align-self: center;
-    margin-top: 0;
+    align-self: start;
+    margin-top: 20rem;
+    position: sticky;
+    top: 5vh;
   }
 }
 .order__btn {
@@ -1578,6 +1601,8 @@
 }
 .order__rate {
   color: #929292;
+  font-size: 2.1rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 .order__rate::first-letter {
@@ -1588,6 +1613,7 @@
 }
 .order__list-wrapper {
   margin-bottom: 1rem;
+  width: 100%;
 }
 .order__review {
   padding: 2rem;
@@ -1601,8 +1627,13 @@
     align-self: start;
   }
 }
+.order__review-list-header {
+  color: #eaeae7;
+  font-size: 1.6rem;
+}
 .order__review-header {
   margin-bottom: 2rem;
+  font-size: 2.1rem;
 }
 .order__review-area {
   resize: none;
@@ -1991,6 +2022,9 @@
   display: flex;
   justify-content: space-between;
   margin: 1rem 0;
+}
+.history__details-id {
+  color: #fac646;
 }
 .history__details-price {
   color: #fac646;

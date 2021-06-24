@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Allow: /auth
+Allow: /account
+Allow: /product
+Allow: /products
+Allow: /basket
+Allow: /basket/order-confirmation
+Allow: /basket/pay-now
+Allow: /basket/pay-now/success
+Allow: /order
+
+Disallow: /README.md
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /.gitignore
+Disallow: /.env
+Disallow: /node_modules
+Disallow: /build

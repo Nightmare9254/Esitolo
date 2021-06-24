@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import HeaderTitle from '../SingleComponents/HeaderTitle';
 import { useEffect, useState } from 'react';
 import { useLocal } from '../../hooks/cart';
-import Product from '../Product/Product';
 import { ScrollToTop } from '../SingleComponents/ScrollToTop';
 import Menu from '../Menu/Menu';
 import { Formik, Form } from 'formik';
@@ -12,6 +11,7 @@ import { AnimateContainer, ScaleButtonClick } from '../../framer/Transitions';
 import { shippingAddressAnonymous } from '../Formik/YupValidation';
 import Anonymous from '../../functions/Anonymous';
 import CartProduct from '../Product/CartProduct';
+import Footer from '../Footer/Footer';
 
 const OrderSummary = () => {
   const [cookies] = useCookies();
@@ -240,6 +240,7 @@ const OrderSummary = () => {
           )}
         </div>
       </div>
+      <Footer />
       <Menu />
     </>
   );

@@ -74,7 +74,11 @@ const SignIn = () => {
               <p className="auth__forgot-password">Forgot password?</p>
             </AnimateItem>
             <AnimateItem>
-              <button className="auth__button button" type="submit">
+              <button
+                aria-label="Sign in"
+                className="auth__button-full"
+                type="submit"
+              >
                 SIGN IN
               </button>
             </AnimateItem>
