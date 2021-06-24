@@ -6,6 +6,10 @@
 
   &__wrapper {
     margin: 0 1rem;
+    @include a.media('>=desktop') {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
   }
   &__main {
     margin-top: 4rem;

@@ -8,7 +8,7 @@ import { useDimensions } from '../../hooks/useDimensions';
 
 const Auth = () => {
   const [signIn, setSignIn] = useState(true);
-  const { height, width } = useDimensions();
+  const { width } = useDimensions();
   const [animateFrom, setAnimateFrom] = useState(false);
   const togglePage = () => {
     setSignIn(current => !current);
@@ -18,7 +18,7 @@ const Auth = () => {
       setAnimateFrom(true);
     }
   }, []);
-  console.log(width);
+
   return (
     <div className="auth">
       <div className="auth__signIn">

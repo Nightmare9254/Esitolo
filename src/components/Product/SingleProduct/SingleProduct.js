@@ -14,7 +14,6 @@ import Footer from '../../Footer/Footer';
 
 const SingleProduct = () => {
   const { id } = useParams();
-
   const { width } = useDimensions();
   const [product, setProduct] = useState({});
   const [similar, setSimilar] = useState([]);
@@ -22,6 +21,7 @@ const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);
   const [imagePosition, setImagePosition] = useState(0);
   const [reviews, setReviews] = useState([]);
+  const [addItem] = useLocal();
 
   useEffect(() => {
     fetch(`https://esitolo-backend.herokuapp.com/products?id=${id}`)
@@ -71,8 +71,7 @@ const SingleProduct = () => {
     setImagePosition(imagePosition - 1);
   };
   ScrollToTop();
-  console.log(reviews);
-  const [addItem] = useLocal();
+
   return (
     <>
       <HeaderTitle title="Esitolo" />
@@ -83,6 +82,7 @@ const SingleProduct = () => {
               <button
                 onClick={() => preImg()}
                 className="single__slide single__slide-pre"
+                aria-label="slide image to left"
               >
                 <i className="fas fa-caret-left fa-2x"></i>
               </button>
@@ -113,6 +113,7 @@ const SingleProduct = () => {
               <button
                 onClick={() => nextImg()}
                 className="single__slide single__slide-next"
+                aria-label="slide image to right"
               >
                 <i className="fas fa-caret-right fa-2x"></i>
               </button>
@@ -122,11 +123,11 @@ const SingleProduct = () => {
             </p>
           </div>
           <div className="single__content">
-            <p className="single__name">{product.productName}</p>
+            <h2 className="single__name">{product.productName}</h2>
             <p className="single__specification">{product.description}</p>
-            <Link to="/">
-              <p className="single__reviews">Products reviews</p>
-            </Link>
+            <a href="#reviews">
+              <p className="single__reviews">Product reviews</p>
+            </a>
             <p className="single__price">{product.price}$</p>
             <div className="single__container-configuration">
               <div className="single__counter single__counter--product">
@@ -138,6 +139,7 @@ const SingleProduct = () => {
                     return;
                   }}
                   className="single__action single__action-minus"
+                  aria-label="Decrease quantity"
                 >
                   -
                 </button>
@@ -149,6 +151,7 @@ const SingleProduct = () => {
                     }
                   }}
                   className="single__action single__action-plus"
+                  aria-label="Increase quantity"
                 >
                   +
                 </button>
@@ -169,6 +172,7 @@ const SingleProduct = () => {
                     })
                   }
                   className="single__button"
+                  aria-label="Add item to basket"
                 >
                   Add to basket
                 </button>
@@ -177,7 +181,7 @@ const SingleProduct = () => {
           </div>
 
           <div className="single__description">
-            <h4>Product information</h4>
+            <h3>Product information</h3>
             <p className="single__element">
               <span className="single__marked">Conditione</span>
               {product.productDetails.condition}
@@ -211,7 +215,7 @@ const SingleProduct = () => {
             </div>
           </div>
 
-          <div className="single__clients-opinions">
+          <div className="single__clients-opinions" id="reviews">
             <h4>Clients Reviews</h4>
             {reviews.length === 0 && <p>No reviews yet</p>}
             {reviews &&

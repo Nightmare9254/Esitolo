@@ -1,8 +1,1 @@
 @use '../abstracts' as a;
-
-.button {
-  @include a.buttonDefault(a.$font-dark-gray, a.$main-yellow);
-}
-.button--active {
-  @include a.buttonDefault(a.$font-dark-gray, transparent, a.$font-dark-gray);
-}

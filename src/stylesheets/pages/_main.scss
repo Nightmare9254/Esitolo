@@ -416,6 +416,8 @@
   &__container-icon {
     padding: 1rem;
     border-radius: 10rem 0rem 0rem 10rem;
+    border: none;
+    background: transparent;
   }
   &__input {
     padding: 0.5rem;
@@ -528,7 +530,9 @@
     color: a.$bright-red;
     background: transparent;
     font-size: a.$fs-300;
-    margin-left: 0.5rem;
+  }
+  &__recent-item-name {
+    margin-right: 1rem;
   }
   &__search-btn {
     background: transparent;
@@ -546,19 +550,23 @@
     .fa-circle {
       color: a.$bright-red;
     }
+    .fa-times {
+      font-size: a.$fs-300;
+      color: a.$font-important-clr;
+    }
   }
   &__search-btn--mic {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  &__container-input:focus-within {
-    outline: 2px solid a.$main-yellow;
-    outline-offset: 3px;
-  }
-  &__input:focus {
-    outline: none;
-  }
+  // &__container-input:focus-within {
+  //   outline: 2px solid a.$main-yellow;
+  //   outline-offset: 3px;
+  // }
+  // &__input:focus {
+  //   outline: none;
+  // }
 }
 .custom__scrollBar {
   display: flex;

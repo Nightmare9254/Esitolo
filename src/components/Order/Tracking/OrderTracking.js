@@ -92,6 +92,8 @@ const OrderTracking = () => {
                               <Link
                                 className="order__link"
                                 to={`/product/${id}`}
+                                role="link"
+                                aria-label={`Go to ${name} product page`}
                               >
                                 {name}
                               </Link>
@@ -153,7 +155,7 @@ const OrderTracking = () => {
             </table>
 
             <section className="order__review">
-              <h4 className="order__review-header">Leave a review</h4>
+              <h5 className="order__review-header">Leave a review</h5>
               <div>
                 <h5>Choose products</h5>
                 {data.items.map(({ name, id }) => {
@@ -180,7 +182,7 @@ const OrderTracking = () => {
                   );
                 })}
               </div>
-              <label className="label">
+              <label className="label order__textarea-label">
                 <i className="fas fa-gavel"></i>
                 <textarea
                   type="text"
@@ -198,7 +200,7 @@ const OrderTracking = () => {
               {message && <p className="order__message">{message}</p>}
             </section>
             <section className="order__rating">
-              <h3 className="order__rate">Rate us</h3>
+              <h5 className="order__rate">Rate us</h5>
               <div>
                 <StarRating orderId={id} orderRating={data.rating} />
               </div>

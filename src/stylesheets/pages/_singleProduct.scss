@@ -53,7 +53,7 @@
   }
   &__slide:focus {
     color: a.$main-yellow;
-    outline: none;
+    outline-offset: 5px;
   }
   &__slide-pre {
     left: 1rem;
@@ -77,10 +77,11 @@
   }
   &__name {
     font-size: a.$fs-400;
+    font-weight: 400;
   }
   &__specification {
     font-size: a.$fs-200;
-    margin-top: 1rem;
+    margin: 1rem 0;
     font-weight: 100;
   }
   &__price {
@@ -88,7 +89,6 @@
     margin-top: 2rem;
   }
   &__reviews {
-    margin-top: 2rem;
     color: a.$main-yellow;
     font-size: a.$fs-300;
   }
@@ -194,7 +194,7 @@
     color: a.$font-clr;
   }
   &__action:focus {
-    outline: none;
+    outline-offset: 5px;
   }
   &__choose-amount {
     line-height: 3rem;

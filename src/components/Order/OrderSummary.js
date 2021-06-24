@@ -230,9 +230,9 @@ const OrderSummary = () => {
             <>
               {user && (
                 <ScaleButtonClick>
-                  <button className="order__btn">
-                    <Link to="/basket/pay-now">Next</Link>
-                  </button>
+                  <Link to="/basket/pay-now" role="link" className="order__btn">
+                    Next
+                  </Link>
                 </ScaleButtonClick>
               )}
               {!user && <Anonymous />}

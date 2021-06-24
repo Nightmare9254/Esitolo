@@ -9,7 +9,6 @@ import { useCookies } from 'react-cookie';
 import { useEffect, useState } from 'react';
 import { getCard, setUpNewCard } from '../../functions/stripeCard';
 import { useCounter } from '../../store/sub';
-import { ScaleButtonClick } from '../../framer/Transitions';
 
 const style = {
   base: {
@@ -71,6 +70,7 @@ const AttachCard = ({ headerTitle }) => {
           actions.showCard(false);
           actions.toggleDropDown(false);
         }}
+        aria-label="Attach new card"
       >
         Attach a new card
       </button>

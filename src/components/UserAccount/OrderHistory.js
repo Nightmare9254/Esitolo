@@ -12,7 +12,7 @@ const OrderHistory = () => {
   const history = useHistory();
 
   return (
-    <main className="history">
+    <section className="history">
       {data.length === 0 && (
         <p className="history__info">You don't have orders yet.</p>
       )}
@@ -25,7 +25,11 @@ const OrderHistory = () => {
               <section className="history__single-order" key={item._id}>
                 {item.items.map((item, index) => (
                   <div className="history__single-item" key={index}>
-                    <Link to={`/product/${item.id}`}>
+                    <Link
+                      to={`/product/${item.id}`}
+                      role="link"
+                      aria-label={`Go to ${item.name} product page`}
+                    >
                       <h4 className="history__item-name">{item.name}</h4>
                     </Link>
                     <div className="history__item-info">
@@ -77,6 +81,7 @@ const OrderHistory = () => {
                     </p>
                     <button
                       className="history__delete-btn"
+                      aria-label="Cancel your order"
                       onClick={() => {
                         cancelOrder(
                           item.sessionId,
@@ -95,7 +100,7 @@ const OrderHistory = () => {
           })}
         </>
       )}
-    </main>
+    </section>
   );
 };
 

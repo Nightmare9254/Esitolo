@@ -5,11 +5,12 @@ const SearchBar = () => {
   const [, actions] = useCounter();
   return (
     <div className="search">
-      <Link to="/products">
-        <div
-          onClick={() => actions.openSearch(true)}
-          className="search__wrapper"
-        >
+      <Link
+        onClick={() => actions.openSearch(true)}
+        to="/products"
+        aria-label="go to search bar"
+      >
+        <div className="search__wrapper">
           <div className="search__icon">
             <i className="fas fa-search"></i>
           </div>

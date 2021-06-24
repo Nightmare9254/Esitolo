@@ -34,7 +34,10 @@ const UserCardList = () => {
     <section className="payment__select-wrapper">
       <div className="payment__select">
         <div
+          role="list"
           className="payment__select-trigger"
+          tabIndex={0}
+          aria-label="Open list of attached cards"
           onClick={() => {
             actions.attachCardForm(false);
             actions.toggleDropDown(!state.toggleDD);
@@ -43,10 +46,9 @@ const UserCardList = () => {
             if (e.key === 'Tab') return;
             actions.toggleDropDown(!state.toggleDD);
           }}
-          tabIndex={0}
         >
-          <p>{displayCard(prevWallet, state.wallet)}</p>
-          <div className="arrow"></div>
+          <p role="listitem">{displayCard(prevWallet, state.wallet)}</p>
+          <div role="listitem" className="arrow"></div>
         </div>
         <ul
           className={`payment__select-options ${
@@ -54,11 +56,12 @@ const UserCardList = () => {
           }`}
         >
           {state.wallet.map(({ card, id }, index) => (
-            <div key={index}>
+            <div role="listitem" key={index} className="payment__single-card">
               <li
-                tabIndex={0}
                 className="payment__select-option"
                 value={index}
+                tabIndex={0}
+                aria-label={`Choose card: ${card.brand} **** **** ****  ${card.last4} expires ${card.exp_month}/${card.exp_year}`}
                 onClick={e => {
                   setPrevWallet(
                     `${card.brand} **** **** ****  ${card.last4} expires ${card.exp_month}/${card.exp_year}`
@@ -78,7 +81,7 @@ const UserCardList = () => {
                 {card.exp_month}/{card.exp_year}
               </li>
               <button
-                className="payment__button payment__remove"
+                className="payment__remove-btn"
                 onClick={() => removeCard(id)}
               >
                 Remove

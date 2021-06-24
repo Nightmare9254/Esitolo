@@ -9,10 +9,20 @@ const Star = ({ marked, id, handleHover, setRating, userRating, orderId }) => {
         setRating(id);
         userRating(id);
       }}
+      onKeyPress={e => {
+        if (e.key === 'Enter') {
+          setRating(id);
+          userRating(id);
+        }
+
+        return;
+      }}
       data-star-id={id}
       role="button"
+      aria-label={`Rating number: ${id}`}
       onMouseOut={() => handleHover(null)}
       onMouseOver={handleHover}
+      tabIndex={0}
     >
       <i className="fas fa-star"></i>
     </div>
@@ -36,7 +46,7 @@ const StarRating = ({ orderId, orderRating }) => {
       value,
       orderId,
     };
-    console.log(body);
+
     const grade = await fetchFrom('orders/rating', {
       body,
     });

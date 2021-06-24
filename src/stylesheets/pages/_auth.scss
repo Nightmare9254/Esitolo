@@ -117,9 +117,7 @@
     padding: 1rem;
     color: a.$font-clr;
   }
-  &__input:focus {
-    outline: none;
-  }
+
   &__input:-webkit-autofill {
     box-shadow: 0 0 0px 1000px a.$dark-gray inset;
     -webkit-text-fill-color: a.$font-clr;

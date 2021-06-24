@@ -10,15 +10,21 @@ const TopProducts = ({ id, image, price, productName, addItem, category }) => {
           onClick={() =>
             addItem({ id, productName, price, image, quantity: 1, category })
           }
+          aria-label="add product to cart"
         >
           Add to cart
         </button>
       </ScaleButtonClick>
-      <Link to={`/product/${id}`} className="bestsellers__link">
+      <Link
+        to={`/product/${id}`}
+        className="bestsellers__link"
+        role="link"
+        aria-label="Go to single product page"
+      >
         <div className="bestsellers__img-container">
           <img
             src={image[0]}
-            alt="product"
+            alt={`Product: ${productName}`}
             className="bestsellers__product-img"
           />
         </div>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useCounter } from '../../store/sub';
+import ItemsCounter from '../SingleComponents/ItemsCounter';
 const CartProduct = ({
   image,
   productName,
@@ -26,6 +27,8 @@ const CartProduct = ({
             <Link
               onClick={() => actions.updateCategory(category)}
               to="/products"
+              role="link"
+              aria-label={`Go to ${category} category}`}
             >
               <span className="product-cart__category--link">{category}</span>
             </Link>
@@ -36,21 +39,12 @@ const CartProduct = ({
         )}
         <div className="product-cart__counter">
           {!isInOrder && (
-            <div className="single__counter">
-              <button
-                onClick={() => removeItem(id)}
-                className="single__action single__action-minus"
-              >
-                -
-              </button>
-              <p className="single__choose-amount">{quantity}</p>
-              <button
-                onClick={() => addQuantity(id)}
-                className="single__action single__action-plus"
-              >
-                +
-              </button>
-            </div>
+            <ItemsCounter
+              quantity={quantity}
+              id={id}
+              removeItem={removeItem}
+              addQuantity={addQuantity}
+            />
           )}
           <p className="product-cart__price">{price}$</p>
         </div>

@@ -39,6 +39,7 @@ const Cart = () => {
                       removeCart();
                     }}
                     className="cart__remove-btn"
+                    aria-label="Remove all products from a cart"
                   >
                     <i className="fas fa-trash-alt fa-2x"></i>
                   </button>

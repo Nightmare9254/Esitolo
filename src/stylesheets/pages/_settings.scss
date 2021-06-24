@@ -16,7 +16,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 1.5rem 0;
   }
   &__change-btn {
     border: none;
@@ -49,12 +48,16 @@
   }
   &__button {
     @include a.btnFull();
+    width: 100%;
+  }
+  &__button-update {
+    margin-top: 2rem;
   }
   &__main {
     @include a.media('>=desktop') {
       display: grid;
       grid-template-columns: 200px 1fr 1fr 200px;
-      // grid-auto-rows: 200px;
+
       gap: 5rem 2rem;
     }
   }
@@ -82,7 +85,6 @@
   &__orders-history {
     grid-column: 3/4;
     grid-row: 2/3;
-    // display: none;
     background-color: a.$medium-gray;
     padding: 2rem;
   }
@@ -95,6 +97,12 @@
       align-self: start;
       margin-top: 0;
     }
+  }
+  &__header-small {
+    font-weight: 300;
+    color: a.$font-clr;
+    font-size: a.$fs-400;
+    margin-bottom: 1rem;
   }
   &__container-logout {
     text-align: center;

@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-import { ScaleButtonClick } from '../../framer/Transitions';
-import { useDimensions } from '../../hooks/useDimensions';
 
 const Product = ({
   id,
@@ -10,20 +8,25 @@ const Product = ({
   price,
   refItem,
   addItem,
-  removeItem,
-
   quantity,
-  addQuantity,
   isInOrder,
   category,
   showDescription = false,
 }) => {
   return (
     <div ref={refItem} className="product">
-      <Link to={`/product/${id}`}>
+      <Link
+        to={`/product/${id}`}
+        role="link"
+        aria-label={`Go to single product page: ${productName}`}
+      >
         <div>
           <div className="product__container-img">
-            <img src={image[0]} className="product__img" alt="product" />
+            <img
+              src={image[0]}
+              className="product__img"
+              alt={`Product: ${productName}`}
+            />
           </div>
           <div className="product__data">
             <p className="product__name">{productName}</p>
@@ -54,6 +57,7 @@ const Product = ({
                 category,
               })
             }
+            aria-label="add to basket"
           >
             <i className="fas fa-plus"></i>
           </button>

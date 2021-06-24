@@ -42,6 +42,10 @@ a {
   text-decoration: none;
   color: inherit;
 }
+*:focus {
+  outline-offset: 3px;
+  outline-color: a.$main-yellow;
+}
 
 a:hover,
 button:hover {

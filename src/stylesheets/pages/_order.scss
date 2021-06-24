@@ -75,6 +75,7 @@
       grid-column: 2/6;
       grid-row: 1/2;
       margin-top: 2rem;
+      align-self: start;
     }
   }
 
@@ -86,6 +87,7 @@
     @include a.media('>=desktop') {
       grid-column: 2/6;
       grid-row: 2/3;
+      align-self: start;
     }
   }
   &__title {
@@ -124,8 +126,7 @@
     }
   }
   &__btn {
-    @include a.btnEmpty();
-    margin-top: 2rem;
+    @include a.btnEmpty(a.$fs-300, 0.5rem 1rem);
   }
 
   &__shipping-data {
@@ -250,6 +251,10 @@
   }
   &__review-area {
     resize: none;
+    overflow: hidden;
+  }
+  &__textarea-label {
+    margin-bottom: 2rem;
   }
   &__select-wrapper {
     margin: 2rem 0;

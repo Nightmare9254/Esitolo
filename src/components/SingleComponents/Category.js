@@ -6,13 +6,15 @@ export const Category = ({ link, name, imgSrc }) => {
   return (
     <Link
       to="/products"
+      role="link"
+      aria-label="Go to category"
       onClick={() => {
         actions.updateCategory(link);
       }}
     >
       <div className="category">
-        <img src={imgSrc} alt="category" className="category__img" />
-        <img src="../assets/CategoryImg/" alt="" />
+        <img src={imgSrc} alt={`Category: ${name}`} className="category__img" />
+
         <p className="category__description">{name}</p>
       </div>
     </Link>

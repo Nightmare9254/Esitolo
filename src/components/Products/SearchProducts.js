@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { PulsingAnimation, ShowInput } from '../../framer/Transitions';
 import { useLocal } from '../../hooks/cart';
-import { useCounter } from '../../store/sub';
 import Product from '../Product/Product';
 
 // const SpeechRecognition =
@@ -109,15 +108,16 @@ const SearchProducts = ({ toggleState }) => {
     <ShowInput>
       <div>
         <div className="all-products__container-input">
-          <div
+          <button
             onClick={() => {
               toggleState();
               reset();
             }}
             className="all-products__container-icon"
+            aria-label="Go back"
           >
             <i className="fas fa-arrow-left fa-2x" />
-          </div>
+          </button>
           <input
             value={search}
             placeholder="Search for favorite's things"
@@ -136,6 +136,7 @@ const SearchProducts = ({ toggleState }) => {
               searchItems(search);
             }}
             className="all-products__search-btn"
+            aria-label="Search button"
           >
             <i className="fas fa-search" />
           </button>
@@ -145,6 +146,7 @@ const SearchProducts = ({ toggleState }) => {
               setIsListening(prevState => setIsListening(!prevState))
             }
             className="all-products__search-btn all-products__search-btn--mic"
+            aria-label="Use microphone to search for an item"
           >
             {isListening && (
               <span>
@@ -196,6 +198,7 @@ const SearchProducts = ({ toggleState }) => {
                 {tags.map((item, index) => (
                   <div key={index} className="all-products__recent-item">
                     <p
+                      className="all-products__recent-item-name"
                       key={index}
                       onClick={() => {
                         searchItems(item);
@@ -209,14 +212,7 @@ const SearchProducts = ({ toggleState }) => {
                         dispatch({ type: 'REMOVE', payload: { id: index } })
                       }
                     >
-                      <i
-                        style={{
-                          marginLeft: '.5rem',
-                          fontSize: '20px',
-                          color: 'tomato',
-                        }}
-                        className="fas fa-times"
-                      />
+                      <i className="fas fa-times" />
                     </button>
                   </div>
                 ))}

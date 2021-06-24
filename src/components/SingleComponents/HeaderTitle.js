@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useDimensions } from '../../hooks/useDimensions';
 import Floater from 'react-floater';
-import { useLocal } from '../../hooks/cart';
 import styled from 'styled-components';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useCounter } from '../../store/sub';
 
 const Wrapper = styled.div`
@@ -26,7 +25,6 @@ const Item = styled.p`
   margin: 1rem 0;
 `;
 const HeaderTitle = ({ title, filter = null, hideBasket = false }) => {
-  const [, , , , , cartItems] = useLocal();
   const { width } = useDimensions();
   const [state, actions] = useCounter();
   const [floater, setFloater] = useState(false);
@@ -36,8 +34,8 @@ const HeaderTitle = ({ title, filter = null, hideBasket = false }) => {
         {state.helpPreview.length > 0 && (
           <>
             <Header>Items in the basket</Header>
-            {state.helpPreview.map(({ productName, quantity, price, id }) => (
-              <Link to={`/product/${id}`}>
+            {state.helpPreview.map(({ productName, price, id }) => (
+              <Link key={id} role="link" to={`/product/${id}`}>
                 <Item>
                   {productName} - {price}$
                 </Item>
@@ -56,7 +54,7 @@ const HeaderTitle = ({ title, filter = null, hideBasket = false }) => {
   const previewBasket = PreviewItems();
 
   return (
-    <div className="header">
+    <header className="header" role="banner">
       {width <= 1365 && (
         <div className="page__title">
           <h2 className="page__title-h2">{title}</h2>
@@ -65,12 +63,14 @@ const HeaderTitle = ({ title, filter = null, hideBasket = false }) => {
       {width >= 1366 && (
         <>
           <h2 className="header__logo">
-            <Link to="/">Esitolo</Link>
+            <Link role="link" to="/">
+              Esitolo
+            </Link>
           </h2>
 
           <div>{filter}</div>
           <div className="header__menu">
-            <Link to="/account" className="header__menu-items">
+            <Link role="link" to="/account" className="header__menu-items">
               <i className="fas fa-user"></i>
               <span className="header__menu-child">Account</span>
             </Link>
@@ -84,6 +84,7 @@ const HeaderTitle = ({ title, filter = null, hideBasket = false }) => {
                 }}
               >
                 <Link
+                  role="link"
                   onMouseEnter={() => setFloater(true)}
                   to="/basket"
                   className="header__menu-items"
@@ -96,7 +97,7 @@ const HeaderTitle = ({ title, filter = null, hideBasket = false }) => {
           </div>
         </>
       )}
-    </div>
+    </header>
   );
 };
 

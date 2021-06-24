@@ -13,6 +13,7 @@ import AttackCard from '../Stripe/AttacheCard';
 import UserCardList from '../Stripe/UserCardList';
 import { AnimatePresence } from 'framer-motion';
 import Footer from '../Footer/Footer';
+
 const Account = () => {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [openAddress, setOpenAddress] = useState(false);
@@ -53,13 +54,13 @@ const Account = () => {
         <div className="settings">
           <main className="settings__main">
             <section className="settings__section settings__welcome">
-              <h4 className="settings__header-small">
+              <h3 className="settings__header-small">
                 Good morning <span>{user.name}</span>
-              </h4>
+              </h3>
               <p className="settings__txt--dimmed">{user.email}</p>
             </section>
             <section className="settings__section settings__joined">
-              <h3 className="settings__header-medium">You have joined:</h3>
+              <h4 className="settings__header-medium">You have joined:</h4>
               <p className="settings__joined-date">
                 {moment(user.createDate).fromNow()}
               </p>
@@ -72,6 +73,7 @@ const Account = () => {
                   <button
                     className="settings__change-btn"
                     type="button"
+                    aria-label="Open change address settings"
                     onClick={() => setOpenAddress(!openAddress)}
                   >
                     {openAddress ? 'Close' : 'Change'}
@@ -179,7 +181,10 @@ const Account = () => {
                             type="tel"
                           />
                         </AnimateContainer>
-                        <button className="button" type="submit">
+                        <button
+                          className="settings__button settings__button-update"
+                          type="submit"
+                        >
                           Update
                         </button>
                       </Form>
@@ -195,6 +200,7 @@ const Account = () => {
                   type="button"
                   className="settings__change-btn"
                   onClick={() => setShowOrders(!showOrders)}
+                  aria-label="Open order history"
                 >
                   {showOrders ? ' Close' : 'Show'}
                 </button>
@@ -206,7 +212,11 @@ const Account = () => {
               <UserCardList />
             </section>
             <div className="settings__container-logout">
-              <button onClick={logout} className="settings__button">
+              <button
+                onClick={logout}
+                className="settings__button"
+                aria-label="Logout from your account"
+              >
                 Logout
               </button>
             </div>

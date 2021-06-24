@@ -9,18 +9,20 @@ import { useLocal } from '../../hooks/cart';
 import SearchBar from '../Menu/SearchBar';
 import HeaderTitle from '../SingleComponents/HeaderTitle';
 import Menu from '../Menu/Menu';
+import Footer from '../Footer/Footer';
 
 const Products = () => {
   const [page, setPage] = useState(1);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [state, actions] = useCounter();
-  const [search, setSearch] = useState('');
   const [hasMore, setHasMore] = useState(true);
   const [toggle, setToggle] = useState(state.isSearch);
   const [sortBy, setSortBy] = useState('0');
 
   const sortProducts = (a, b) => {
+    if (a.price === undefined || b.price === undefined) return;
+
     if (sortBy === '1') {
       return a.price - b.price;
     }
@@ -53,7 +55,7 @@ const Products = () => {
   }, [state.category]);
 
   useEffect(() => {
-    if (hasMore) {
+    if (hasMore && !state.isSearch) {
       setLoading(true);
       fetch(
         `https://esitolo-backend.herokuapp.com/products/all-products?${params.toString()}`
@@ -72,13 +74,8 @@ const Products = () => {
     actions.openSearch(false);
   };
 
-  useEffect(() => {
-    console.log(state.isSearch);
-    console.log(toggle);
-  }, [state.isSearch]);
-
   const [addItem] = useLocal();
-  console.log(products);
+
   return (
     <>
       <div className="all-products">
@@ -100,7 +97,7 @@ const Products = () => {
               <select
                 className="all-products__select all-products__select--left"
                 onChange={e => setSortBy(e.target.value)}
-                onKeyDown={sortProducts}
+                onKeyPress={sortProducts}
               >
                 <option value="0">Default</option>
                 <option value="1">Sort by price (Low to High)</option>
@@ -111,36 +108,35 @@ const Products = () => {
         />
 
         <SearchBar />
-        {search.length === 0 && (
-          <div className="all-products__select-actions all-products__select-actions--desktop">
-            <select
-              defaultValue={state.category}
-              onChange={e => actions.updateCategory(e.target.value)}
-              className="all-products__select"
-            >
-              {categoryList.map((name, index) => (
-                <option value={name} key={index}>
-                  {name}
-                </option>
-              ))}
-            </select>
-            <select
-              className="all-products__select all-products__select--left"
-              onChange={e => setSortBy(e.target.value)}
-              onKeyDown={sortProducts}
-            >
-              <option value="0">Default</option>
-              <option value="1">Sort by price (Low to High)</option>
-              <option value="2">Sort by price (High to Low)</option>
-            </select>
-          </div>
-        )}
+
+        <div className="all-products__select-actions all-products__select-actions--desktop">
+          <select
+            defaultValue={state.category}
+            onChange={e => actions.updateCategory(e.target.value)}
+            className="all-products__select"
+          >
+            {categoryList.map((name, index) => (
+              <option value={name} key={index}>
+                {name}
+              </option>
+            ))}
+          </select>
+          <select
+            className="all-products__select all-products__select--left"
+            onChange={e => setSortBy(e.target.value)}
+            onKeyDown={sortProducts}
+          >
+            <option value="0">Default</option>
+            <option value="1">Sort by price (Low to High)</option>
+            <option value="2">Sort by price (High to Low)</option>
+          </select>
+        </div>
 
         <AnimatePresence>
           {state.isSearch && <SearchProducts toggleState={toggleState} />}
         </AnimatePresence>
 
-        <div className="all-products__wrapper-products">
+        <section className="all-products__wrapper-products">
           {products
             .sort(sortProducts)
             .map(
@@ -159,7 +155,6 @@ const Products = () => {
                       productName={productName}
                       image={image}
                       price={price}
-                      blur={search.length > 0 ? true : false}
                       addItem={addItem}
                       showDescription={true}
                       category={category}
@@ -177,13 +172,12 @@ const Products = () => {
                       category={category}
                       addItem={addItem}
                       showDescription={true}
-                      blur={search.length > 0 ? true : false}
                     />
                   );
                 }
               }
             )}
-        </div>
+        </section>
         {loading && <PulsingAnimation />}
         {!hasMore && (
           <div className="all-products__container-information">
@@ -203,6 +197,7 @@ const Products = () => {
           </div>
         )}
       </div>
+      <Footer />
       <Menu />
     </>
   );

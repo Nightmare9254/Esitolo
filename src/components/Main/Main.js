@@ -9,6 +9,7 @@ import { useCounter } from '../../store/sub';
 import { useLocal } from '../../hooks/cart';
 import HeaderTitle from '../SingleComponents/HeaderTitle';
 import SearchBar from '../Menu/SearchBar';
+
 const Main = () => {
   const [, actions] = useCounter();
 
@@ -21,23 +22,23 @@ const Main = () => {
   return (
     <>
       <HeaderTitle title="Esitolo" />
-      <section className="main">
+      <main className="main">
         <SearchBar />
         <div className="main__flow">
-          <div className="main__flow-first-child main__categories-wrapper">
+          <section className="main__flow-first-child main__categories-wrapper">
             <h3 className="main__heading-3">Bestsellers</h3>
             <Bestsellers addItem={addItem} />
-          </div>
-          <div className="main__categories-wrapper">
+          </section>
+          <section className="main__categories-wrapper">
             <h4 className="main__heading-4">Browse by categories</h4>
             <Categories />
-          </div>
+          </section>
         </div>
         <Restocked addItem={addItem} />
-        <Link to="/products">
-          <div className="button-restocked">See more</div>
+        <Link to="/products" role="link">
+          <p className="button-restocked">See more</p>
         </Link>
-      </section>
+      </main>
       <Footer />
       <Menu />
     </>

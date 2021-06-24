@@ -39,9 +39,15 @@
   }
   &__button--full {
     @include a.btnFull();
+    @include a.media('>=phone') {
+      @include a.btnFull(a.$fs-200);
+    }
   }
   &__button--empty {
     @include a.btnEmpty();
+    @include a.media('>=phone') {
+      @include a.btnEmpty(a.$fs-200);
+    }
   }
   &__button-toPay {
     width: 100%;
@@ -170,8 +176,14 @@
     padding: 1rem;
     cursor: pointer;
   }
-  &__remove {
-    padding: 0 1rem;
+  &__remove-btn {
+    @include a.btnFull(a.$fs-200, 0.5rem);
+    margin-right: 1rem;
+  }
+  &__single-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   &__select-option:hover {
     cursor: pointer;

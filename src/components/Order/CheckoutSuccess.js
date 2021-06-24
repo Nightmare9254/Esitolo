@@ -90,14 +90,24 @@ const CheckoutSuccess = () => {
               Thank you for your purchase. You can find your order information
               in shopping history or in mailbox
             </p>
-            <Link className="checkout__link" to={`/order/${orderId}`}>
+            <Link
+              className="checkout__link"
+              to={`/order/${orderId}`}
+              role="link"
+              aria-label="Go to order details"
+            >
               ORDER NUMBER{' '}
               <span className="checkout__link--highlight">{orderId}</span>
             </Link>
             {user && (
               <p className="checkout__history">
                 Order{' '}
-                <Link to="/account" className="checkout__history-link">
+                <Link
+                  to="/account"
+                  className="checkout__history-link"
+                  role="link"
+                  aria-label="Go to order history"
+                >
                   history
                 </Link>
               </p>
