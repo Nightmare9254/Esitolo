@@ -3,7 +3,7 @@ import { ACTIONS } from '../assets/Consts/Actions';
 import { useCounter } from '../store/sub';
 
 export const useLocal = () => {
-  const [state, actions] = useCounter();
+  const [, actions] = useCounter();
   const newItem = (
     { id, productName, price, image, quantity, category },
     arr

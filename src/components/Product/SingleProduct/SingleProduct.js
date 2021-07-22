@@ -1,11 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ScaleButtonClick } from '../../../framer/Transitions';
 import { useLocal } from '../../../hooks/cart';
 import Menu from '../../Menu/Menu';
 import { ScrollToTop } from '../../SingleComponents/ScrollToTop';
-import { useFetch } from '../../../hooks/useFetch';
 import TopProducts from '../../SingleComponents/TopProducts';
 import moment from 'moment';
 import HeaderTitle from '../../SingleComponents/HeaderTitle';

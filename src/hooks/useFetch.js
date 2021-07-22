@@ -12,7 +12,7 @@ export const useFetch = url => {
   }, []);
 
   useEffect(() => {
-    fetch(`https://esitolo-backend.herokuapp.com${url}`)
+    fetch(`${process.env.REACT_APP_API}${url}`)
       .then(res => res.json())
       .then(json => {
         if (isMounted.current) {

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useCounter } from '../../store/sub';
 
 export const Category = ({ link, name, imgSrc }) => {
-  const [state, actions] = useCounter();
+  const [, actions] = useCounter();
   return (
     <Link
       to="/products"

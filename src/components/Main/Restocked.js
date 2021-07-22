@@ -1,6 +1,5 @@
 import { useFetch } from '../../hooks/useFetch';
 import Product from '../Product/Product';
-import { Link } from 'react-router-dom';
 import { PulsingAnimation } from '../../framer/Transitions';
 
 const Restocked = ({ addItem }) => {

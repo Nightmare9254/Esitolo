@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useLocal } from '../../hooks/cart';
 import { fetchFrom } from '../../hooks/fetchFrom';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import HeaderTitle from '../SingleComponents/HeaderTitle';
 import AttacheCard from '../Stripe/AttacheCard';
 import { useCounter } from '../../store/sub';
