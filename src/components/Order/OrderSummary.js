@@ -174,11 +174,9 @@ const OrderSummary = () => {
                   {isAddress.message.length > 1 && (
                     <p className="order__message--saved">{isAddress.message}</p>
                   )}
-                  <ScaleButtonClick>
-                    <button type="submit" className="order__save-btn">
-                      Save
-                    </button>
-                  </ScaleButtonClick>
+                  <button type="submit" className="order__save-btn">
+                    Save
+                  </button>
                 </Form>
               </Formik>
             </div>

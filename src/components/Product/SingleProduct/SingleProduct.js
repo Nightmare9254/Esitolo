@@ -233,10 +233,10 @@ const SingleProduct = () => {
                 );
               })}
           </div>
-          <Menu />
         </div>
       )}
       <Footer />
+      <Menu />
     </>
   );
 };
