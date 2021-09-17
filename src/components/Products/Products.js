@@ -58,7 +58,9 @@ const Products = () => {
     if (hasMore && !state.isSearch) {
       setLoading(true);
       fetch(
-        `https://esitolo-backend.herokuapp.com/products/all-products?${params.toString()}`
+        `${
+          process.env.REACT_APP_API
+        }/products/all-products?${params.toString()}`
       )
         .then(res => res.json())
         .then(json => {

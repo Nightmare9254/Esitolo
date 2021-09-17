@@ -3,13 +3,13 @@ import { useCookies } from 'react-cookie';
 import { useEffect, useState } from 'react';
 import { getCard, setUpNewCard } from '../../functions/stripeCard';
 import { useCounter } from '../../store/sub';
-const {
+import {
   useStripe,
   useElements,
   CardNumberElement,
   CardExpiryElement,
   CardCvcElement,
-} = lazy(() => import('@stripe/react-stripe-js'));
+} from '@stripe/react-stripe-js';
 
 const style = {
   base: {
@@ -19,6 +19,7 @@ const style = {
 };
 
 const AttachCard = ({ headerTitle }) => {
+  console.log(useStripe);
   const stripe = useStripe();
   const elements = useElements();
   const [cookies] = useCookies();

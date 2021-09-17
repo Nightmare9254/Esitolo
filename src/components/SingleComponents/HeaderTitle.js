@@ -4,6 +4,7 @@ import Floater from 'react-floater';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useCounter } from '../../store/sub';
+import { useCookies } from 'react-cookie';
 
 const Wrapper = styled.div`
   background: #23252f;
@@ -28,6 +29,10 @@ const HeaderTitle = ({ title, filter = null, hideBasket = false }) => {
   const { width } = useDimensions();
   const [state, actions] = useCounter();
   const [floater, setFloater] = useState(false);
+
+  const [cookies] = useCookies();
+  const { user } = cookies;
+
   const PreviewItems = () => {
     return (
       <Wrapper onMouseLeave={() => setFloater(false)}>
@@ -70,10 +75,17 @@ const HeaderTitle = ({ title, filter = null, hideBasket = false }) => {
 
           <div>{filter}</div>
           <div className="header__menu">
-            <Link role="link" to="/account" className="header__menu-items">
-              <i className="fas fa-user"></i>
-              <span className="header__menu-child">Account</span>
-            </Link>
+            {user && (
+              <Link role="link" to="/account" className="header__menu-items">
+                <i className="fas fa-user"></i>
+                <span className="header__menu-child">Account</span>
+              </Link>
+            )}
+            {!user && (
+              <Link className="header__menu-items" to="/auth">
+                Join Us
+              </Link>
+            )}
             {!hideBasket && (
               <Floater
                 component={previewBasket}

@@ -58,7 +58,7 @@ const SearchProducts = ({ toggleState }) => {
     setFilterLoading(true);
     setKey(query);
     fetch(
-      `https://esitolo-backend.herokuapp.com/products/products-search?search=${query}`
+      `${process.env.REACT_APP_API}/products/products-search?search=${query}`
     )
       .then(res => res.json())
       .then(json => {
@@ -103,7 +103,6 @@ const SearchProducts = ({ toggleState }) => {
   useEffect(() => {
     localStorage.setItem('tags', JSON.stringify(tags));
   }, [tags]);
-
   return (
     <ShowInput>
       <div>
