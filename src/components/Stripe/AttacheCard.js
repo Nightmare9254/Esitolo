@@ -1,4 +1,3 @@
-import { lazy } from 'react';
 import { useCookies } from 'react-cookie';
 import { useEffect, useState } from 'react';
 import { getCard, setUpNewCard } from '../../functions/stripeCard';

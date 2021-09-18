@@ -1,4 +1,4 @@
-import { Suspense, lazy, useState } from 'react';
+import { Suspense, lazy } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,7 +12,6 @@ import Main from './components/Main/Main';
 import Auth from './components/Auth/Auth';
 import SingleProduct from './components/Product/SingleProduct/SingleProduct';
 import Cart from './components/Cart/Cart';
-import axios from 'axios';
 
 const Account = lazy(() => import('./components/UserAccount/Account'));
 const FormAdd = lazy(() => import('./components/Form/FormAdd'));
@@ -26,38 +25,6 @@ const CheckoutFail = lazy(() => import('./components/Order/CheckoutFail'));
 const OrderTracking = lazy(() =>
   import('./components/Order/Tracking/OrderTracking')
 );
-
-async function postImage({ image }) {
-  const formData = new FormData();
-  formData.append('image', image);
-
-  const result = await axios.post('/multer', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
-  return result.data;
-}
-
-const Multer = () => {
-  const [file, setFile] = useState();
-  const [images, setImages] = useState([]);
-
-  const submit = async event => {
-    event.preventDefault();
-    const result = await postImage({ image: file });
-    setImages([result.image, ...images]);
-  };
-
-  const fileSelected = event => {
-    const file = event.target.files[0];
-    setFile(file);
-  };
-  return (
-    <div>
-      <input type="file" onChange={fileSelected} accept="image/*" />
-      <button onClick={submit}>SEND</button>
-    </div>
-  );
-};
 
 const App = () => {
   const [cookies] = useCookies(['user']);
@@ -118,7 +85,6 @@ const App = () => {
               path="/basket/pay-now/success"
               component={CheckoutSuccess}
             />
-            <Route exact path="/multer" component={Multer} />
           </Switch>
         </Suspense>
       </Router>
