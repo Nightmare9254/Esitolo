@@ -9,13 +9,14 @@ User data is stored in MongoDB.
 
 ## Demo
 
-Insert gif or link to demo
+
+
 
 Live Demo: [esitolo](ttps://esitolo.netlify.app)
 
-| ![login](https://user-images.githubusercontent.com/49620354/133886581-8641b862-c4fb-4cea-9ad7-7dc4e134fd69.JPG)   | ![main](https://user-images.githubusercontent.com/49620354/133886576-c8597149-568b-4a3e-bfe7-cc6f3214a3e4.JPG)    |
+| ![login](https://user-images.githubusercontent.com/49620354/133887347-7753080d-350d-4659-af28-c9db237e5f7f.JPG)  | ![Profile](https://user-images.githubusercontent.com/49620354/133886881-59155315-a646-4a86-8948-dc2fa2a4e020.png) |
 | :---------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------- |
-| ![product](https://user-images.githubusercontent.com/49620354/133886882-9e29bb9f-03e4-479d-b423-4236ba9dd672.png) | ![Profile](https://user-images.githubusercontent.com/49620354/133886881-59155315-a646-4a86-8948-dc2fa2a4e020.png) |
+| ![main](https://user-images.githubusercontent.com/49620354/133886576-c8597149-568b-4a3e-bfe7-cc6f3214a3e4.JPG) | ![product](https://user-images.githubusercontent.com/49620354/133887387-9d4ead10-f5e4-4064-8d6c-b9b3c5a43ec3.png) |
 
 ### Demo account
 
